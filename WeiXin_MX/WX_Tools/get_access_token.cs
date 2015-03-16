@@ -68,7 +68,7 @@ namespace WX_Tools
             {
                 httpWebRequest.Method = "GET";
                 httpWebRequest.ContentType = "application/json; charset=utf-8";
-                httpWebRequest.ContentLength = httpGetAccess_Token.Length;
+         
                 HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 Stream stream = httpWebResponse.GetResponseStream();
 
