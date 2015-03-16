@@ -39,9 +39,7 @@ namespace WX_Tools
            expires_in 	凭证有效时间，单位：秒 
          */
 
-        private string httpGetAccess_Token =
-            "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
-
+       
 
         /// <summary>
         /// 取得access_token
@@ -60,7 +58,7 @@ namespace WX_Tools
         private string InsertCache_access_token()
         {
             //建立完整的访问url
-            httpGetAccess_Token = string.Format(httpGetAccess_Token, new appid_secret().appid,
+          string  httpGetAccess_Token = string.Format(new apiAddress().access_token, new appid_secret().appid,
                 new appid_secret().secret);
             //创建HttpWebRequest对象
             HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;

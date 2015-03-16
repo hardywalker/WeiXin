@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="apiAddress.cs" />
     <Compile Include="appid_secret.cs" />
     <Compile Include="AllCach.cs" />
     <Compile Include="get_access_token.cs" />
