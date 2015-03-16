@@ -83,6 +83,12 @@
     </None>
     <Content Include="WXCheck.ashx" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WX_Tools\WX_Tools.csproj">
+      <Project>{3a95dbd5-e0a2-414a-afd7-f7034e10525b}</Project>
+      <Name>WX_Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
