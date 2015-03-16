@@ -13,5 +13,11 @@ namespace WeiXin_Web
         {
 
         }
+
+        protected void button1_OnClick(object sender, EventArgs e)
+        {
+
+          lab1.Text=  new WX_Tools.get_access_token().Get_access_token();
+        }
     }
 }

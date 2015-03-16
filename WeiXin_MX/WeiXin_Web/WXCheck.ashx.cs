@@ -165,7 +165,7 @@ namespace WeiXin_Web
 
 
             string replyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}{5}{6}access_token为：{7}]]></Content></xml>",fromUserName,toUserName,GetCreateTime(),"十分感谢-",fromUserName,"-来光临我的公众号.时间戳为：",GetCreateTime(),access_token);
+                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}{5}{6}-access_token为：{7}]]></Content></xml>",fromUserName,toUserName,GetCreateTime(),"十分感谢-",fromUserName,"-来光临我的公众号.时间戳为：",GetCreateTime(),access_token);
 
             httpContext.Response.Write(replyXmlMsg);
 

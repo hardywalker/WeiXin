@@ -10,7 +10,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    这是首页
+  <asp:Button runat="server" ID="button1" OnClick="button1_OnClick" Text="测试获取acciss_token"/><br/>
+        <asp:Label runat="server" ID="lab1"></asp:Label>
     </div>
     </form>
 </body>

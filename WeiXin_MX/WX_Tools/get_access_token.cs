@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
+using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace WX_Tools
 {
-  public  class get_access_token
+    public class get_access_token
     {
         /*
          * access_token是公众号的全局唯一票据，公众号调用各接口时都需使用access_token。开发者需要进行妥善保存。access_token的存储至少要保留512个字符空间。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效。
@@ -39,30 +39,64 @@ namespace WX_Tools
            expires_in 	凭证有效时间，单位：秒 
          */
 
-      private string httpGetAccess_Token = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
+        private string httpGetAccess_Token =
+            "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
 
 
-      /// <summary>
-      /// 取得access_token
-      /// </summary>
-      /// <returns></returns>
+        /// <summary>
+        /// 取得access_token
+        /// </summary>
+        /// <returns></returns>
         public string Get_access_token()
         {
+            if (HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()] == null)
+            {
 
-            httpGetAccess_Token = string.Format(httpGetAccess_Token, new WX_Tools.appid_secret().appid, new WX_Tools.appid_secret().secret);
-            WebRequest webRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;
-            webRequest.Method = "GET";
-            webRequest.ContentType = "application/json; charset=utf-8";
-            HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
-            Stream stream = webRequest.GetRequestStream();
+               return InsertCache_access_token();
+            }
+            return HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()].ToString();
+        }
 
-            StreamReader streamReader=new StreamReader(stream,Encoding.GetEncoding("UTF-8"));
-            string jsonData = streamReader.ReadToEnd();
-            streamReader.Close();
-            stream.Close();
+        private string InsertCache_access_token()
+        {
+            //建立完整的访问url
+            httpGetAccess_Token = string.Format(httpGetAccess_Token, new appid_secret().appid,
+                new appid_secret().secret);
+            //创建HttpWebRequest对象
+            HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;
+            if (httpWebRequest != null)
+            {
+                httpWebRequest.Method = "GET";
+                httpWebRequest.ContentType = "application/json; charset=utf-8";
+                httpWebRequest.ContentLength = httpGetAccess_Token.Length;
+                HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                Stream stream = httpWebResponse.GetResponseStream();
 
-            return jsonData;
+                if (stream != null)
+                {
+                    StreamReader streamReader = new StreamReader(stream, Encoding.GetEncoding("UTF-8"));
+                    //获取返回的流字符串
+                    string jsonData = streamReader.ReadToEnd();
+
+
+                    JObject jsonJObject = JObject.Parse(jsonData);
+
+                    streamReader.Close();
+                    stream.Close();
+
+                    //把获取到access_token放入缓存中，设置失效时间为7000秒，比微信服务器上短一点就行
+                    HttpContext.Current.Cache.Insert(AllCach.AllCachEnum.access_token.ToString(),
+                        jsonJObject["access_token"].ToString(), null, DateTime.Now.AddMilliseconds(7000),
+                        TimeSpan.Zero);
+
+
+                    return jsonJObject["access_token"].ToString();
+                }
+           
+            }
+            return "";
 
         }
+
     }
 }
