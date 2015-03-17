@@ -67,7 +67,7 @@ namespace WX_Tools
            msgId = rootXmlElement.SelectSingleNode("MsgId").InnerText;
 
 
-           File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), toUserName + "|" + fromUserName + "|" + createTime + "|" + msgType + "|" + content + "|" + msgId);
+           File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), toUserName + "|" + fromUserName + "|" + createTime + "|" + msgType + "|" + content + "|" + msgId);
 
          /*被动回复消息
            * <xml>
@@ -136,7 +136,7 @@ namespace WX_Tools
           }
           catch (Exception ex)
           {
-              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是查询access_token时异常：" + ex.InnerException);
+              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是查询access_token时异常：" + ex.InnerException);
               access_token = ex.Message;
           }
          

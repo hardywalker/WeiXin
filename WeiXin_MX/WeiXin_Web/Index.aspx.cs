@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,8 @@ namespace WeiXin_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
+            File.WriteAllText(Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "访问Index页");
         }
 
         protected void button1_OnClick(object sender, EventArgs e)

@@ -41,7 +41,7 @@ namespace WX_Tools
            //对比
            if (temp3.ToLower().Equals(signature))
            {
-               File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是验证时候的记录|" + signature + "|" + timestamp + "|" + nonce + "|" + echostr);
+               File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是验证时候的记录|" + signature + "|" + timestamp + "|" + nonce);
                return echostr;
            }
            return "";
@@ -54,7 +54,7 @@ namespace WX_Tools
        /// <returns></returns>
         public bool ValidateUrlBool()
         {
-            if (ValidateUrl() == HttpContext.Current.Request["echostr"].ToString())
+            if (ValidateUrl() == HttpContext.Current.Request["signature"].ToString())
             {
                 return true;
             }
