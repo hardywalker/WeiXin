@@ -16,7 +16,7 @@ namespace WX_Tools
 
         //开发者微信号
        string toUserName, fromUserName, createTime, msgType, content, msgId;
-       HttpContext httpContext = HttpContext.Current;
+       HttpContext _httpContext = HttpContext.Current;
 
       public void ExecHandler()
       { /*
@@ -43,7 +43,7 @@ namespace WX_Tools
      
 
           //接收 xml数据包
-          Stream xmlStream = httpContext.Request.InputStream;
+          Stream xmlStream = _httpContext.Request.InputStream;
 
 
           //构造xml对象
@@ -67,7 +67,7 @@ namespace WX_Tools
            msgId = rootXmlElement.SelectSingleNode("MsgId").InnerText;
 
 
-           File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.Ticks + ".txt"), toUserName+"|"+fromUserName+"|"+createTime+"|"+msgType+"|"+content+"|"+msgId);
+           File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), toUserName + "|" + fromUserName + "|" + createTime + "|" + msgType + "|" + content + "|" + msgId);
 
          /*被动回复消息
            * <xml>
@@ -113,14 +113,14 @@ namespace WX_Tools
               string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n\"查看\".查看access_token\r\n\"服务器\".查看服务器IP\r\n请回复对应文字来查询");
 
-              httpContext.Response.Write(defaultReplyXmlMsg);
+              _httpContext.Response.Write(defaultReplyXmlMsg);
           }
           catch (Exception e)
           {
              
-              httpContext.Response.Write(e.Message);
+              _httpContext.Response.Write(e.Message);
           }
-            httpContext.Response.End();
+            _httpContext.Response.End();
         }
 
 
@@ -136,7 +136,7 @@ namespace WX_Tools
           }
           catch (Exception ex)
           {
-              File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" +new DateTime().ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是查询access_token时异常："+ex.InnerException);
+              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是查询access_token时异常：" + ex.InnerException);
               access_token = ex.Message;
           }
          
@@ -144,8 +144,8 @@ namespace WX_Tools
             string getAccessTokenReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的access_token为：",access_token);
 
-            httpContext.Response.Write(getAccessTokenReplyXmlMsg);
-            httpContext.Response.End();
+            _httpContext.Response.Write(getAccessTokenReplyXmlMsg);
+            _httpContext.Response.End();
         }
 
 
@@ -169,8 +169,8 @@ namespace WX_Tools
             string getServerIPReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
 
-            httpContext.Response.Write(getServerIPReplyXmlMsg);
-            httpContext.Response.End();
+            _httpContext.Response.Write(getServerIPReplyXmlMsg);
+            _httpContext.Response.End();
         }
 
 

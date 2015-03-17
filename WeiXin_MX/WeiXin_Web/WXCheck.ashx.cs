@@ -18,18 +18,20 @@ namespace WeiXin_Web
 
             if (context.Request.HttpMethod.ToLower().Equals("get"))
             {
-               
+                File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是通过GET方式来的");
                 //校验
                 context.Response.Write(new Check().ValidateUrl());     
             }
             else
             {
-
+                File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是通过Post方式来的");
                 if (!new Check().ValidateUrlBool())
                 {
+                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是通过Post方式来的，我没有通过验证");
                     context.Response.Write("参数错误");
                     return;
                 }
+                File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是通过Post方式来的，我已经通过了验证");
                 /*
                  *  <xml>
                         <ToUserName><![CDATA[toUser]]></ToUserName>
@@ -53,7 +55,7 @@ namespace WeiXin_Web
                 {
 
 
-                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + new DateTime().ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是入口页面的异常：" + ex.InnerException);
+                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是入口页面的异常：" + ex.InnerException);
 
                     context.Response.Write(ex.Message);
                     context.Response.End();

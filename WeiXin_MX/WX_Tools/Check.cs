@@ -17,14 +17,15 @@ namespace WX_Tools
                nonce 	随机数
                echostr 	随机字符串 
             */
-        static HttpContext httpContext = HttpContext.Current;
-        string signature = httpContext.Request["signature"];
-        string timestamp = httpContext.Request["timestamp"];
-        string nonce = httpContext.Request["nonce"];
-        string echostr = httpContext.Request["echostr"];
+      
+     
        public string ValidateUrl()
        {
-          
+              HttpContext httpContext = HttpContext.Current;
+           string signature = httpContext.Request["signature"];
+           string timestamp = httpContext.Request["timestamp"];
+           string nonce = httpContext.Request["nonce"];
+           string echostr = httpContext.Request["echostr"];
            string token = "anyangmaxin";
 
            string[] temp1 = { token, timestamp, nonce };
@@ -40,7 +41,7 @@ namespace WX_Tools
            //对比
            if (temp3.ToLower().Equals(signature))
            {
-               File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + new DateTime().ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是验证时候的记录|"+signature + "|" + timestamp + "|" + nonce + "|" + echostr );
+               File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是验证时候的记录|" + signature + "|" + timestamp + "|" + nonce + "|" + echostr);
                return echostr;
            }
            return "";
@@ -53,7 +54,7 @@ namespace WX_Tools
        /// <returns></returns>
         public bool ValidateUrlBool()
         {
-            if (ValidateUrl() == echostr)
+            if (ValidateUrl() == HttpContext.Current.Request["echostr"].ToString())
             {
                 return true;
             }
