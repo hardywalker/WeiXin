@@ -20,12 +20,15 @@ namespace WeiXin_Web
             {
                 File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过GET方式来的");
                 //校验
-                context.Response.Write(new Check().ValidateUrl());     
+                if (new Check().ValidateUrl())
+                {
+                    context.Response.Write(context.Request["echostr"].ToString());
+                }     
             }
             else
             {
                 File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过Post方式来的");
-                if (!new Check().ValidateUrlBool())
+                if (!new Check().ValidateUrl())
                 {
                     File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过Post方式来的，我没有通过验证");
                     context.Response.Write("参数错误");

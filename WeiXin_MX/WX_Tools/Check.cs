@@ -19,7 +19,7 @@ namespace WX_Tools
             */
       
      
-       public string ValidateUrl()
+       public bool ValidateUrl()
        {
               HttpContext httpContext = HttpContext.Current;
            string signature = httpContext.Request["signature"];
@@ -39,27 +39,17 @@ namespace WX_Tools
 
 
            //对比
-           if (temp3.ToLower().Equals(signature))
-           {
-               File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是验证时候的记录|" + signature + "|" + timestamp + "|" + nonce);
-               return echostr;
-           }
-           return "";
+           //if (temp3.ToLower().Equals(signature))
+           //{
+           //    File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是验证时候的记录|" + signature + "|" + timestamp + "|" + nonce);
+           //    return echostr;
+           //}
+           //return "";
+
+
+           return temp3.ToLower().Equals(signature);
        }
 
-
-       /// <summary>
-       /// 验证是否通过，返回布尔值
-       /// </summary>
-       /// <returns></returns>
-        public bool ValidateUrlBool()
-        {
-            if (ValidateUrl() == HttpContext.Current.Request["signature"].ToString())
-            {
-                return true;
-            }
-            return false;
-        }
 
 
     }
