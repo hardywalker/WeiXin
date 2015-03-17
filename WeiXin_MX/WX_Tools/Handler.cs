@@ -80,18 +80,19 @@ namespace WX_Tools
              <Content><![CDATA[你好]]></Content>
              </xml>
            */
-          string access_token = "暂未获取access_token";
-          if (content == "票据")
-          {
-              access_token = new WX_Tools.get_access_token().Get_access_token();
+//          string access_token = "暂未获取access_token";
+//          if (content == "票据")
+//          {
+//              access_token = new WX_Tools.get_access_token().Get_access_token();
 
-          }
+//          }
           
-          string replyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}{5}{6}-access_token为：{7}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "十分感谢-", fromUserName, "-来光临我的公众号.时间戳为：", GetCreateTime(), access_token);
+//          string replyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
+//                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}{5}{6}-access_token为：{7}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "十分感谢-", fromUserName, "-来光临我的公众号.时间戳为：", GetCreateTime(), access_token);
 
-          httpContext.Response.Write(replyXmlMsg);
-          
+//          httpContext.Response.Write(replyXmlMsg);
+           Reply(content);
+
       }
 
 
