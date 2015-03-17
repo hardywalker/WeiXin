@@ -52,14 +52,14 @@ namespace WX_Tools
 
 
 
-                  //for (int i = 0; i < jArray.Count; i++)
-                  //{
+                  for (int i = 0; i < jArray.Count; i++)
+                  {
 
 
-                  //    ipString += jArray[i] + ",";
-                  //}
+                      ipString += jArray[i] + ",";
+                  }
 
-                  ipString = jArray.Aggregate(ipString, (current, t) => current + (t + ","));
+                 // ipString = jArray.Aggregate(ipString, (current, t) => current + (t + ","));
 
 
                 

@@ -66,12 +66,7 @@ namespace WX_Tools
 
            msgId = rootXmlElement.SelectSingleNode("MsgId").InnerText;
 
-         
-         
-
-
-
-          /*被动回复消息
+         /*被动回复消息
            * <xml>
              <ToUserName><![CDATA[toUser]]></ToUserName>
              <FromUserName><![CDATA[fromUser]]></FromUserName>
@@ -80,17 +75,7 @@ namespace WX_Tools
              <Content><![CDATA[你好]]></Content>
              </xml>
            */
-//          string access_token = "暂未获取access_token";
-//          if (content == "票据")
-//          {
-//              access_token = new WX_Tools.get_access_token().Get_access_token();
 
-//          }
-          
-//          string replyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-//                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}{5}{6}-access_token为：{7}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "十分感谢-", fromUserName, "-来光临我的公众号.时间戳为：", GetCreateTime(), access_token);
-
-//          httpContext.Response.Write(replyXmlMsg);
            Reply(content);
 
       }
@@ -100,10 +85,10 @@ namespace WX_Tools
         {
           switch (contentStr)
           {
-              case "1":
+              case "查看":
                   getAccessToken();
                   break;
-              case "2":
+              case "服务器":
                  getServerIPString();
                   break;
               default:
@@ -122,7 +107,7 @@ namespace WX_Tools
         {
          
             string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n请回复对应数字来查询");
+                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n\"查看\".查看access_token\r\n\"服务器\".查看服务器IP\r\n请回复对应文字来查询");
 
             httpContext.Response.Write(defaultReplyXmlMsg);
             httpContext.Response.End();
@@ -133,8 +118,19 @@ namespace WX_Tools
       /// 回复获取的access_token
       /// </summary>
         private void getAccessToken()
-        {
-            string access_token = new get_access_token().Get_access_token();
+      {
+          string access_token;
+          try
+          {
+               access_token = new get_access_token().Get_access_token();
+          }
+          catch (Exception ex)
+          {
+
+              access_token = ex.Message;
+          }
+         
+
             string getAccessTokenReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的access_token为：",access_token);
 
@@ -147,9 +143,19 @@ namespace WX_Tools
       /// 回复获取到的服务器IP地址
       /// </summary>
         private void getServerIPString()
-        {
+      {
 
-            string serverIP = new getcallbackip().getServerIPString();
+          string serverIP;
+          try
+          {
+            serverIP=  new getcallbackip().getServerIPString();
+          }
+          catch (Exception ex)
+          {
+
+              serverIP = ex.Message;
+          }
+      
             string getServerIPReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
 
