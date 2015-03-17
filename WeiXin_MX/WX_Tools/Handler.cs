@@ -66,6 +66,9 @@ namespace WX_Tools
 
            msgId = rootXmlElement.SelectSingleNode("MsgId").InnerText;
 
+
+           File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.Ticks + ".txt"), toUserName+"|"+fromUserName+"|"+createTime+"|"+msgType+"|"+content+"|"+msgId);
+
          /*被动回复消息
            * <xml>
              <ToUserName><![CDATA[toUser]]></ToUserName>
@@ -105,11 +108,18 @@ namespace WX_Tools
       /// </summary>
         private void DefaultReply()
         {
-         
-            string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
+          try
+          {
+              string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n\"查看\".查看access_token\r\n\"服务器\".查看服务器IP\r\n请回复对应文字来查询");
 
-            httpContext.Response.Write(defaultReplyXmlMsg);
+              httpContext.Response.Write(defaultReplyXmlMsg);
+          }
+          catch (Exception e)
+          {
+             
+              httpContext.Response.Write(e.Message);
+          }
             httpContext.Response.End();
         }
 
@@ -126,7 +136,7 @@ namespace WX_Tools
           }
           catch (Exception ex)
           {
-
+              File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" +new DateTime().ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是查询access_token时异常："+ex.InnerException);
               access_token = ex.Message;
           }
          

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Security;
 
@@ -39,6 +40,7 @@ namespace WX_Tools
            //对比
            if (temp3.ToLower().Equals(signature))
            {
+               File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + new DateTime().ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是验证时候的记录|"+signature + "|" + timestamp + "|" + nonce + "|" + echostr );
                return echostr;
            }
            return "";

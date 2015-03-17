@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using WX_Tools;
 
@@ -50,6 +51,9 @@ namespace WeiXin_Web
                 }
                 catch (Exception ex)
                 {
+
+
+                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + new DateTime().ToString("yyyy-MM-dd HH:ss") + ".txt"), "我是入口页面的异常：" + ex.InnerException);
 
                     context.Response.Write(ex.Message);
                     context.Response.End();
