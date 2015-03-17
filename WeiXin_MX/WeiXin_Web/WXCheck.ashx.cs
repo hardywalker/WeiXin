@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using WX_Tools;
 
 namespace WeiXin_Web
@@ -7,9 +8,7 @@ namespace WeiXin_Web
     /// WXCheck 的摘要说明
     /// </summary>
     public class WXCheck : IHttpHandler
-    {
-
-        private static string msg;
+    { 
 
         public void ProcessRequest(HttpContext context)
         {
@@ -18,10 +17,9 @@ namespace WeiXin_Web
 
             if (context.Request.HttpMethod.ToLower().Equals("get"))
             {
-                //输出结果
-                context.Response.Write(msg);
+               
                 //校验
-                new Check().ValidateUrl();     
+                context.Response.Write(new Check().ValidateUrl());     
             }
             else
             {
@@ -45,8 +43,18 @@ namespace WeiXin_Web
                  *
                  */
 
-                //接收并响应
-                new Handler().ExecHandler();
+                try
+                {
+                    //接收并响应
+                    new Handler().ExecHandler();
+                }
+                catch (Exception ex)
+                {
+
+                    context.Response.Write(ex.Message);
+                    context.Response.End();
+                }
+               
 
             }
 
