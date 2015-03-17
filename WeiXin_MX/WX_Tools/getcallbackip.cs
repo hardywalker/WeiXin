@@ -50,14 +50,19 @@ namespace WX_Tools
                   stream.Close();
 
 
+
+
                   //for (int i = 0; i < jArray.Count; i++)
                   //{
-                  //    JObject j = JObject.Parse(jArray[i].ToString());
-                  //    ipString += j + ",";
+
+
+                  //    ipString += jArray[i] + ",";
                   //}
 
+                  ipString = jArray.Aggregate(ipString, (current, t) => current + (t + ","));
 
-                  ipString = jArray.Select(t => JObject.Parse(t.ToString())).Aggregate(ipString, (current, j) => current + (j + ","));
+
+                
 
               }
 
