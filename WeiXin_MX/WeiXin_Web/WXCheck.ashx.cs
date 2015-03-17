@@ -26,10 +26,16 @@ namespace WeiXin_Web
                 //输出结果
                 context.Response.Write(msg);
                 //校验
-            ValidateUrl();     
+                new WX_Tools.Check().ValidateUrl();     
             }
             else
             {
+
+                if (!new WX_Tools.Check().ValidateUrlBool())
+                {
+                    context.Response.Write("参数错误");
+                    return;
+                }
                 /*
                  *  <xml>
                         <ToUserName><![CDATA[toUser]]></ToUserName>
@@ -53,43 +59,6 @@ namespace WeiXin_Web
 
         }
 
-        private void ValidateUrl()
-        {
-            /*
-             * signature 	微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数。
-                timestamp 	时间戳
-                nonce 	随机数
-                echostr 	随机字符串 
-             */
-
-            HttpContext httpContext=HttpContext.Current;
-            string signature = httpContext.Request["signature"];
-            string timestamp = httpContext.Request["timestamp"];
-            string nonce = httpContext.Request["nonce"];
-            string echostr = httpContext.Request["echostr"];
-
-            string token = "anyangmaxin";
-
-            string[] temp1 = {token,timestamp,nonce};
-
-            //排序
-            Array.Sort(temp1);
-
-            //sha1加密
-            string temp2 = string.Join("", temp1);
-            string temp3=FormsAuthentication.HashPasswordForStoringInConfigFile(temp2, "SHA1");
-
-
-            //对比
-            if (temp3.ToLower().Equals(signature))
-            {
-                httpContext.Response.Write(echostr);
-            }
-         
-
-
-
-        }
 
 
         private void HandleMsg()
@@ -173,7 +142,8 @@ namespace WeiXin_Web
 
 
         /// <summary>
-        /// 取得时间戳
+        /// 取得时间戳  格林威治时间  1970,1,1,00:00开始到当前时间的秒数
+        /// 中国是  1790,1,1,08:00
         /// </summary>
         /// <returns></returns>
         private int GetCreateTime()
