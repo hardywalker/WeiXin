@@ -51,6 +51,7 @@
     <Compile Include="Check.cs" />
     <Compile Include="getcallbackip.cs" />
     <Compile Include="get_access_token.cs" />
+    <Compile Include="Handler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
