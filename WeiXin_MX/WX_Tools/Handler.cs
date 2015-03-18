@@ -15,7 +15,7 @@ namespace WX_Tools
     {
 
         //开发者微信号
-       string toUserName, fromUserName, createTime, msgType, content, msgId;
+       string toUserName, fromUserName, createTime, msgType, content, msgId,subscribeEvent;
        HttpContext _httpContext = HttpContext.Current;
 
       public void ExecHandler()
@@ -256,7 +256,11 @@ namespace WX_Tools
               }
               else if (msgType.Equals("event"))
               {
-
+                  subscribeEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
+                  if (subscribeEvent.Equals("subscribe"))
+                  {
+                      Reply("关注");
+                  }
               }
 
           }
@@ -281,10 +285,7 @@ namespace WX_Tools
 
       }
 
-        private void getMsgType()
-        {
-            
-        }
+     
 
 
 
@@ -328,7 +329,8 @@ namespace WX_Tools
              
               _httpContext.Response.Write(e.Message);
           }
-            _httpContext.Response.End();
+            //_httpContext.Response.End();
+            _httpContext.ApplicationInstance.CompleteRequest();
         }
 
 
@@ -353,7 +355,8 @@ namespace WX_Tools
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的access_token为：",access_token);
 
             _httpContext.Response.Write(getAccessTokenReplyXmlMsg);
-            _httpContext.Response.End();
+            //_httpContext.Response.End();
+            _httpContext.ApplicationInstance.CompleteRequest();
         }
 
 
@@ -378,7 +381,8 @@ namespace WX_Tools
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
 
             _httpContext.Response.Write(getServerIPReplyXmlMsg);
-            _httpContext.Response.End();
+           // _httpContext.Response.End();
+            _httpContext.ApplicationInstance.CompleteRequest();
         }
 
 
