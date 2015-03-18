@@ -58,7 +58,7 @@ namespace WeiXin_Web
                 {
 
 
-                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是入口页面的异常：" + ex.InnerException);
+                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是入口页面的异常：\r\n" + ex.Message+"|\r\n"+ex.StackTrace+"|\r\n"+ex.ToString());
 
                     context.Response.Write(ex.Message);
                     context.Response.End();

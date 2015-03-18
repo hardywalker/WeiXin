@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllEventEnum.cs" />
+    <Compile Include="AllEnum.cs" />
     <Compile Include="apiAddress.cs" />
     <Compile Include="appid_secret.cs" />
     <Compile Include="AllCach.cs" />
