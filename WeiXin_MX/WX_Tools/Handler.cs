@@ -218,7 +218,7 @@ namespace WX_Tools
 
           if (rootXmlElement != null)
           {
-              msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
+             
 
               //开发者微信号
               toUserName = rootXmlElement.SelectSingleNode("ToUserName").InnerText;
@@ -227,9 +227,11 @@ namespace WX_Tools
 
               createTime = rootXmlElement.SelectSingleNode("CreateTime").InnerText;
 
+              msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
+              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "MsgType：" + msgType);
+
               if (msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
               {
-                  
                   content = rootXmlElement.SelectSingleNode("Content").InnerText;
 
                   msgId = rootXmlElement.SelectSingleNode("MsgId").InnerText;
@@ -257,7 +259,8 @@ namespace WX_Tools
               else if (msgType.Equals("event"))
               {
                   subscribeEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
-                  if (subscribeEvent.Equals("subscribe"))
+                  File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "Event：" + subscribeEvent);
+                  if (subscribeEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
                   {
                       Reply("关注");
                   }
