@@ -48,22 +48,15 @@ namespace WX_Tools
                   JArray jArray = JArray.Parse(jsonJObject["ip_list"].ToString());
                   streamReader.Close();
                   stream.Close();
-
-
-
-
+                  
                   for (int i = 0; i < jArray.Count; i++)
                   {
-
-
                       ipString += jArray[i] + ",";
                   }
 
                  // ipString = jArray.Aggregate(ipString, (current, t) => current + (t + ","));
 
-
-                
-
+                  
               }
 
 

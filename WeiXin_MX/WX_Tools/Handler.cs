@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 using System.Xml;
 
 namespace WX_Tools
@@ -306,6 +308,9 @@ namespace WX_Tools
               case "2":
                  getServerIPString();
                   break;
+              case "3":
+                  CreateCustomeMenu();
+                  break;
               default:
                   DefaultReply();
                   break;
@@ -323,7 +328,7 @@ namespace WX_Tools
           try
           {
               string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
+                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n3.创建菜单\r\n更多功能敬请期待\n请回复对应文字来查询");
 
               _httpContext.Response.Write(defaultReplyXmlMsg);
           }
@@ -380,8 +385,13 @@ namespace WX_Tools
               serverIP = ex.Message;
           }
       
-            string getServerIPReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
+            string getServerIPReplyXmlMsg = string.Format(@"<xml>
+                                                              <ToUserName><![CDATA[{0}]]></ToUserName>
+                                                              <FromUserName><![CDATA[{1}]]></FromUserName>
+                                                              <CreateTime>{2}</CreateTime>
+                                                              <MsgType><![CDATA[text]]></MsgType>
+                                                              <Content><![CDATA[{3}{4}]]></Content>
+                                                            </xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
 
             _httpContext.Response.Write(getServerIPReplyXmlMsg);
            // _httpContext.Response.End();
@@ -402,6 +412,62 @@ namespace WX_Tools
 
 
       }
+
+
+      /// <summary>
+      /// 创建菜单
+      /// </summary>
+        public void CreateCustomeMenu()
+        {
+            StringBuilder postDataStringBuilder=new StringBuilder();
+            postDataStringBuilder.Append("{\"button\":[");
+            postDataStringBuilder.Append("{\"type\":\"click\",\"name\":\"今日歌曲\",\"key\":\"V1001_TODAY_MUSIC\"},");
+            postDataStringBuilder.Append("{\"name\":\"菜单\",\"sub_button\":[");
+            postDataStringBuilder.Append("{\"type\":\"view\",\"name\":\"搜索\",\"url\":\"http://www.soso.com/\"},");
+            postDataStringBuilder.Append("{\"type\":\"view\",\"name\":\"视频\",\"url\":\"http://v.qq.com/\"},");
+            postDataStringBuilder.Append("{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}");
+            postDataStringBuilder.Append("]}]}");
+
+            byte[] postBytes = Encoding.ASCII.GetBytes(postDataStringBuilder.ToString());
+
+            string access_token = new get_access_token().Get_access_token();
+            string createMenuUrl = string.Format(new apiAddress().CreateMenu, access_token);
+
+            WebRequest webRequest = (HttpWebRequest) WebRequest.Create(createMenuUrl);
+            
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/json;charset=utf-8";
+                webRequest.ContentLength = postBytes.Length;
+
+                Stream streamWrite = webRequest.GetRequestStream();
+                streamWrite.Write(postBytes, 0, postBytes.Length);
+            streamWrite.Close();
+
+
+                HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
+          Stream streamRead = httpWebResponse.GetResponseStream();
+          if (streamRead != null)
+          {
+              StreamReader streamReader=new StreamReader(streamRead,Encoding.UTF8);
+              string result = streamReader.ReadToEnd();
+              streamReader.Close();
+              streamRead.Close();
+              string resultXmlMsg = string.Format(@"<xml>
+                                                              <ToUserName><![CDATA[{0}]]></ToUserName>
+                                                              <FromUserName><![CDATA[{1}]]></FromUserName>
+                                                              <CreateTime>{2}</CreateTime>
+                                                              <MsgType><![CDATA[text]]></MsgType>
+                                                              <Content><![CDATA[{3}{4}]]></Content>
+                                                            </xml>", fromUserName, toUserName, GetCreateTime(), "创建菜单结果：", result);
+
+              _httpContext.Response.Write(resultXmlMsg);
+
+              _httpContext.ApplicationInstance.CompleteRequest();
+          }
+
+   
+
+        }
 
 
 
