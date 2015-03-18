@@ -88,10 +88,10 @@ namespace WX_Tools
         {
           switch (contentStr)
           {
-              case "查看":
+              case "1":
                   getAccessToken();
                   break;
-              case "服务器":
+              case "2":
                  getServerIPString();
                   break;
               default:
@@ -111,7 +111,7 @@ namespace WX_Tools
           try
           {
               string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n\"查看\".查看access_token\r\n\"服务器\".查看服务器IP\r\n请回复对应文字来查询");
+                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
 
               _httpContext.Response.Write(defaultReplyXmlMsg);
           }

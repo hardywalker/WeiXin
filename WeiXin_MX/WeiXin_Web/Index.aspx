@@ -10,6 +10,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        测试号申请地址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
+        <hr/>
   <asp:Button runat="server" ID="button1" OnClick="button1_OnClick" Text="测试获取acciss_token"/><br/>
         <asp:Label runat="server" ID="lab1"></asp:Label>
         <br/>
