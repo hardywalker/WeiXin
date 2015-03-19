@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace WX_Tools
 {
@@ -230,7 +231,7 @@ namespace WX_Tools
               createTime = rootXmlElement.SelectSingleNode("CreateTime").InnerText;
 
               msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
-              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "MsgType：" + msgType);
+              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-1.txt"), "MsgType：" + msgType);
 
               if (msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
               {
@@ -420,28 +421,83 @@ namespace WX_Tools
         public void CreateCustomeMenu()
         {
             StringBuilder postDataStringBuilder=new StringBuilder();
-            postDataStringBuilder.Append("{\"button\":[");
-            postDataStringBuilder.Append("{\"type\":\"click\",\"name\":\"今日歌曲\",\"key\":\"V1001_TODAY_MUSIC\"},");
-            postDataStringBuilder.Append("{\"name\":\"菜单\",\"sub_button\":[");
-            postDataStringBuilder.Append("{\"type\":\"view\",\"name\":\"搜索\",\"url\":\"http://www.soso.com/\"},");
-            postDataStringBuilder.Append("{\"type\":\"view\",\"name\":\"视频\",\"url\":\"http://v.qq.com/\"},");
-            postDataStringBuilder.Append("{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}");
-            postDataStringBuilder.Append("]}]}");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.Append("\"button\":");
+            postDataStringBuilder.Append("[");
 
-            byte[] postBytes = Encoding.ASCII.GetBytes(postDataStringBuilder.ToString());
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.Append("\"name\":\"菜单一\",\"sub_button\":");
+            postDataStringBuilder.Append("[");
 
+            postDataStringBuilder.Append("{");
+                postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单一一\",\"key\":\"menu1_1\"",AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+                postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单一二\",\"key\":\"menu1_2\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+                postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单一三\",\"key\":\"menu1_3\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("}");
+
+
+            postDataStringBuilder.Append("]");
+            postDataStringBuilder.Append("},");
+
+
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.Append("\"name\":\"菜单二\",\"sub_button\":");
+            postDataStringBuilder.Append("[");
+
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单二一\",\"key\":\"menu2_1\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单二二\",\"key\":\"menu2_2\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单二三\",\"key\":\"menu2_3\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("}");
+
+
+            postDataStringBuilder.Append("]");
+            postDataStringBuilder.Append("},");
+
+
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.Append("\"name\":\"菜单三\",\"sub_button\":");
+            postDataStringBuilder.Append("[");
+
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单三一\",\"key\":\"menu3_1\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单三二\",\"key\":\"menu3_2\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单三三\",\"key\":\"menu3_3\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.Append("}");
+
+
+            postDataStringBuilder.Append("]");
+            postDataStringBuilder.Append("}");
+
+            postDataStringBuilder.Append("]");
+            postDataStringBuilder.Append("}");
+
+            byte[] postBytes =System.Text.Encoding.UTF8.GetBytes(postDataStringBuilder.ToString());
+          //string postBytes = postDataStringBuilder.ToString();
             string access_token = new get_access_token().Get_access_token();
             string createMenuUrl = string.Format(new apiAddress().CreateMenu, access_token);
 
             WebRequest webRequest = (HttpWebRequest) WebRequest.Create(createMenuUrl);
             
                 webRequest.Method = "POST";
-                webRequest.ContentType = "application/json;charset=utf-8";
+                webRequest.ContentType = "application/x-www-form-urlencoded;";
                 webRequest.ContentLength = postBytes.Length;
 
                 Stream streamWrite = webRequest.GetRequestStream();
-                streamWrite.Write(postBytes, 0, postBytes.Length);
-            streamWrite.Close();
+            streamWrite.Write(postBytes, 0, postBytes.Length);
+             streamWrite.Close();
 
 
                 HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
@@ -452,13 +508,14 @@ namespace WX_Tools
               string result = streamReader.ReadToEnd();
               streamReader.Close();
               streamRead.Close();
+              JObject jObject = JObject.Parse(result);
               string resultXmlMsg = string.Format(@"<xml>
                                                               <ToUserName><![CDATA[{0}]]></ToUserName>
                                                               <FromUserName><![CDATA[{1}]]></FromUserName>
                                                               <CreateTime>{2}</CreateTime>
                                                               <MsgType><![CDATA[text]]></MsgType>
                                                               <Content><![CDATA[{3}{4}]]></Content>
-                                                            </xml>", fromUserName, toUserName, GetCreateTime(), "创建菜单结果：", result);
+                                                            </xml>", fromUserName, toUserName, GetCreateTime(), "创建菜单结果：", jObject["errmsg"]);
 
               _httpContext.Response.Write(resultXmlMsg);
 
