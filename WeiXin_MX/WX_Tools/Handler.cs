@@ -367,18 +367,9 @@ namespace WX_Tools
               access_token = ex.Message;
           }
          
-
-            string getAccessTokenReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "本次获取的access_token为：", access_token);
-
-            _httpContext.Response.Write(getAccessTokenReplyXmlMsg);
-            //_httpContext.Response.End();
-            _httpContext.ApplicationInstance.CompleteRequest();
-
+              new replyTemplate(fromUserName,toUserName).ReplyText(access_token);
 
             
-
-
         }
 
 
@@ -398,18 +389,7 @@ namespace WX_Tools
 
               serverIP = ex.Message;
           }
-      
-            string getServerIPReplyXmlMsg = string.Format(@"<xml>
-                                                              <ToUserName><![CDATA[{0}]]></ToUserName>
-                                                              <FromUserName><![CDATA[{1}]]></FromUserName>
-                                                              <CreateTime>{2}</CreateTime>
-                                                              <MsgType><![CDATA[text]]></MsgType>
-                                                              <Content><![CDATA[{3}{4}]]></Content>
-                                                            </xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
-
-            _httpContext.Response.Write(getServerIPReplyXmlMsg);
-           // _httpContext.Response.End();
-            _httpContext.ApplicationInstance.CompleteRequest();
+          new replyTemplate(fromUserName, toUserName).ReplyText(serverIP);
         }
 
 
@@ -511,8 +491,7 @@ namespace WX_Tools
               streamReader.Close();
               streamRead.Close();
               JObject jObject = JObject.Parse(result);
-              string resultXmlMsg = string.Format(@"<xml>
-                                                              <ToUserName><![CDATA[{0}]]></ToUserName>
+              string resultXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName>
                                                               <FromUserName><![CDATA[{1}]]></FromUserName>
                                                               <CreateTime>{2}</CreateTime>
                                                               <MsgType><![CDATA[text]]></MsgType>
@@ -535,8 +514,7 @@ namespace WX_Tools
       /// </summary>
         public void ReplyMenuName()
         {
-            string menuButtonName = string.Format(@"<xml>
-                                                              <ToUserName><![CDATA[{0}]]></ToUserName>
+            string menuButtonName = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName>
                                                               <FromUserName><![CDATA[{1}]]></FromUserName>
                                                               <CreateTime>{2}</CreateTime>
                                                               <MsgType><![CDATA[text]]></MsgType>
