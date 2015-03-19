@@ -309,7 +309,15 @@ namespace WX_Tools
               case "2":
                  getServerIPString();
                   break;
-              case "3":
+              case "menu1_1":
+              case "menu1_2":
+              case "menu1_3":
+              case "menu2_1":
+              case "menu2_2":
+              case "menu2_3":
+              case "menu3_1":
+              case "menu3_2":
+              case "menu3_3":
                   CreateCustomeMenu();
                   break;
               default:
@@ -329,7 +337,7 @@ namespace WX_Tools
           try
           {
               string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n3.创建菜单\r\n更多功能敬请期待\n请回复对应文字来查询");
+                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName,new getCreateTime().GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
 
               _httpContext.Response.Write(defaultReplyXmlMsg);
           }
@@ -361,7 +369,7 @@ namespace WX_Tools
          
 
             string getAccessTokenReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的access_token为：",access_token);
+                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}{4}]]></Content></xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "本次获取的access_token为：", access_token);
 
             _httpContext.Response.Write(getAccessTokenReplyXmlMsg);
             //_httpContext.Response.End();
@@ -392,7 +400,7 @@ namespace WX_Tools
                                                               <CreateTime>{2}</CreateTime>
                                                               <MsgType><![CDATA[text]]></MsgType>
                                                               <Content><![CDATA[{3}{4}]]></Content>
-                                                            </xml>", fromUserName, toUserName, GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
+                                                            </xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "本次获取的服务器IP地址为：", serverIP);
 
             _httpContext.Response.Write(getServerIPReplyXmlMsg);
            // _httpContext.Response.End();
@@ -401,18 +409,7 @@ namespace WX_Tools
 
 
 
-      /// <summary>
-      /// 取得时间戳  格林威治时间  1970,1,1,00:00开始到当前时间的秒数
-      /// 中国是  1790,1,1,08:00
-      /// </summary>
-      /// <returns></returns>
-      private int GetCreateTime()
-      {
-          DateTime dateTime = new DateTime(1970, 1, 1, 8, 0, 0);
-          return (int)(DateTime.Now - dateTime).TotalSeconds;
-
-
-      }
+    
 
 
       /// <summary>
@@ -515,7 +512,7 @@ namespace WX_Tools
                                                               <CreateTime>{2}</CreateTime>
                                                               <MsgType><![CDATA[text]]></MsgType>
                                                               <Content><![CDATA[{3}{4}]]></Content>
-                                                            </xml>", fromUserName, toUserName, GetCreateTime(), "创建菜单结果：", jObject["errmsg"]);
+                                                            </xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "创建菜单结果：", jObject["errmsg"]);
 
               _httpContext.Response.Write(resultXmlMsg);
 
@@ -524,6 +521,26 @@ namespace WX_Tools
 
    
 
+        }
+
+
+
+      /// <summary>
+      /// 回复按钮名称
+      /// </summary>
+        public void ReplyMenuName()
+        {
+            string menuButtonName = string.Format(@"<xml>
+                                                              <ToUserName><![CDATA[{0}]]></ToUserName>
+                                                              <FromUserName><![CDATA[{1}]]></FromUserName>
+                                                              <CreateTime>{2}</CreateTime>
+                                                              <MsgType><![CDATA[text]]></MsgType>
+                                                              <Content><![CDATA[{3}{4}]]></Content>
+                                                            </xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "你好，我是按钮：", content);
+
+            _httpContext.Response.Write(menuButtonName);
+            // _httpContext.Response.End();
+            _httpContext.ApplicationInstance.CompleteRequest();
         }
 
 
