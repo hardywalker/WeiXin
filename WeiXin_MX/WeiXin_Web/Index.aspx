@@ -18,7 +18,7 @@
         <asp:Button runat="server" ID="button2" OnClick="button2_OnClick" Text="测试获取服务器ip"/><br/>
         <asp:Label runat="server" ID="Label1"></asp:Label>
         <hr/>
-
+        <label runat="server" id="label2"></label>
     </div>
     </form>
 </body>

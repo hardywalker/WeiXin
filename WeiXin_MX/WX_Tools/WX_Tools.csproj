@@ -50,6 +50,7 @@
     <Compile Include="appid_secret.cs" />
     <Compile Include="AllCach.cs" />
     <Compile Include="Check.cs" />
+    <Compile Include="Entites\news.cs" />
     <Compile Include="getcallbackip.cs" />
     <Compile Include="getCreateTime.cs" />
     <Compile Include="get_access_token.cs" />

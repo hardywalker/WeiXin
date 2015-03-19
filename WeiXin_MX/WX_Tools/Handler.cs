@@ -374,6 +374,11 @@ namespace WX_Tools
             _httpContext.Response.Write(getAccessTokenReplyXmlMsg);
             //_httpContext.Response.End();
             _httpContext.ApplicationInstance.CompleteRequest();
+
+
+            
+
+
         }
 
 
