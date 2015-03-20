@@ -227,7 +227,7 @@ namespace WX_Tools
 
 
                 _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
-                new DebugLog().BugWriteTxt("MsgType类型："+_msgType);
+         
 
                 //推送过来文本消息
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
@@ -259,7 +259,7 @@ namespace WX_Tools
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
-                    new DebugLog().BugWriteTxt("Event类型：" + _menuEvent);
+                
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
                     {
                        DefaultReply();
@@ -275,10 +275,17 @@ namespace WX_Tools
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.location_select.ToString()))
                     {
                         new DebugLog().BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.location_select.ToString()+"相等");
-                        new DebugLog().BugWriteTxt(xmlStream.ToString());
-                        string myLocation = rootXmlElement.SelectSingleNode("Label").InnerText;
-                        new DebugLog().BugWriteTxt("获取地址："+myLocation);
-                        new ReplyTemplate(_reciveSender).ReplyText(myLocation);
+                   
+                        if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
+                        {
+                            new ReplyTemplate(_reciveSender).ReplyText(rootXmlElement.SelectSingleNode("SendLocationInfo").InnerText);
+                        }
+                        //StreamReader srStreamReader=new StreamReader(xmlStream);
+                        
+                        //new DebugLog().BugWriteTxt(srStreamReader.ReadToEnd());
+                        //string myLocation = rootXmlElement.SelectSingleNode("Label").InnerText;
+                        //new DebugLog().BugWriteTxt("获取地址："+myLocation);
+                        //new ReplyTemplate(_reciveSender).ReplyText(myLocation);
                     }
                 }
              
