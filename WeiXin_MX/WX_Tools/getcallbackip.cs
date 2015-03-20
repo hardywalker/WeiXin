@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -12,7 +8,7 @@ namespace WX_Tools
     /// <summary>
     /// 获取服务器ip列表
     /// </summary>
-  public  class getcallbackip
+  public  class Getcallbackip
     {
       /// <summary>
       /// 正常情况下，微信会返回下述JSON数据包给公众号：
@@ -27,8 +23,8 @@ namespace WX_Tools
           string ipString = "";
        
 
-          string access_token = new get_access_token().Get_access_token();
-             string getHttpUrl =string.Format(new apiAddress().getcallbackip,access_token);
+          string access_token = new GetAccessToken().Get_access_token();
+             string getHttpUrl =string.Format(new ApiAddress().getcallbackip,access_token);
 
           WebRequest webRequest = (HttpWebRequest) WebRequest.Create(getHttpUrl);
           if (webRequest != null)

@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace WX_Tools
 {
-    public class get_access_token
+    public class GetAccessToken
     {
         /*
          * access_token是公众号的全局唯一票据，公众号调用各接口时都需使用access_token。开发者需要进行妥善保存。access_token的存储至少要保留512个字符空间。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效。
@@ -58,7 +58,7 @@ namespace WX_Tools
         private string InsertCache_access_token()
         {
             //建立完整的访问url
-          string  httpGetAccess_Token = string.Format(new apiAddress().access_token, new appid_secret().appid,
+          string  httpGetAccess_Token = string.Format(new ApiAddress().access_token, new appid_secret().appid,
                 new appid_secret().secret);
             //创建HttpWebRequest对象
             HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;

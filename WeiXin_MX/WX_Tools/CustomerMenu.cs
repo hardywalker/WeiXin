@@ -22,8 +22,8 @@ namespace WX_Tools
 
             byte[] postBytes = Encoding.UTF8.GetBytes(jsonMenu.ToString());
         
-            string access_token = new get_access_token().Get_access_token();
-            string createMenuUrl = string.Format(new apiAddress().CreateMenu, access_token);
+            string access_token = new GetAccessToken().Get_access_token();
+            string createMenuUrl = string.Format(new ApiAddress().CreateMenu, access_token);
 
             WebRequest webRequest = (HttpWebRequest)WebRequest.Create(createMenuUrl);
 

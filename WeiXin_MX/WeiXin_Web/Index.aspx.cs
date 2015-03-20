@@ -24,12 +24,12 @@ namespace WeiXin_Web
         protected void button1_OnClick(object sender, EventArgs e)
         {
 
-            lab1.Text = new WX_Tools.get_access_token().Get_access_token();
+            lab1.Text = new WX_Tools.GetAccessToken().Get_access_token();
         }
 
         protected void button2_OnClick(object sender, EventArgs e)
         {
-            Label1.Text = new WX_Tools.getcallbackip().getServerIPString();
+            Label1.Text = new WX_Tools.Getcallbackip().getServerIPString();
         }
 
 

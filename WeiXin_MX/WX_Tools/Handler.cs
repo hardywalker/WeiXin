@@ -21,7 +21,7 @@ namespace WX_Tools
         //开发者微信号
         string toUserName, fromUserName, createTime, msgType, content, msgId, subscribeEvent;
         HttpContext _httpContext = HttpContext.Current;
-        sender reciveSender = new sender();
+        Sender reciveSender = new Sender();
 
         public void ExecHandler()
         {
@@ -228,7 +228,7 @@ namespace WX_Tools
 
                 reciveSender.toUserName = fromUserName;
                 reciveSender.fromUserName = toUserName;
-                reciveSender.createTime = new getCreateTime().GetCreateTime();
+                reciveSender.createTime = new GetCreateTime().CreateTime();
 
 
 
@@ -328,7 +328,7 @@ namespace WX_Tools
             try
             {
 
-                new replyTemplate(reciveSender).ReplyText("回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
+                new ReplyTemplate(reciveSender).ReplyText("回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
 
 
             }
@@ -350,8 +350,8 @@ namespace WX_Tools
             string access_token;
             try
             {
-                access_token = new get_access_token().Get_access_token();
-                new replyTemplate(reciveSender).ReplyText(access_token);
+                access_token = new GetAccessToken().Get_access_token();
+                new ReplyTemplate(reciveSender).ReplyText(access_token);
             }
             catch (Exception ex)
             {
@@ -374,8 +374,8 @@ namespace WX_Tools
             string serverIP;
             try
             {
-                serverIP = new getcallbackip().getServerIPString();
-                new replyTemplate(reciveSender).ReplyText(serverIP);
+                serverIP = new Getcallbackip().getServerIPString();
+                new ReplyTemplate(reciveSender).ReplyText(serverIP);
             }
             catch (Exception ex)
             {
@@ -404,7 +404,7 @@ namespace WX_Tools
                                                               <CreateTime>{2}</CreateTime>
                                                               <MsgType><![CDATA[text]]></MsgType>
                                                               <Content><![CDATA[{3}{4}]]></Content>
-                                                            </xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "你好，我是按钮：", content);
+                                                            </xml>", fromUserName, toUserName, new GetCreateTime().CreateTime(), "你好，我是按钮：", content);
 
             _httpContext.Response.Write(menuButtonName);
 

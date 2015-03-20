@@ -5,7 +5,7 @@ namespace WX_Tools
     /// <summary>
     /// 生成时间戳
     /// </summary>
-   public class getCreateTime
+   public class GetCreateTime
     {
 
      
@@ -15,7 +15,7 @@ namespace WX_Tools
         /// 中国是  1790,1,1,08:00
         /// </summary>
         /// <returns></returns>
-        public int GetCreateTime()
+        public int CreateTime()
         {
             DateTime dateTime = new DateTime(1970, 1, 1, 8, 0, 0);
             return (int)(DateTime.Now - dateTime).TotalSeconds;

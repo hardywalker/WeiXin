@@ -46,20 +46,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllEnum.cs" />
-    <Compile Include="apiAddress.cs" />
+    <Compile Include="ApiAddress.cs" />
     <Compile Include="appid_secret.cs" />
     <Compile Include="AllCach.cs" />
     <Compile Include="Check.cs" />
     <Compile Include="CustomerMenu.cs" />
     <Compile Include="DebugLog.cs" />
-    <Compile Include="Entites\news.cs" />
-    <Compile Include="Entites\sender.cs" />
-    <Compile Include="getcallbackip.cs" />
-    <Compile Include="getCreateTime.cs" />
-    <Compile Include="get_access_token.cs" />
+    <Compile Include="Entites\AppidSecret.cs" />
+    <Compile Include="Entites\News.cs" />
+    <Compile Include="Entites\Sender.cs" />
+    <Compile Include="GetCallBackIP.cs" />
+    <Compile Include="GetCreateTime.cs" />
+    <Compile Include="GetAccessToken.cs" />
     <Compile Include="Handler.cs" />
+    <Compile Include="MediaUpload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="replyTemplate.cs" />
+    <Compile Include="ReplyTemplate.cs" />
     <Compile Include="subscribe_unsubscribe.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

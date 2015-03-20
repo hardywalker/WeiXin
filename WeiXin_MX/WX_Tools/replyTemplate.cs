@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using WX_Tools.Entites;
@@ -15,7 +11,7 @@ namespace WX_Tools
     /// 2015年3月19日15:30:35
     /// anyangmaxin@163.com
     /// </summary>
-    public class replyTemplate
+    public class ReplyTemplate
     {
         HttpContext _httpContext = HttpContext.Current;
 
@@ -28,7 +24,7 @@ namespace WX_Tools
         /// 有参数的构造函数
         /// </summary>
         /// <param name="reciveSender"></param>
-        public replyTemplate(sender reciveSender)
+        public ReplyTemplate(Sender reciveSender)
         {
 
             /// <summary>
@@ -272,7 +268,7 @@ namespace WX_Tools
         /// 回复图文消息  传入泛型
         /// </summary>
         /// <param name="newsList">文章列表（泛型）最多10 条</param>
-        public void ReplyNews(List<Entites.news> newsList)
+        public void ReplyNews(List<News> newsList)
         {
             /*回复图文消息
              *  <xml>
@@ -311,7 +307,7 @@ namespace WX_Tools
                         Url 	否 	点击图文消息跳转链接 
              */
             StringBuilder newsItems = new StringBuilder();
-            foreach (news newsItem in newsList)
+            foreach (News newsItem in newsList)
             {
                 newsItems.AppendFormat(@"<item><Title><![CDATA[{0}]]></Title>
                              <Description><![CDATA[{1}]]></Description>

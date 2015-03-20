@@ -8,7 +8,7 @@ namespace WX_Tools.Entites
     /// <summary>
     /// 回复消息时发送人与指定接收者实体
     /// </summary>
-  public class sender
+  public class Sender
     {
       /// <summary>
         /// 必须字段，接收方帐号（收到的OpenID）
