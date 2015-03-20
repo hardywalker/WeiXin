@@ -56,13 +56,7 @@ namespace WeiXin_Web
                 }
                 catch (Exception ex)
                 {
-
-                    new DebugLog().BugWriteTxt(ex.ToString());
-
-
-                    context.Response.Write(ex.Message);
-                  
-                    context.ApplicationInstance.CompleteRequest();
+                    new DebugLog().BugWriteTxt("WXCheck.ashx页面异常："+ex.ToString());
                 }
                
 

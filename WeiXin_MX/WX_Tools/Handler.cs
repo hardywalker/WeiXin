@@ -209,7 +209,7 @@ namespace WX_Tools
             xmlDocument.Load(xmlStream);
             //获取根节点
             XmlElement rootXmlElement = xmlDocument.DocumentElement;
-
+           
             if (rootXmlElement != null)
             {
 
@@ -227,6 +227,7 @@ namespace WX_Tools
 
 
                 _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
+                new DebugLog().BugWriteTxt("MsgType类型："+_msgType);
 
                 //推送过来文本消息
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
@@ -245,7 +246,7 @@ namespace WX_Tools
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.location.ToString()))
                 {
-
+                   
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.voice.ToString()))
                 {
@@ -258,10 +259,10 @@ namespace WX_Tools
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
-
+                    new DebugLog().BugWriteTxt("Event类型：" + _menuEvent);
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
                     {
-                        Reply("subscribe");
+                       DefaultReply();
                     }
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
                     {
@@ -273,13 +274,16 @@ namespace WX_Tools
                     }
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.location_select.ToString()))
                     {
-                       
+                        new DebugLog().BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.location_select.ToString()+"相等");
+                        new DebugLog().BugWriteTxt(xmlStream.ToString());
                         string myLocation = rootXmlElement.SelectSingleNode("Label").InnerText;
+                        new DebugLog().BugWriteTxt("获取地址："+myLocation);
                         new ReplyTemplate(_reciveSender).ReplyText(myLocation);
                     }
                 }
              
             }
+            xmlStream.Close();
         
             
         }
@@ -304,7 +308,7 @@ namespace WX_Tools
                     myGUID();
                     break;
                default:
-                    DefaultReply();
+                    MenuName(contentStr);
                     break;
 
 
@@ -333,6 +337,20 @@ namespace WX_Tools
        
         }
 
+
+        private void MenuName(string menuName)
+        {
+            try
+            {
+
+                new ReplyTemplate(_reciveSender).ReplyText(menuName);
+            }
+            catch (Exception ex)
+            {
+                new DebugLog().BugWriteTxt("获取菜单名称时异常:" + ex + "|" + ex.Message);
+
+            }
+        }
 
 
 
