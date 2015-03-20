@@ -50,6 +50,7 @@
     <Compile Include="appid_secret.cs" />
     <Compile Include="AllCach.cs" />
     <Compile Include="Check.cs" />
+    <Compile Include="CustomerMenu.cs" />
     <Compile Include="DebugLog.cs" />
     <Compile Include="Entites\news.cs" />
     <Compile Include="Entites\sender.cs" />

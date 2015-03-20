@@ -21,7 +21,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void Button1_OnClick(object sender, EventArgs e)
         {
-          new  WX_Tools.Handler().CreateCustomeMenu();
+          
         }
     }
 }
