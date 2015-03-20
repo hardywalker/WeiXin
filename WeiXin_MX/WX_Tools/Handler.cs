@@ -261,15 +261,21 @@ namespace WX_Tools
 
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
                     {
-                        Reply("关注");
+                        Reply("subscribe");
                     }
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
                     {
-                       string menuButtonName=rootXmlElement.SelectSingleNode("EventKey").InnerText;
+                       string menuButtonKey=rootXmlElement.SelectSingleNode("EventKey").InnerText;
 
-                       new ReplyTemplate(_reciveSender).ReplyText("你好,我是菜单:"+menuButtonName);
+                      Reply(menuButtonKey);
 
-                    
+
+                    }
+                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.location_select.ToString()))
+                    {
+                       
+                        string myLocation = rootXmlElement.SelectSingleNode("Label").InnerText;
+                        new ReplyTemplate(_reciveSender).ReplyText(myLocation);
                     }
                 }
              
@@ -288,13 +294,16 @@ namespace WX_Tools
         {
             switch (contentStr)
             {
-                case "1":
+                case "accessToken":
                     getAccessToken();
                     break;
-                case "2":
+                case "serverIP":
                     getServerIPString();
                     break;
-                default:
+                case "myGUID":
+                    myGUID();
+                    break;
+               default:
                     DefaultReply();
                     break;
 
@@ -311,7 +320,7 @@ namespace WX_Tools
             try
             {
 
-                new ReplyTemplate(_reciveSender).ReplyText("回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
+                new ReplyTemplate(_reciveSender).ReplyText("微信公众平台测试号欢迎你的关注。\r\n请操作菜单来获取相应信息。");
 
 
             }
@@ -323,6 +332,8 @@ namespace WX_Tools
 
        
         }
+
+
 
 
         /// <summary>
@@ -364,6 +375,25 @@ namespace WX_Tools
             }
 
         }
+
+
+        /// <summary>
+        /// 获取当前用户的微信号
+        /// </summary>
+        private void myGUID()
+        {
+            try
+            {
+                string myGuid = _fromUserName;
+                new ReplyTemplate(_reciveSender).ReplyText(myGuid);
+            }
+            catch (Exception ex)
+            {
+                new DebugLog().BugWriteTxt("获取myGuid时异常:" + ex + "|" + ex.Message);
+
+            }
+        }
+
 
         
     }

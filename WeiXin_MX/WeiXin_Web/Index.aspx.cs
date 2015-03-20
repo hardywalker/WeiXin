@@ -50,19 +50,19 @@ namespace WeiXin_Web
             postDataStringBuilder.Append("[");
 
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一一");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "accessToken");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一二");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "serverIP");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一三");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "myGUID");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一四");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"url\":\"{2}\"", AllEnum.CustomerMenuButtonEvent.view.ToString(), "搜索","http://www.baidu.com");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一五");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"url\":\"{2}\"", AllEnum.CustomerMenuButtonEvent.view.ToString(), "视频","http://www.youku.com");
             postDataStringBuilder.Append("}");
 
 
@@ -75,7 +75,7 @@ namespace WeiXin_Web
             postDataStringBuilder.Append("[");
 
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二一");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.location_select.ToString(), "GPS");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
             postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二二");
