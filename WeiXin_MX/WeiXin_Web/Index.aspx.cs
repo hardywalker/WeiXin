@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WX_Tools.Entites;
 
 namespace WeiXin_Web
 {
@@ -12,23 +13,16 @@ namespace WeiXin_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            File.WriteAllText(Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "访问Index页");
-            List<model1> modelList = new List<model1>();
-            for (int i = 0; i < 10; i++)
+            sender sender2=new sender()
             {
-                model1 modelp = new model1()
-                {
-                    Title = "我是第" + (i + 1),
-                    Description = "描述" + (i + 1),
-                    PicUrl = "路径" + (i + 1),
-                    Url = "Url" + (i + 1)
-                };
-                modelList.Add(modelp);
-            }
-            string a = modelList.Aggregate("", (current, modelc) => current + (modelc.Title + "|" + modelc.Description + "|" + modelc.PicUrl + "|" + modelc.Url + "*"));
+                toUserName = "123",
+                fromUserName = "456",
+                createTime = 123456
+            };
+            new MyClass(sender2).a();
 
-            label2.InnerText = a;
+         
+
         }
 
         protected void button1_OnClick(object sender, EventArgs e)
@@ -42,15 +36,24 @@ namespace WeiXin_Web
             Label1.Text =new WX_Tools.getcallbackip().getServerIPString();
         }
 
+        static WX_Tools.Entites.sender sender1;
 
-
-
-        public class model1
+        public class MyClass
         {
-            public string Title { get; set; }
-            public string Description { get; set; }
-            public string PicUrl { get; set; }
-            public string Url { get; set; }
+            public MyClass(WX_Tools.Entites.sender objSender)
+            {
+                sender1 = objSender;
+            }
+            public void a()
+            {
+        HttpContext.Current.Response.Write(sender1.toUserName);
+            }
         }
+
+      
+     
+
+
+  
     }
 }

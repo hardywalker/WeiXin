@@ -182,7 +182,6 @@ namespace WX_Tools
 
           #endregion
 
-
           #region 关注/取消关注事件
 
           /*
@@ -207,10 +206,7 @@ namespace WX_Tools
 
           #endregion
 
-
-
-
-
+          
           //接收 xml数据包
           Stream xmlStream = _httpContext.Request.InputStream;
           
@@ -219,12 +215,10 @@ namespace WX_Tools
           xmlDocument.Load(xmlStream);
           //获取根节点
           XmlElement rootXmlElement = xmlDocument.DocumentElement;
-
-
+          
           if (rootXmlElement != null)
           {
-             
-
+          
               //开发者微信号
               toUserName = rootXmlElement.SelectSingleNode("ToUserName").InnerText;
 
@@ -244,7 +238,6 @@ namespace WX_Tools
               {
                   content = rootXmlElement.SelectSingleNode("Content").InnerText;
 
-                  msgId = rootXmlElement.SelectSingleNode("MsgId").InnerText;
               }
               else if(msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
               {
@@ -334,19 +327,15 @@ namespace WX_Tools
         {
           try
           {
-              string defaultReplyXmlMsg = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName,new getCreateTime().GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
-
-              _httpContext.Response.Write(defaultReplyXmlMsg);
-
-
-              
+           
+              new replyTemplate(reciveSender).ReplyText("回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
+            
 
           }
           catch (Exception e)
           {
              
-              _httpContext.Response.Write(e.Message);
+              new DebugLog().BugWriteTxt("默认回复时的异常:"+e.Message+"|"+e);
           }
            
             _httpContext.ApplicationInstance.CompleteRequest();
@@ -362,14 +351,15 @@ namespace WX_Tools
           try
           {
                access_token = new get_access_token().Get_access_token();
+               new replyTemplate(reciveSender).ReplyText(access_token);
           }
           catch (Exception ex)
           {
-              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是查询access_token时异常：" + ex.InnerException);
-              access_token = ex.Message;
+            new DebugLog().BugWriteTxt("获取access_token时异常:"+ex+"|"+ex.Message);
+          
           }
          
-              new replyTemplate(reciveSender).ReplyText(access_token);
+           
 
             
         }
@@ -385,13 +375,14 @@ namespace WX_Tools
           try
           {
             serverIP=  new getcallbackip().getServerIPString();
+            new replyTemplate(reciveSender).ReplyText(serverIP);
           }
           catch (Exception ex)
           {
 
-              serverIP = ex.Message;
+              new DebugLog().BugWriteTxt("获取服务器IP地址时异常:" + ex + "|" + ex.Message);
           }
-          new replyTemplate(reciveSender).ReplyText(serverIP);
+         
         }
 
 
@@ -524,7 +515,7 @@ namespace WX_Tools
                                                             </xml>", fromUserName, toUserName, new getCreateTime().GetCreateTime(), "你好，我是按钮：", content);
 
             _httpContext.Response.Write(menuButtonName);
-            // _httpContext.Response.End();
+        
             _httpContext.ApplicationInstance.CompleteRequest();
         }
 

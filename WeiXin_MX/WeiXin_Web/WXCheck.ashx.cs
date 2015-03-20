@@ -18,7 +18,7 @@ namespace WeiXin_Web
 
             if (context.Request.HttpMethod.ToLower().Equals("get"))
             {
-                File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过GET方式来的");
+               
                 //校验
                 if (new Check().ValidateUrl())
                 {
@@ -27,14 +27,14 @@ namespace WeiXin_Web
             }
             else
             {
-                File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过Post方式来的");
+              
                 if (!new Check().ValidateUrl())
                 {
-                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过Post方式来的，我没有通过验证");
+                   
                     context.Response.Write("参数错误");
                     return;
                 }
-                File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是通过Post方式来的，我已经通过了验证");
+              
                 /*
                  *  <xml>
                         <ToUserName><![CDATA[toUser]]></ToUserName>
@@ -57,11 +57,11 @@ namespace WeiXin_Web
                 catch (Exception ex)
                 {
 
+                    new DebugLog().BugWriteTxt(ex.ToString());
 
-                    File.WriteAllText(context.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是入口页面的异常：\r\n" + ex.Message+"|\r\n"+ex.StackTrace+"|\r\n"+ex.ToString());
 
                     context.Response.Write(ex.Message);
-                    //context.Response.End();
+                  
                     context.ApplicationInstance.CompleteRequest();
                 }
                
