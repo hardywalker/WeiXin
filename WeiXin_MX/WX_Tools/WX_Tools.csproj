@@ -51,6 +51,7 @@
     <Compile Include="AllCach.cs" />
     <Compile Include="Check.cs" />
     <Compile Include="CustomerMenu.cs" />
+    <Compile Include="CustomerMenuEventPush.cs" />
     <Compile Include="DebugLog.cs" />
     <Compile Include="Entites\AppidSecret.cs" />
     <Compile Include="Entites\News.cs" />

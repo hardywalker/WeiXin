@@ -50,13 +50,19 @@ namespace WeiXin_Web
             postDataStringBuilder.Append("[");
 
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单一一\",\"key\":\"menu1_1\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一一");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单一二\",\"key\":\"menu1_2\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一二");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单一三\",\"key\":\"menu1_3\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一三");
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一四");
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单一五");
             postDataStringBuilder.Append("}");
 
 
@@ -69,13 +75,19 @@ namespace WeiXin_Web
             postDataStringBuilder.Append("[");
 
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单二一\",\"key\":\"menu2_1\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二一");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单二二\",\"key\":\"menu2_2\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二二");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单二三\",\"key\":\"menu2_3\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二三");
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二四");
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二五");
             postDataStringBuilder.Append("}");
 
 
@@ -88,13 +100,19 @@ namespace WeiXin_Web
             postDataStringBuilder.Append("[");
 
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单三一\",\"key\":\"menu3_1\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三一");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单三二\",\"key\":\"menu3_2\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三二");
             postDataStringBuilder.Append("},");
             postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"菜单三三\",\"key\":\"menu3_3\"", AllEnum.CustomerMenuButtonEvent.click.ToString());
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三三");
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三四");
+            postDataStringBuilder.Append("},");
+            postDataStringBuilder.Append("{");
+            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三五");
             postDataStringBuilder.Append("}");
 
 

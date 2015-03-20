@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Web;
-using System.Web.UI;
 using System.Xml;
-using Newtonsoft.Json.Linq;
 using WX_Tools.Entites;
 
 namespace WX_Tools
@@ -19,9 +13,9 @@ namespace WX_Tools
     {
 
         //开发者微信号
-        string toUserName, fromUserName, createTime, msgType, content, msgId, subscribeEvent;
+        string _toUserName, _fromUserName, _msgType, _content, _menuEvent;
         HttpContext _httpContext = HttpContext.Current;
-        Sender reciveSender = new Sender();
+        Sender _reciveSender = new Sender();
 
         public void ExecHandler()
         {
@@ -220,70 +214,70 @@ namespace WX_Tools
             {
 
                 //开发者微信号
-                toUserName = rootXmlElement.SelectSingleNode("ToUserName").InnerText;
+                _toUserName = rootXmlElement.SelectSingleNode("ToUserName").InnerText;
 
-                fromUserName = rootXmlElement.SelectSingleNode("FromUserName").InnerText;
+                _fromUserName = rootXmlElement.SelectSingleNode("FromUserName").InnerText;
 
-                createTime = rootXmlElement.SelectSingleNode("CreateTime").InnerText;
+         
 
-                reciveSender.toUserName = fromUserName;
-                reciveSender.fromUserName = toUserName;
-                reciveSender.createTime = new GetCreateTime().CreateTime();
+                _reciveSender.toUserName = _fromUserName;
+                _reciveSender.fromUserName = _toUserName;
+                _reciveSender.createTime = new GetCreateTime().CreateTime();
 
 
 
-                msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
+                _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
 
-                if (msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
+                //推送过来文本消息
+                if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
                 {
-                    content = rootXmlElement.SelectSingleNode("Content").InnerText;
+                    _content = rootXmlElement.SelectSingleNode("Content").InnerText;
+                    Reply(_content);
 
                 }
-                else if (msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
-                {
-
-                }
-                else if (msgType.Equals(AllEnum.MsgTypeEnum.image.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
                 {
 
                 }
-                else if (msgType.Equals(AllEnum.MsgTypeEnum.location.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.image.ToString()))
                 {
 
                 }
-                else if (msgType.Equals(AllEnum.MsgTypeEnum.voice.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.location.ToString()))
                 {
 
                 }
-                else if (msgType.Equals(AllEnum.MsgTypeEnum.video.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.voice.ToString()))
                 {
 
                 }
-                else if (msgType.Equals("event"))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.video.ToString()))
                 {
-                    subscribeEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
 
-                    if (subscribeEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
+                }
+                else if (_msgType.Equals("event"))//菜单按钮事件
+                {
+                    _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
+
+                    if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
                     {
                         Reply("关注");
                     }
+                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
+                    {
+                       string menuButtonName=rootXmlElement.SelectSingleNode("EventKey").InnerText;
+
+                       new ReplyTemplate(_reciveSender).ReplyText("你好,我是菜单:"+menuButtonName);
+
+                    
+                    }
                 }
-
+             
             }
-            else
-            {
-                _httpContext.Response.Write("");
-                _httpContext.Response.End();
-            }
-
-
-
-            Reply(content);
-
+        
+            
         }
-
-
-
+        
 
 
         /// <summary>
@@ -299,17 +293,6 @@ namespace WX_Tools
                     break;
                 case "2":
                     getServerIPString();
-                    break;
-                case "menu1_1":
-                case "menu1_2":
-                case "menu1_3":
-                case "menu2_1":
-                case "menu2_2":
-                case "menu2_3":
-                case "menu3_1":
-                case "menu3_2":
-                case "menu3_3":
-                    
                     break;
                 default:
                     DefaultReply();
@@ -328,7 +311,7 @@ namespace WX_Tools
             try
             {
 
-                new ReplyTemplate(reciveSender).ReplyText("回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
+                new ReplyTemplate(_reciveSender).ReplyText("回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
 
 
             }
@@ -338,7 +321,7 @@ namespace WX_Tools
                 new DebugLog().BugWriteTxt("默认回复时的异常:" + e.Message + "|" + e);
             }
 
-            _httpContext.ApplicationInstance.CompleteRequest();
+       
         }
 
 
@@ -347,11 +330,10 @@ namespace WX_Tools
         /// </summary>
         private void getAccessToken()
         {
-            string access_token;
             try
             {
-                access_token = new GetAccessToken().Get_access_token();
-                new ReplyTemplate(reciveSender).ReplyText(access_token);
+                string accessToken = new GetAccessToken().Get_access_token();
+                new ReplyTemplate(_reciveSender).ReplyText(accessToken);
             }
             catch (Exception ex)
             {
@@ -370,12 +352,10 @@ namespace WX_Tools
         /// </summary>
         private void getServerIPString()
         {
-
-            string serverIP;
             try
             {
-                serverIP = new Getcallbackip().getServerIPString();
-                new ReplyTemplate(reciveSender).ReplyText(serverIP);
+                string serverIp = new Getcallbackip().getServerIPString();
+                new ReplyTemplate(_reciveSender).ReplyText(serverIp);
             }
             catch (Exception ex)
             {
@@ -385,37 +365,7 @@ namespace WX_Tools
 
         }
 
-
-
-
-
-
-       
-
-
-
-        /// <summary>
-        /// 回复按钮名称
-        /// </summary>
-        public void ReplyMenuName()
-        {
-            string menuButtonName = string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName>
-                                                              <FromUserName><![CDATA[{1}]]></FromUserName>
-                                                              <CreateTime>{2}</CreateTime>
-                                                              <MsgType><![CDATA[text]]></MsgType>
-                                                              <Content><![CDATA[{3}{4}]]></Content>
-                                                            </xml>", fromUserName, toUserName, new GetCreateTime().CreateTime(), "你好，我是按钮：", content);
-
-            _httpContext.Response.Write(menuButtonName);
-
-            _httpContext.ApplicationInstance.CompleteRequest();
-        }
-
-
-
-
-
-
+        
     }
 
 
