@@ -277,15 +277,6 @@ namespace WX_Tools
           }
 
 
-          /*被动回复消息
-           * <xml>
-             <ToUserName><![CDATA[toUser]]></ToUserName>
-             <FromUserName><![CDATA[fromUser]]></FromUserName>
-             <CreateTime>12345678</CreateTime>
-             <MsgType><![CDATA[text]]></MsgType>
-             <Content><![CDATA[你好]]></Content>
-             </xml>
-           */
 
            Reply(content);
 
@@ -340,6 +331,10 @@ namespace WX_Tools
                                            <CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>", fromUserName, toUserName,new getCreateTime().GetCreateTime(), "回复指南\r\n1.查看access_token\r\n2.查看服务器IP\r\n更多功能敬请期待\n请回复对应文字来查询");
 
               _httpContext.Response.Write(defaultReplyXmlMsg);
+
+
+              
+
           }
           catch (Exception e)
           {

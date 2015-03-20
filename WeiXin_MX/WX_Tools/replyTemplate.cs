@@ -66,8 +66,8 @@ namespace WX_Tools
             
 
             string replyTextXmlMsg = string.Format(@"{0}<![CDATA[text]]></MsgType><Content><![CDATA[{1}]]></Content></xml>", ReplyXmsMsgHeader, content);
-
-            File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-" + DateTime.Now.Ticks + ".txt"), "回复文本消息：" + replyTextXmlMsg); 
+            new DebugLog().BugWriteTxt(string.Format("回复文本消息：{0}", replyTextXmlMsg));
+     
 
             _httpContext.Response.Write(replyTextXmlMsg);
           
@@ -108,8 +108,8 @@ namespace WX_Tools
 
             string replyImageXmlMsg = string.Format(@"{0}<![CDATA[image]]></MsgType><Image><MediaId><![CDATA[{1}]]></MediaId>
                     </Image></xml>", ReplyXmsMsgHeader,media_id);
-
-            File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-" + DateTime.Now.Ticks + ".txt"), "回复图片消息：" + replyImageXmlMsg);
+            new DebugLog().BugWriteTxt(string.Format("回复图片消息：{0}", replyImageXmlMsg));
+       
 
             _httpContext.Response.Write(replyImageXmlMsg);
 
@@ -149,8 +149,8 @@ namespace WX_Tools
 
             string replyVoiceXmlMsg = string.Format(@"{0}<![CDATA[voice]]></MsgType><Voice><MediaId><![CDATA[{1}]]></MediaId>
                     </Voice></xml>", ReplyXmsMsgHeader, media_id);
-
-            File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-" + DateTime.Now.Ticks + ".txt"), "回复语音消息：" + replyVoiceXmlMsg);
+            new DebugLog().BugWriteTxt(string.Format("回复语音消息：{0}", replyVoiceXmlMsg));
+     
 
             _httpContext.Response.Write(replyVoiceXmlMsg);
 
@@ -195,8 +195,8 @@ namespace WX_Tools
             string replyVideoXmlMsg = string.Format(@"{0}<![CDATA[video]]></MsgType><Video><MediaId><![CDATA[{1}]]></MediaId>
                           <Title><![CDATA[{2}]]></Title><Description><![CDATA[{3}]]></Description>
                     </Video></xml>",ReplyXmsMsgHeader, media_id,title,description);
-
-            File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-" + DateTime.Now.Ticks + ".txt"), "回复视频消息：" + replyVideoXmlMsg);
+            new DebugLog().BugWriteTxt(string.Format("回复视频消息：{0}", replyVideoXmlMsg));
+         
 
             _httpContext.Response.Write(replyVideoXmlMsg);
 
@@ -253,9 +253,9 @@ namespace WX_Tools
                         <HQMusicUrl><![CDATA[{4}]]></HQMusicUrl><ThumbMediaId><![CDATA[{5}]]></ThumbMediaId>
                     </Music></xml>", ReplyXmsMsgHeader, title, description, musicUrl, HQmusicUrl, thumbMediaId);
 
-            File.WriteAllText(
-                _httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-" +
-                                            DateTime.Now.Ticks + ".txt"), "回复音乐消息：" + replyMusicXmlMsg);
+          new DebugLog().BugWriteTxt(string.Format("回复音乐消息：{0}",replyMusicXmlMsg));
+
+     
 
             _httpContext.Response.Write(replyMusicXmlMsg);
 
@@ -323,8 +323,8 @@ namespace WX_Tools
              string.Format(@"{0}<![CDATA[news]]></MsgType><ArticleCount>{1}</ArticleCount>
                         <Articles>{2}</Articles></xml>",ReplyXmsMsgHeader,newsList.Count,newsItems.ToString());
 
-            File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-" +
-                                            DateTime.Now.Ticks + ".txt"), "回复图文消息：" + replyNewsXmlMsg);
+            new DebugLog().BugWriteTxt(string.Format("回复图文消息：{0}", replyNewsXmlMsg));
+        
 
             _httpContext.Response.Write(replyNewsXmlMsg);
 
