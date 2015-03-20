@@ -5,6 +5,9 @@ using System.Text;
 
 namespace WX_Tools.Entites
 {
+    /// <summary>
+    /// 回复图文消息的实体类型
+    /// </summary>
     public class news
     {
 

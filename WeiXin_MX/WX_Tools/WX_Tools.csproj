@@ -52,6 +52,7 @@
     <Compile Include="Check.cs" />
     <Compile Include="DebugLog.cs" />
     <Compile Include="Entites\news.cs" />
+    <Compile Include="Entites\sender.cs" />
     <Compile Include="getcallbackip.cs" />
     <Compile Include="getCreateTime.cs" />
     <Compile Include="get_access_token.cs" />

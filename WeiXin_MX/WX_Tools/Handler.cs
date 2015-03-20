@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Xml;
 using Newtonsoft.Json.Linq;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -20,6 +21,7 @@ namespace WX_Tools
         //开发者微信号
        string toUserName, fromUserName, createTime, msgType, content, msgId,subscribeEvent;
        HttpContext _httpContext = HttpContext.Current;
+      sender reciveSender=new sender();
 
       public void ExecHandler()
       {
@@ -230,9 +232,14 @@ namespace WX_Tools
 
               createTime = rootXmlElement.SelectSingleNode("CreateTime").InnerText;
 
-              msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
-              File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + "-1.txt"), "MsgType：" + msgType);
+              reciveSender.toUserName = fromUserName;
+              reciveSender.fromUserName = toUserName;
+              reciveSender.createTime = new getCreateTime().GetCreateTime();
 
+
+
+              msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
+            
               if (msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
               {
                   content = rootXmlElement.SelectSingleNode("Content").InnerText;
@@ -262,7 +269,7 @@ namespace WX_Tools
               else if (msgType.Equals("event"))
               {
                   subscribeEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
-                  File.WriteAllText(_httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "Event：" + subscribeEvent);
+                
                   if (subscribeEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
                   {
                       Reply("关注");
@@ -341,7 +348,7 @@ namespace WX_Tools
              
               _httpContext.Response.Write(e.Message);
           }
-            //_httpContext.Response.End();
+           
             _httpContext.ApplicationInstance.CompleteRequest();
         }
 
@@ -362,7 +369,7 @@ namespace WX_Tools
               access_token = ex.Message;
           }
          
-              new replyTemplate(fromUserName,toUserName).ReplyText(access_token);
+              new replyTemplate(reciveSender).ReplyText(access_token);
 
             
         }
@@ -384,7 +391,7 @@ namespace WX_Tools
 
               serverIP = ex.Message;
           }
-          new replyTemplate(fromUserName, toUserName).ReplyText(serverIP);
+          new replyTemplate(reciveSender).ReplyText(serverIP);
         }
 
 

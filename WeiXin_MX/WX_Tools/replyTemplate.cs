@@ -18,26 +18,23 @@ namespace WX_Tools
    public  class replyTemplate
     {
          HttpContext _httpContext = HttpContext.Current;
-       static  string _toUserName, _fromUserName;
-     static  int _createTime;
+        static sender senderObj;
 
-       /// <summary>
-       /// 有参数的构造函数
-       /// </summary>
-     /// <param name="toUserName">必须字段，接收方帐号（收到的OpenID）</param>
-     /// <param name="fromUserName">必须字段，开发者微信号</param>
-        public replyTemplate(string toUserName,string fromUserName)
+
+        /// <summary>
+        /// 有参数的构造函数
+        /// </summary>
+        /// <param name="reciveSender"></param>
+        public replyTemplate(sender reciveSender)
         {
-            _toUserName = toUserName;
-            _fromUserName = fromUserName;
-            _createTime =new getCreateTime().GetCreateTime();
-        }
+            senderObj = reciveSender;
+         }
 
        /// <summary>
        /// 回复的xml消息中的前一部分，因为此部分是一样的
        /// </summary>
         private string ReplyXmsMsgHeader =string.Format(@"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName>
-                                           <CreateTime>{2}</CreateTime><MsgType>",_toUserName,_fromUserName,_createTime);
+                                           <CreateTime>{2}</CreateTime><MsgType>",senderObj.toUserName,senderObj.fromUserName,senderObj.createTime);
         #region 回复文本消息
 
         /// <summary>
