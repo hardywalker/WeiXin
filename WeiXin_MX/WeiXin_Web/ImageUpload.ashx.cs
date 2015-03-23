@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 
 namespace WeiXin_Web
@@ -26,10 +28,66 @@ namespace WeiXin_Web
                 context.Response.Write("没有选择文件 ");
                 return;
             }
-       
-       
-            //_upfile.SaveAs(context.Server.MapPath("/Upload/"+DateTime.Now.ToString("yyyy-MM-dd-HH-ss")+".jpg"));
-            _upfile.SaveAs(context.Server.MapPath("/Upload/a.jpg"));
+
+            string imgName = DateTime.Now.ToString("yyyy-MM-dd-HH-ss") + DateTime.Now.Ticks;
+            bool flag = false;
+
+            try
+            {
+                _upfile.SaveAs(context.Server.MapPath("/Upload/" + imgName + ".jpg"));
+                flag = true;
+            }
+            catch (Exception)
+            {
+                
+               
+            }
+
+            if (flag)
+            {
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new WX_Tools.ApiAddress().mediaUpload.ToString(), new WX_Tools.GetAccessToken().Get_access_token(), "image"));
+                request.Method = "POST";
+               
+                request.ContentType = "application/x-www-form-urlencoded;";
+      
+                MemoryStream memoryStream=new MemoryStream();
+
+                //根据完整文件获取文件流
+              FileStream fileStream=new FileStream(context.Server.MapPath("/Upload/" + imgName + ".jpg"),FileMode.Open);
+         
+                //TODO:2015年3月23日18:07:10   上传文件测试
+              
+
+
+                byte[] imgBytes = Encoding.UTF8.GetBytes(fileStream.ToString());
+
+
+
+
+
+                Stream streamWrite = request.GetRequestStream();
+                streamWrite.Write(imgBytes,0,imgBytes.Length);
+                streamWrite.Close();
+
+                string backResult = "";
+                HttpWebResponse httpWebResponse = (HttpWebResponse)request.GetResponse();
+                Stream streamRead = httpWebResponse.GetResponseStream();
+                if (streamRead != null)
+                {
+                    StreamReader streamReader=new StreamReader(streamRead,Encoding.UTF8);
+                    backResult = streamReader.ReadToEnd();
+                    context.Response.Write(backResult);
+                }
+
+            }
+            else
+            {
+                File.Delete(context.Server.MapPath("/Upload/" + imgName + ".jpg"));
+            }
+
+
+
      
 
         }
