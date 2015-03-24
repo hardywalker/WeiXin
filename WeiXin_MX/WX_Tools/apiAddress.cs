@@ -5,9 +5,7 @@
     /// </summary>
     public class ApiAddress
     {
-        public ApiAddress()
-        {
-        }
+    
 
         #region GET方式接口
 
@@ -59,6 +57,19 @@
         public string mediaUpload = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token={0}&type={1}";
 
         #endregion
+
+        #region 上传图文消息素材【订阅号与服务号认证后均可用】  POST
+
+        /// <summary>
+        /// 上传图文消息素材【订阅号与服务号认证后均可用】 POST  需要传入access_token  占位符已写
+        /// </summary>
+        public string mediaUploadNews = "https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token=ACCESS_TOKEN";
+
+        #endregion
+
+
+
+
 
         #region 群发url
 
