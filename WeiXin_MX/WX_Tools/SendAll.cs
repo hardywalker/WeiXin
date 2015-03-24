@@ -26,7 +26,7 @@ namespace WX_Tools
 
                     {
                        "filter":{
-                          "is_to_all":false
+                          "is_to_all":false,
                           "group_id":"2"
                        },
                        "text":{
@@ -42,7 +42,7 @@ namespace WX_Tools
           string msg ="{\"filter\":{\"is_to_all\":true},\"text\": {\"content\": \""+strText+"\"},\"msgtype\": \"text\"}";
 
             new DebugLog().BugWriteTxt(msg);
-          byte[] postBytes = Encoding.UTF8.GetBytes(msg.ToString());
+          byte[] postBytes = Encoding.ASCII.GetBytes(msg.ToString());
 
             string access_token = new GetAccessToken().Get_access_token();
             string createMenuUrl = string.Format(new ApiAddress().sendAll, access_token);
