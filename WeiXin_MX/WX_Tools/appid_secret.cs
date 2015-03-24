@@ -8,7 +8,7 @@ namespace WX_Tools
     /// <summary>
     /// 测试号信息
     /// </summary>
-  public  class appid_secret
+  public  class Appid_Secret
   {
     
 

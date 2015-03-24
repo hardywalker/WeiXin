@@ -60,6 +60,14 @@
 
         #endregion
 
+        #region 群发url
+
+        /// <summary>
+        /// 根据分组进行群发【订阅号与服务号认证后均可用】 传入access_token即可，占位符已写
+        /// </summary>
+        public string sendAll = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={0}";
+
+        #endregion
 
 
         #endregion

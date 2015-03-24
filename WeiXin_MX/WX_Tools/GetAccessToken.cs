@@ -58,8 +58,8 @@ namespace WX_Tools
         private string InsertCache_access_token()
         {
             //建立完整的访问url
-          string  httpGetAccess_Token = string.Format(new ApiAddress().access_token, new appid_secret().appid,
-                new appid_secret().secret);
+          string  httpGetAccess_Token = string.Format(new ApiAddress().access_token, new Appid_Secret().appid,
+                new Appid_Secret().secret);
             //创建HttpWebRequest对象
             HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;
             if (httpWebRequest != null)

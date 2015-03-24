@@ -122,7 +122,7 @@ namespace WX_Tools
             request.ContentType = string.Format("multipart/form-data; boundary={0}", boundary);
 
 
-            request.ContentLength = postStream != null ? postStream.Length : 0;
+            request.ContentLength = postStream.Length;
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
             request.KeepAlive = true;
 
