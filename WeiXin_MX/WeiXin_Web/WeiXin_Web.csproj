@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateMenu.aspx" />
+    <Content Include="ErrorTXT\2015-03-24-15-14-44-635628068842486435.txt" />
     <Content Include="ErrorTXT\这里搜集异常信息.txt" />
     <Content Include="Index.aspx" />
     <Content Include="ImageUpload.ashx" />
