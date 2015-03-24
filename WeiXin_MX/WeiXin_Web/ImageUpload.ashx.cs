@@ -48,37 +48,86 @@ namespace WeiXin_Web
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new WX_Tools.ApiAddress().mediaUpload.ToString(), new WX_Tools.GetAccessToken().Get_access_token(), "image"));
                 request.Method = "POST";
-               
-                request.ContentType = "application/x-www-form-urlencoded;";
-      
-                MemoryStream memoryStream=new MemoryStream();
+                MemoryStream postStream = new MemoryStream();
+
+                string boundary = "----" + DateTime.Now.Ticks.ToString("x");
+                
+                string formdataTemplate = "\r\n--" + boundary + "\r\nContent-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: application/octet-stream\r\n\r\n";
+
 
                 //根据完整文件获取文件流
               FileStream fileStream=new FileStream(context.Server.MapPath("/Upload/" + imgName + ".jpg"),FileMode.Open);
-         
-                //TODO:2015年3月23日18:07:10   上传文件测试
-              
 
-
-                byte[] imgBytes = Encoding.UTF8.GetBytes(fileStream.ToString());
-
-
-
-
-
-                Stream streamWrite = request.GetRequestStream();
-                streamWrite.Write(imgBytes,0,imgBytes.Length);
-                streamWrite.Close();
-
-                string backResult = "";
-                HttpWebResponse httpWebResponse = (HttpWebResponse)request.GetResponse();
-                Stream streamRead = httpWebResponse.GetResponseStream();
-                if (streamRead != null)
+                try
                 {
-                    StreamReader streamReader=new StreamReader(streamRead,Encoding.UTF8);
-                    backResult = streamReader.ReadToEnd();
-                    context.Response.Write(backResult);
+                
+                    var formdata = string.Format(formdataTemplate, "media", context.Server.MapPath("/Upload/" + imgName + ".jpg")/*Path.GetFileName(fileName)*/);
+                    var formdataBytes = Encoding.ASCII.GetBytes(postStream.Length == 0 ? formdata.Substring(2, formdata.Length - 2) : formdata);//第一行不需要换行
+                    postStream.Write(formdataBytes, 0, formdataBytes.Length);
+
+                    //写入文件
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = 0;
+                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+                        postStream.Write(buffer, 0, bytesRead);
+                    }
+
                 }
+                catch (Exception)
+                {
+                    
+                 
+                }
+            
+
+
+              //结尾
+              var footer = Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+              postStream.Write(footer, 0, footer.Length);
+
+              request.ContentType = string.Format("multipart/form-data; boundary={0}", boundary);
+
+
+              request.ContentLength = postStream != null ? postStream.Length : 0;
+              request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+              request.KeepAlive = true;
+
+            
+              request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36";
+
+         
+
+              #region 输入二进制流
+              if (postStream != null)
+              {
+                  postStream.Position = 0;
+
+                  //直接写入流
+                  Stream requestStream = request.GetRequestStream();
+
+                  byte[] buffer = new byte[1024];
+                  int bytesRead = 0;
+                  while ((bytesRead = postStream.Read(buffer, 0, buffer.Length)) != 0)
+                  {
+                      requestStream.Write(buffer, 0, bytesRead);
+                  }
+
+                  postStream.Close();//关闭文件访问
+              }
+              #endregion
+
+              HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+
+              using (Stream responseStream = response.GetResponseStream())
+              {
+                  using (StreamReader myStreamReader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8")))
+                  {
+                      string retString = myStreamReader.ReadToEnd();
+                      context.Response.Write(retString);
+                  }
+              }
 
             }
             else
