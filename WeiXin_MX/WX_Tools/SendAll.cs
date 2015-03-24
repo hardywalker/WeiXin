@@ -39,11 +39,9 @@ namespace WX_Tools
 
           #endregion
 
-          string msg =
-              string.Format(
-                  "{\"filter\":{\"is_to_all\":true},\"text\": {\"content\": \"{0}\"},\"msgtype\": \"text\"}", strText);
+          string msg ="{\"filter\":{\"is_to_all\":true},\"text\": {\"content\": \""+strText+"\"},\"msgtype\": \"text\"}";
 
-
+            new DebugLog().BugWriteTxt(msg);
           byte[] postBytes = Encoding.UTF8.GetBytes(msg.ToString());
 
             string access_token = new GetAccessToken().Get_access_token();
@@ -68,8 +66,8 @@ namespace WX_Tools
                 string result = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamRead.Close();
-           
 
+                new DebugLog().BugWriteTxt(result);
             }
 
 
