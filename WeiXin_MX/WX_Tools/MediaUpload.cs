@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Net;
 using System.Text;
+using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace WX_Tools
 {
@@ -10,10 +12,19 @@ namespace WX_Tools
     /// </summary>
     public class MediaUpload
     {
+        private HttpContext context = HttpContext.Current;
 
-        public void GetMediaID()
+
+        /// <summary>
+        /// 上传临时素材，获取media_id,有效期为三天
+        /// </summary>
+        /// <param name="fileUrl"></param>
+        /// <returns></returns>
+        public string GetTemporaryMediaID(string fileUrl)
         {
-            /*
+            #region 上传临时素材接口说明
+
+            /*上传临时素材  Temporary临时 
              * 公众号经常有需要用到一些临时性的多媒体素材的场景，例如在使用接口特别是发送消息时，对多媒体文件、多媒体消息的获取和调用等操作，是通过media_id来进行的。素材管理接口对所有认证的订阅号和服务号开放。
 
                 通过本接口，公众号可以新增临时素材（即上传临时多媒体文件）。但请注意，每个多媒体文件（media_id）会在开发者上传或粉丝发送到微信服务器3天后自动删除（所以用户发送给开  发者    的素  材，    若开发者需要，应尽快下载到本地），以节省服务器资源。请注意，media_id是可复用的。
@@ -65,6 +76,100 @@ namespace WX_Tools
                     
                     媒体文件在后台保存时间为3天，即3天后media_id失效。 
              */
+
+            #endregion
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().mediaUpload.ToString(), new GetAccessToken().Get_access_token(), "image"));
+            request.Method = "POST";
+            MemoryStream postStream = new MemoryStream();
+
+            string boundary = "----" + DateTime.Now.Ticks.ToString("x");
+
+            string formdataTemplate = "\r\n--" + boundary + "\r\nContent-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: application/octet-stream\r\n\r\n";
+
+
+            //根据完整文件获取文件流
+            FileStream fileStream = new FileStream(fileUrl, FileMode.Open);
+
+            try
+            {
+
+                var formdata = string.Format(formdataTemplate, "media", fileUrl);
+                var formdataBytes = Encoding.ASCII.GetBytes(postStream.Length == 0 ? formdata.Substring(2, formdata.Length - 2) : formdata);//第一行不需要换行
+                postStream.Write(formdataBytes, 0, formdataBytes.Length);
+
+                //写入文件
+                byte[] buffer = new byte[1024];
+                int bytesRead = 0;
+                while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    postStream.Write(buffer, 0, bytesRead);
+                }
+
+            }
+            catch (Exception e)
+            {
+                //写入异常日志
+                new DebugLog().BugWriteTxt(e.ToString());
+            }
+
+
+
+            //结尾
+            var footer = Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+            postStream.Write(footer, 0, footer.Length);
+
+            request.ContentType = string.Format("multipart/form-data; boundary={0}", boundary);
+
+
+            request.ContentLength = postStream != null ? postStream.Length : 0;
+            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+            request.KeepAlive = true;
+
+
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36";
+
+
+
+            #region 输入二进制流
+            if (postStream != null)
+            {
+                postStream.Position = 0;
+
+                //直接写入流
+                Stream requestStream = request.GetRequestStream();
+
+                byte[] buffer = new byte[1024];
+                int bytesRead = 0;
+                while ((bytesRead = postStream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    requestStream.Write(buffer, 0, bytesRead);
+                }
+
+                postStream.Close();//关闭文件访问
+            }
+            #endregion
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            string result = "";
+            using (Stream responseStream = response.GetResponseStream())
+            {
+                using (StreamReader myStreamReader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8")))
+                {
+                    string retString = myStreamReader.ReadToEnd();
+
+                    //解析json
+                    JObject jObject = JObject.Parse(retString);
+                    if (!string.IsNullOrWhiteSpace(jObject["media_id"].ToString()))
+                    {
+                        result= jObject["media_id"].ToString();
+                    }
+
+                }
+            }
+            return result;
+
         }
     }
 }
