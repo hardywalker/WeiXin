@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace WX_Tools
 {
+    /// <summary>
+    /// 获取access_token
+    /// </summary>
     public class GetAccessToken
     {
         /*
@@ -55,6 +58,10 @@ namespace WX_Tools
             return HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()].ToString();
         }
 
+        /// <summary>
+        /// 获取access_token，如果有就从缓存中获取，如果没有，就从微信服务器获取。
+        /// </summary>
+        /// <returns></returns>
         private string InsertCache_access_token()
         {
             //建立完整的访问url
