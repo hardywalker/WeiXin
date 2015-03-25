@@ -48,7 +48,7 @@ namespace WX_Tools
             #endregion
 
             new DebugLog().BugWriteTxt(strJson);
-            byte[] postBytes = Encoding.ASCII.GetBytes(strJson.ToString());
+            byte[] postBytes = Encoding.UTF8.GetBytes(strJson.ToString());
 
             string access_token = new GetAccessToken().Get_access_token();
             string actionUrl = string.Format(new ApiAddress().previewUrl, access_token);

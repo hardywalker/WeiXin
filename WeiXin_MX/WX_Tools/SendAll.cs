@@ -42,7 +42,7 @@ namespace WX_Tools
          // string msg ="{\"filter\":{\"is_to_all\":true},\"text\": {\"content\": \""+strText+"\"},\"msgtype\": \"text\"}";
 
             new DebugLog().BugWriteTxt(strText);
-            byte[] postBytes = Encoding.ASCII.GetBytes(strText.ToString());
+            byte[] postBytes = Encoding.UTF8.GetBytes(strText.ToString());
 
             string access_token = new GetAccessToken().Get_access_token();
             string createMenuUrl = string.Format(new ApiAddress().sendAll, access_token);
