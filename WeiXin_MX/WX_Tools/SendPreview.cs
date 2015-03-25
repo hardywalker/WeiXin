@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -16,7 +17,7 @@ namespace WX_Tools
       /// 发送文本预览消息  
       /// </summary>
       /// <param name="strJson">消息体json</param>
-        public void SendPriviewText(string strJson)
+        public void SendPriviewText(AppidSecret appidSecret,string strJson)
         {
             #region 发送文本预览消息
 
@@ -50,7 +51,7 @@ namespace WX_Tools
             new DebugLog().BugWriteTxt(strJson);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson.ToString());
 
-            string access_token = new GetAccessToken().Get_access_token();
+            string access_token = new GetAccessToken().Get_access_token(appidSecret);
             string actionUrl = string.Format(new ApiAddress().previewUrl, access_token);
 
             WebRequest webRequest = (HttpWebRequest)WebRequest.Create(actionUrl);

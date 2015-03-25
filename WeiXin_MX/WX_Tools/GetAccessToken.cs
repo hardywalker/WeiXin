@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using Newtonsoft.Json.Linq;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -48,12 +49,12 @@ namespace WX_Tools
         /// 取得access_token
         /// </summary>
         /// <returns></returns>
-        public string Get_access_token()
+        public string Get_access_token(AppidSecret appidSecret)
         {
             if (HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()] == null)
             {
 
-               return InsertCache_access_token();
+               return InsertCache_access_token(appidSecret);
             }
             return HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()].ToString();
         }
@@ -62,11 +63,13 @@ namespace WX_Tools
         /// 获取access_token，如果有就从缓存中获取，如果没有，就从微信服务器获取。
         /// </summary>
         /// <returns></returns>
-        private string InsertCache_access_token()
+        private string InsertCache_access_token(AppidSecret appidSecret)
         {
+            
             //建立完整的访问url
-          string  httpGetAccess_Token = string.Format(new ApiAddress().access_token, new Appid_Secret().appid,
-                new Appid_Secret().secret);
+          //string  httpGetAccess_Token = string.Format(new ApiAddress().access_token, new Appid_Secret().appid,
+            //    new Appid_Secret().secret);
+            string httpGetAccess_Token = string.Format(new ApiAddress().access_token, appidSecret.appid,appidSecret.secret);
             //创建HttpWebRequest对象
             HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;
             if (httpWebRequest != null)

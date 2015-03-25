@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -17,7 +18,7 @@ namespace WX_Tools
       /// 群发文本消息
       /// <param name="strText">要群发的消息</param>
       /// </summary>
-        public void SendAllText(string strText)
+        public void SendAllText(AppidSecret appidSecret,string strText)
         {
           #region 群发文本消息说明
 
@@ -44,7 +45,7 @@ namespace WX_Tools
             new DebugLog().BugWriteTxt(strText);
             byte[] postBytes = Encoding.UTF8.GetBytes(strText.ToString());
 
-            string access_token = new GetAccessToken().Get_access_token();
+            string access_token = new GetAccessToken().Get_access_token(appidSecret);
             string createMenuUrl = string.Format(new ApiAddress().sendAll, access_token);
 
             WebRequest webRequest = (HttpWebRequest)WebRequest.Create(createMenuUrl);

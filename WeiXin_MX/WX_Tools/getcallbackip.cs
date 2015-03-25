@@ -2,6 +2,7 @@
 using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -17,13 +18,13 @@ namespace WX_Tools
       ///}
       /// </summary>
       /// <returns></returns>
-      public string getServerIPString()
+      public string getServerIPString(AppidSecret appidSecret)
       {
 
           string ipString = "";
        
 
-          string access_token = new GetAccessToken().Get_access_token();
+          string access_token = new GetAccessToken().Get_access_token(appidSecret);
              string getHttpUrl =string.Format(new ApiAddress().getcallbackip,access_token);
 
           WebRequest webRequest = (HttpWebRequest) WebRequest.Create(getHttpUrl);

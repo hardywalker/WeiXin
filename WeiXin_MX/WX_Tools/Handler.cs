@@ -306,10 +306,10 @@ namespace WX_Tools
             switch (contentStr)
             {
                 case "accessToken":
-                    getAccessToken();
+         
                     break;
                 case "serverIP":
-                    getServerIPString();
+         
                     break;
                 case "myGUID":
                     myGUID();
@@ -364,11 +364,11 @@ namespace WX_Tools
         /// <summary>
         /// 回复获取的access_token
         /// </summary>
-        private void getAccessToken()
+        private void getAccessToken(AppidSecret appidSecret)
         {
             try
             {
-                string accessToken = new GetAccessToken().Get_access_token();
+                string accessToken = new GetAccessToken().Get_access_token(appidSecret);
                 new ReplyTemplate(_reciveSender).ReplyText(accessToken);
             }
             catch (Exception ex)
@@ -386,11 +386,11 @@ namespace WX_Tools
         /// <summary>
         /// 回复获取到的服务器IP地址
         /// </summary>
-        private void getServerIPString()
+        private void getServerIPString(AppidSecret appidSecret)
         {
             try
             {
-                string serverIp = new Getcallbackip().getServerIPString();
+                string serverIp = new Getcallbackip().getServerIPString(appidSecret);
                 new ReplyTemplate(_reciveSender).ReplyText(serverIp);
             }
             catch (Exception ex)

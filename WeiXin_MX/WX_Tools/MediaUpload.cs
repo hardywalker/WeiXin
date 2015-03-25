@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using Newtonsoft.Json.Linq;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -20,7 +21,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="fileUrl">图片的完整路径</param>
         /// <returns></returns>
-        public string GetTemporaryMediaID(string fileUrl)
+        public string GetTemporaryMediaID(AppidSecret appidSecret,string fileUrl)
         {
             #region 上传临时素材接口说明
 
@@ -79,7 +80,7 @@ namespace WX_Tools
 
             #endregion
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().mediaUpload.ToString(), new GetAccessToken().Get_access_token(), "image"));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().mediaUpload.ToString(), new GetAccessToken().Get_access_token(appidSecret), "image"));
             request.Method = "POST";
             MemoryStream postStream = new MemoryStream();
 
@@ -172,7 +173,7 @@ namespace WX_Tools
 
         }
 
-        public string mediaUploadNews(string postJson)
+        public string mediaUploadNews(AppidSecret appidSecret,string postJson)
         {
             #region 接口调用请求说明
 
@@ -238,7 +239,7 @@ namespace WX_Tools
             #endregion
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postJson);
-            string access_token = new GetAccessToken().Get_access_token();
+            string access_token = new GetAccessToken().Get_access_token(appidSecret);
             string mediaUploadNewsUrl = string.Format(new ApiAddress().mediaUploadNews, access_token);
             WebRequest webRequest = (HttpWebRequest) WebRequest.Create(mediaUploadNewsUrl);
             webRequest.Method = "POST";

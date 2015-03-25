@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using WX_Tools;
+using WX_Tools.Entites;
 
 namespace WeiXin_Web
 {
@@ -10,6 +11,7 @@ namespace WeiXin_Web
     /// </summary>
     public class ImageUpload : IHttpHandler
     {
+        AppidSecret appidSecret=new AppidSecret();
 
         public void ProcessRequest(HttpContext context)
         {
@@ -43,7 +45,7 @@ namespace WeiXin_Web
             if (flag)
             {
                 string mediaId =
-                    new MediaUpload().GetTemporaryMediaID(context.Server.MapPath("/Upload/" + imgName + ".jpg"));
+                    new MediaUpload().GetTemporaryMediaID(appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
                context.Response.Write(mediaId);
                 new DebugLog().BugWriteTxt(mediaId);
 

@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="AllEnum.cs" />
     <Compile Include="ApiAddress.cs" />
-    <Compile Include="Appid_Secret.cs" />
     <Compile Include="AllCach.cs" />
     <Compile Include="Check.cs" />
     <Compile Include="CustomerMenu.cs" />

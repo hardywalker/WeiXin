@@ -1,36 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using WX_Tools;
 using WX_Tools.Entites;
 
 namespace WeiXin_Web
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class Index : Page
     {
+      public  AppidSecret appidSecret=new AppidSecret();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            appidSecret.appid = txt_appid.Text;
+            appidSecret.secret = txt_secret.Text;
 
 
 
         }
 
-        protected void button1_OnClick(object sender, EventArgs e)
-        {
 
-            lab1.Text = new WX_Tools.GetAccessToken().Get_access_token();
-        }
-
-        protected void button2_OnClick(object sender, EventArgs e)
-        {
-            Label1.Text = new WX_Tools.Getcallbackip().getServerIPString();
-        }
 
 
         /// <summary>
@@ -122,7 +111,27 @@ namespace WeiXin_Web
             postDataStringBuilder.Append("]");
             postDataStringBuilder.Append("}");
 
-            HttpContext.Current.Response.Write("创建菜单结果：" + new CustomerMenu().CreateCustomerMenu(postDataStringBuilder.ToString()));
+            HttpContext.Current.Response.Write("创建菜单结果：" + new CustomerMenu().CreateCustomerMenu(appidSecret,postDataStringBuilder.ToString()));
+        }
+
+        /// <summary>
+        /// 获取access_token
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_get_access_token_OnClick(object sender, EventArgs e)
+        {
+            lab_access_token.Text = new GetAccessToken().Get_access_token(appidSecret);
+        }
+
+        /// <summary>
+        /// 获取服务器ip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_get_server_ip_OnClick(object sender, EventArgs e)
+        {
+            lab_server_ip.Text = new Getcallbackip().getServerIPString(appidSecret);
         }
     }
 }

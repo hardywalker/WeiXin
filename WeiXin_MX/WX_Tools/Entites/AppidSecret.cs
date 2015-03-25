@@ -8,16 +8,16 @@ namespace WX_Tools.Entites
     /// <summary>
     /// appid以及secret实体类
     /// </summary>
-   public class AppidSecret
+   public  class AppidSecret
     {
        /// <summary>
        /// appid
        /// </summary>
-       public string appid { get; set; }
+       public  string appid { get; set; }
 
        /// <summary>
        /// secret
        /// </summary>
-       public string secret { get; set; }
+       public  string secret { get; set; }
     }
 }
