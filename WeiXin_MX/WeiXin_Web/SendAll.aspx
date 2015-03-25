@@ -16,6 +16,11 @@
         <br />
         <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine">{"filter":{"is_to_all":true,"group_id": "2"},"text": {"content": "这里是内容"},"msgtype": "text"}</asp:TextBox><br/>
         <asp:Button ID="Button1" runat="server" Text="群发文本消息" OnClick="Button1_OnClick" />
+        <br/>
+        <h1>发送预览消息</h1><br/>
+        文本格式：{"touser":"o8__KjrxQiTety8PbZb7noPse77s","text":{"content":"CONTENT"},"msgtype":"text"}<br/>
+           <asp:TextBox ID="TextBox2" runat="server" TextMode="MultiLine">{"touser":"o8__KjrxQiTety8PbZb7noPse77s","text":{"content":"CONTENT"},"msgtype":"text"}</asp:TextBox><br/>
+        <asp:Button ID="Button2" runat="server" Text="预览文本消息" OnClick="Button2_OnClick" />
     </div>
     </form>
 </body>

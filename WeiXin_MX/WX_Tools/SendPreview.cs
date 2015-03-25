@@ -51,7 +51,7 @@ namespace WX_Tools
             byte[] postBytes = Encoding.ASCII.GetBytes(strJson.ToString());
 
             string access_token = new GetAccessToken().Get_access_token();
-            string actionUrl = string.Format(new ApiAddress().sendAll, access_token);
+            string actionUrl = string.Format(new ApiAddress().previewUrl, access_token);
 
             WebRequest webRequest = (HttpWebRequest)WebRequest.Create(actionUrl);
 

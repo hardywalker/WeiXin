@@ -24,5 +24,15 @@ namespace WeiXin_Web
 
             new WX_Tools.SendAll().SendAllText(TextBox1.Text);
         }
+
+        /// <summary>
+        /// 发送预览文本消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Button2_OnClick(object sender, EventArgs e)
+        {
+            new WX_Tools.SendPreview().SendPriviewText(TextBox2.Text);
+        }
     }
 }
