@@ -11,7 +11,10 @@
     <form id="form1" runat="server">
     <div>
     <h1>群发文本消息</h1><br/>
-        <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine"></asp:TextBox><br/>
+       根据分组进行群发文本消息，发送给全部关注者is_to_all为true: {"filter":{"is_to_all":true,"group_id": "2"},"text": {"content": "这里是内容"},"msgtype": "text"}<br/>
+        根据OpenID列表群发【订阅号不可用，服务号认证后可用】 :{"touser":["OPENID1","OPENID2"],"msgtype": "text","text": { "content": "hello from boxer."}}
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine">{"filter":{"is_to_all":true,"group_id": "2"},"text": {"content": "这里是内容"},"msgtype": "text"}</asp:TextBox><br/>
         <asp:Button ID="Button1" runat="server" Text="群发文本消息" OnClick="Button1_OnClick" />
     </div>
     </form>
