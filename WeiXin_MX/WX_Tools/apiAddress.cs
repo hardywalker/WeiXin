@@ -81,6 +81,17 @@
         #endregion
 
 
+        #region  预览接口
+
+        /// <summary>
+        /// 预览接口【订阅号与服务号认证后均可用】  POST 需要传入access_token   占位符已写
+        /// </summary>
+        public string previewUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={0}";
+
+        #endregion
+
+
+
         #endregion
 
 
