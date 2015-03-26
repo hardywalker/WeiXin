@@ -17,7 +17,7 @@ namespace WX_Tools
         HttpContext _httpContext = HttpContext.Current;
         Sender _reciveSender = new Sender();
 
-        public void ExecHandler()
+        public void ExecHandler(AppidSecret appidSecret)
         {
             #region 各种消息类型
 
@@ -233,7 +233,7 @@ namespace WX_Tools
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
                 {
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
-                    Reply(_content);
+                    Reply(appidSecret,_content);
 
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
@@ -268,7 +268,7 @@ namespace WX_Tools
                     {
                        string menuButtonKey=rootXmlElement.SelectSingleNode("EventKey").InnerText;
 
-                      Reply(menuButtonKey);
+                      Reply(appidSecret,menuButtonKey);
 
 
                     }
@@ -301,15 +301,15 @@ namespace WX_Tools
         /// 根据回复来调用不同方法
         /// </summary>
         /// <param name="contentStr"></param>
-        private void Reply(string contentStr)
+        private void Reply(AppidSecret appidSecret,string contentStr)
         {
             switch (contentStr)
             {
                 case "accessToken":
-         
+         getAccessToken(appidSecret);
                     break;
                 case "serverIP":
-         
+         getServerIPString(appidSecret);
                     break;
                 case "myGUID":
                     myGUID();

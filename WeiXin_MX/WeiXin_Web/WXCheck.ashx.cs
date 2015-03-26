@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Web;
 using WX_Tools;
+using WX_Tools.Entites;
 
 namespace WeiXin_Web
 {
@@ -10,7 +10,7 @@ namespace WeiXin_Web
     /// </summary>
     public class WXCheck : IHttpHandler
     { 
-
+        public AppidSecret AppidSecret=new AppidSecret();
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
@@ -51,8 +51,10 @@ namespace WeiXin_Web
 
                 try
                 {
+                    AppidSecret.appid = "wxa29576cd9bb8fa92";
+                    AppidSecret.secret = "841a341dc0e60c105a14ee9734d51319";
                     //接收并响应
-                    new Handler().ExecHandler();
+                    new Handler().ExecHandler(AppidSecret);
                 }
                 catch (Exception ex)
                 {

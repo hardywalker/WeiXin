@@ -10,17 +10,15 @@ namespace WeiXin_Web
     public partial class Index : Page
     {
       public  AppidSecret appidSecret=new AppidSecret();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             appidSecret.appid = txt_appid.Text;
             appidSecret.secret = txt_secret.Text;
 
 
-
         }
-
-
-
+        
 
         /// <summary>
         /// 创建菜单
@@ -29,89 +27,10 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_createMenu_OnClick(object sender, EventArgs e)
         {
-            StringBuilder postDataStringBuilder = new StringBuilder();
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.Append("\"button\":");
-            postDataStringBuilder.Append("[");
+       
+            lab_menu_msg.InnerText = "创建菜单结果：" +
+                                     new CustomerMenu().CreateCustomerMenu(appidSecret, txt_menu.ToString().Trim());
 
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.Append("\"name\":\"菜单一\",\"sub_button\":");
-            postDataStringBuilder.Append("[");
-
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "accessToken");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "serverIP");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "myGUID");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"url\":\"{2}\"", AllEnum.CustomerMenuButtonEvent.view.ToString(), "搜索","http://www.baidu.com");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"url\":\"{2}\"", AllEnum.CustomerMenuButtonEvent.view.ToString(), "视频","http://www.youku.com");
-            postDataStringBuilder.Append("}");
-
-
-            postDataStringBuilder.Append("]");
-            postDataStringBuilder.Append("},");
-
-
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.Append("\"name\":\"菜单二\",\"sub_button\":");
-            postDataStringBuilder.Append("[");
-
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.location_select.ToString(), "GPS");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二二");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二三");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二四");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单二五");
-            postDataStringBuilder.Append("}");
-
-
-            postDataStringBuilder.Append("]");
-            postDataStringBuilder.Append("},");
-
-
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.Append("\"name\":\"菜单三\",\"sub_button\":");
-            postDataStringBuilder.Append("[");
-
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三一");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三二");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三三");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三四");
-            postDataStringBuilder.Append("},");
-            postDataStringBuilder.Append("{");
-            postDataStringBuilder.AppendFormat("\"type\":\"{0}\",\"name\":\"{1}\",\"key\":\"{1}\"", AllEnum.CustomerMenuButtonEvent.click.ToString(), "菜单三五");
-            postDataStringBuilder.Append("}");
-
-
-            postDataStringBuilder.Append("]");
-            postDataStringBuilder.Append("}");
-
-            postDataStringBuilder.Append("]");
-            postDataStringBuilder.Append("}");
-
-            HttpContext.Current.Response.Write("创建菜单结果：" + new CustomerMenu().CreateCustomerMenu(appidSecret,postDataStringBuilder.ToString()));
         }
 
         /// <summary>
@@ -133,5 +52,8 @@ namespace WeiXin_Web
         {
             lab_server_ip.Text = new Getcallbackip().getServerIPString(appidSecret);
         }
+
+
+
     }
 }
