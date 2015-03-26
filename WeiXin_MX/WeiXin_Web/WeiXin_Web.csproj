@@ -61,7 +61,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CreateMenu.aspx" />
     <Content Include="ErrorTXT\2015-03-24-15-14-44-635628068842486435.txt" />
     <Content Include="ErrorTXT\这里搜集异常信息.txt" />
     <Content Include="Index.aspx" />
@@ -74,13 +73,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateMenu.aspx.cs">
-      <DependentUpon>CreateMenu.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CreateMenu.aspx.designer.cs">
-      <DependentUpon>CreateMenu.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ImageUpload.ashx.cs">
       <DependentUpon>ImageUpload.ashx</DependentUpon>
     </Compile>
