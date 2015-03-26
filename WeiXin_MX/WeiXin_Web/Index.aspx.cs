@@ -13,8 +13,11 @@ namespace WeiXin_Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             appidSecret.appid = txt_appid.Text;
-            appidSecret.secret = txt_secret.Text;
+            appidSecret.secret = txt_secret.Text.Trim();
+         
 
 
         }
@@ -53,15 +56,34 @@ namespace WeiXin_Web
             lab_server_ip.Text = new Getcallbackip().getServerIPString(appidSecret);
         }
 
-
+        /// <summary>
+        /// 群发消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
             new SendAll().SendAllText(appidSecret, txt_sendall.Text);
         }
 
+        /// <summary>
+        /// 向指定用户发送预览消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
             new SendPreview().SendPriviewText(appidSecret, txt_send_preview.Text);
+        }
+
+        /// <summary>
+        /// 提交图文消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_send_tuwen_OnClick(object sender, EventArgs e)
+        {
+           lab_send_tuwen_msg.Text= new MediaUpload().mediaUploadNews(appidSecret, txt_send_tuwen.Text.Trim());
         }
     }
 }

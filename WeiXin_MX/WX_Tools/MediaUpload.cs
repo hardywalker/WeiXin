@@ -173,6 +173,12 @@ namespace WX_Tools
 
         }
 
+        /// <summary>
+        /// 上传图文消息用此方法来获取要布的消息的media_id
+        /// </summary>
+        /// <param name="appidSecret"></param>
+        /// <param name="postJson"></param>
+        /// <returns></returns>
         public string mediaUploadNews(AppidSecret appidSecret,string postJson)
         {
             #region 接口调用请求说明
@@ -261,8 +267,9 @@ namespace WX_Tools
                 resultjson = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamRead.Close();
-                JObject jObject = JObject.Parse(resultjson);
-                resultjson = jObject["IhdaAQXuvJtGzwwc0abfXnzeezfO0NgPK6AQYShD8RQYMTtfzbLdBIQkQziv2XJc"].ToString();
+               // JObject jObject = JObject.Parse(resultjson);
+               // resultjson = jObject["media_id"].ToString();
+                new DebugLog().BugWriteTxt("这是一条上传好的消息media_id:"+resultjson);
             }
             return resultjson;
 
