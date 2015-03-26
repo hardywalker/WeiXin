@@ -56,7 +56,7 @@ namespace WeiXin_Web
 
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
-            new WX_Tools.SendAll().SendAllText(appidSecret, txt_sendall.Text);
+            new SendAll().SendAllText(appidSecret, txt_sendall.Text);
         }
 
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
