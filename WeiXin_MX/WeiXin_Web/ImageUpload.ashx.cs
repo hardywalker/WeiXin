@@ -12,9 +12,12 @@ namespace WeiXin_Web
     public class ImageUpload : IHttpHandler
     {
         AppidSecret appidSecret=new AppidSecret();
-
+        
         public void ProcessRequest(HttpContext context)
         {
+          
+                    appidSecret.appid = "wxa29576cd9bb8fa92";
+                    appidSecret.secret = "841a341dc0e60c105a14ee9734d51319";
             context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");
 

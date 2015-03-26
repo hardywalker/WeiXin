@@ -42,5 +42,10 @@
         <asp:Button ID="btn_send_preview" runat="server" Text="预览文本消息"  OnClick="btn_send_preview_OnClick"/>
     </div>
     </form>
+    <hr/>
+      <form action="ImageUpload.ashx" method="post" enctype="multipart/form-data">
+        <input id="File1" type="file" name="image0" /><br />
+        <input id="Submit1" type="submit" value="提交" />
+    </form> 
 </body>
 </html>
