@@ -15,8 +15,7 @@
         /// 使用AppID和AppSecret调用本接口来获取access_token，appid  与appsecret已经写好占位符
         /// https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
         /// </summary>
-        public string access_token =
-            "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
+        public string access_token ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
 
         #endregion
 

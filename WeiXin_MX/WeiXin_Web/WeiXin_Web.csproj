@@ -61,8 +61,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ErrorTXT\2015-03-24-15-14-44-635628068842486435.txt" />
-    <Content Include="ErrorTXT\这里搜集异常信息.txt" />
     <Content Include="Index.aspx" />
     <Content Include="ImageUpload.ashx" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -108,6 +106,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ErrorTXT\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <PropertyGroup>
