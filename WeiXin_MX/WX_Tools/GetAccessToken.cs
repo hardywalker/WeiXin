@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Caching;
 using Newtonsoft.Json.Linq;
 using WX_Tools.Entites;
 
@@ -42,7 +43,7 @@ namespace WX_Tools
            access_token 	获取到的凭证
            expires_in 	凭证有效时间，单位：秒 
          */
-
+    
        
 
         /// <summary>
@@ -51,12 +52,16 @@ namespace WX_Tools
         /// <returns></returns>
         public string Get_access_token(AppidSecret appidSecret)
         {
-            if (HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()] == null)
-            {
+            string accesstokenCachname = AllCach.AllCachEnum.access_token.ToString();
 
-               return InsertCache_access_token(appidSecret);
+            var accesstokenCache=HttpContext.Current.Cache[accesstokenCachname];
+
+
+            if (accesstokenCache == null)
+            {
+                return InsertCache_access_token(appidSecret);
             }
-            return HttpContext.Current.Cache[AllCach.AllCachEnum.access_token.ToString()].ToString();
+            return accesstokenCache.ToString();
         }
 
         /// <summary>
@@ -67,11 +72,10 @@ namespace WX_Tools
         {
             string accesstoken = "";
             //建立完整的访问url
-          //string  httpGetAccess_Token = string.Format(new ApiAddress().access_token, new Appid_Secret().appid,
-            //    new Appid_Secret().secret);
-            string httpGetAccess_Token = string.Format(new ApiAddress().access_token,appidSecret.appid,appidSecret.secret);
+     
+            string httpGetAccessToken = string.Format(new ApiAddress().access_token,appidSecret.appid,appidSecret.secret);
             //创建HttpWebRequest对象
-            HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccess_Token) as HttpWebRequest;
+            HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccessToken) as HttpWebRequest;
             if (httpWebRequest != null)
             {
                 httpWebRequest.Method = "GET";
@@ -94,11 +98,10 @@ namespace WX_Tools
 
                     //把获取到access_token放入缓存中，设置失效时间为7000秒，比微信服务器上短一点就行
                     HttpContext.Current.Cache.Insert(AllCach.AllCachEnum.access_token.ToString(),
-                        accesstoken, null, DateTime.Now.AddMilliseconds(7000),
-                        TimeSpan.Zero);
+                        accesstoken, null, DateTime.Now.AddSeconds(7000),TimeSpan.Zero);
 
-
-                   
+               
+                    
                 }
            
             }
