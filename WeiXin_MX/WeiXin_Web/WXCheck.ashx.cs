@@ -9,7 +9,7 @@ namespace WeiXin_Web
     /// <summary>
     /// WXCheck 的摘要说明
     /// </summary>
-    public class WXCheck : IHttpHandler
+    public class WxCheck : IHttpHandler
     { 
         public AppidSecret AppidSecret=new AppidSecret();
         public void ProcessRequest(HttpContext context)

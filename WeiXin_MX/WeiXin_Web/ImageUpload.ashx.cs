@@ -12,21 +12,21 @@ namespace WeiXin_Web
     /// </summary>
     public class ImageUpload : IHttpHandler
     {
-        AppidSecret appidSecret=new AppidSecret();
+        AppidSecret _appidSecret=new AppidSecret();
         
         public void ProcessRequest(HttpContext context)
         {
           
-                    appidSecret.appid = WebConfigurationManager.AppSettings["appid"];
-                    appidSecret.secret = WebConfigurationManager.AppSettings["secret"];
+                    _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+                    _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
             context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");
 
 
             //根据前台html的name获取文件
-            HttpPostedFile _upfile = context.Request.Files["image0"];
+            HttpPostedFile upfile = context.Request.Files["image0"];
 
-            if (_upfile == null)
+            if (upfile == null)
             {
                 context.Response.Write("没有选择文件 ");
                 return;
@@ -37,7 +37,7 @@ namespace WeiXin_Web
 
             try
             {
-                _upfile.SaveAs(context.Server.MapPath("/Upload/" + imgName + ".jpg"));
+                upfile.SaveAs(context.Server.MapPath("/Upload/" + imgName + ".jpg"));
                 flag = true;
             }
             catch (Exception e)
@@ -49,7 +49,7 @@ namespace WeiXin_Web
             if (flag)
             {
                 string mediaId =
-                    new MediaUpload().GetTemporaryMediaID(appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
+                    new MediaUpload().GetTemporaryMediaId(_appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
                context.Response.Write(mediaId);
                 new DebugLog().BugWriteTxt(mediaId);
 

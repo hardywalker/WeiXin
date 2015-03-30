@@ -45,8 +45,8 @@ namespace WX_Tools
             new DebugLog().BugWriteTxt(strText);
             byte[] postBytes = Encoding.UTF8.GetBytes(strText.ToString());
 
-            string access_token = new GetAccessToken().Get_access_token(appidSecret);
-            string createMenuUrl = string.Format(new ApiAddress().sendAll, access_token);
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+            string createMenuUrl = string.Format(new ApiAddress().SendAll, accessToken);
 
             WebRequest webRequest = (HttpWebRequest)WebRequest.Create(createMenuUrl);
 

@@ -19,12 +19,12 @@ namespace WX_Tools
           /// <summary>
           /// 订阅（关注）事件
           /// </summary>
-          subscribe,
+          Subscribe,
 
           /// <summary>
           /// 取消订阅（取消关注）事件
           /// </summary>
-          unsubscribe
+          Unsubscribe
       }
 
       /// <summary>
@@ -36,39 +36,39 @@ namespace WX_Tools
           /// <summary>
           /// 文本消息
           /// </summary>
-          text,
+          Text,
 
 
           /// <summary>
           /// 图片消息
           /// </summary>
-          image,
+          Image,
 
           /// <summary>
           /// 语音消息
           /// </summary>
-          voice,
+          Voice,
 
 
           /// <summary>
           /// 视频消息
           /// </summary>
-          video,
+          Video,
 
           /// <summary>
           /// 小视频消息
           /// </summary>
-          shortvideo,
+          Shortvideo,
 
           /// <summary>
           /// 地理位置消息
           /// </summary>
-          location,
+          Location,
 
           /// <summary>
           /// 链接消息
           /// </summary>
-          link,
+          Link,
 
           
       }
@@ -82,42 +82,42 @@ namespace WX_Tools
       /// <summary>
       /// 点击推事件
       /// </summary>
-      click,
+      Click,
 
       /// <summary>
       /// 跳转URL
       /// </summary>
-      view,
+      View,
 
       /// <summary>
       /// 扫码推事件
       /// </summary>
-      scancode_push,
+      ScancodePush,
 
       /// <summary>
       /// 扫码推事件且弹出“消息接收中”提示框
       /// </summary>
-      scancode_waitmsg,
+      ScancodeWaitmsg,
 
       /// <summary>
       /// 弹出系统拍照发图
       /// </summary>
-      pic_sysphoto,
+      PicSysphoto,
 
       /// <summary>
       /// 弹出拍照或者相册发图
       /// </summary>
-      pic_photo_or_album,
+      PicPhotoOrAlbum,
 
       /// <summary>
       /// 弹出微信相册发图器
       /// </summary>
-      pic_weixin,
+      PicWeixin,
 
       /// <summary>
       /// 弹出地理位置选择器
       /// </summary>
-      location_select
+      LocationSelect
   }
 
     }

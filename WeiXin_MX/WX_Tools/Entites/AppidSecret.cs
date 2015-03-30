@@ -13,11 +13,11 @@ namespace WX_Tools.Entites
        /// <summary>
        /// appid
        /// </summary>
-       public  string appid { get; set; }
+       public  string Appid { get; set; }
 
        /// <summary>
        /// secret
        /// </summary>
-       public  string secret { get; set; }
+       public  string Secret { get; set; }
     }
 }

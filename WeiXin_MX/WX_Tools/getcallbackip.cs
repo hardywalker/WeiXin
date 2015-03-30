@@ -18,22 +18,22 @@ namespace WX_Tools
       ///}
       /// </summary>
       /// <returns></returns>
-      public string getServerIPString(AppidSecret appidSecret)
+      public string GetServerIpString(AppidSecret appidSecret)
       {
 
           string ipString = "";
        
 
-          string access_token = new GetAccessToken().Get_access_token(appidSecret);
-             string getHttpUrl =string.Format(new ApiAddress().getcallbackip,access_token);
+          string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+             string getHttpUrl =string.Format(new ApiAddress().Getcallbackip,accessToken);
 
-          WebRequest webRequest = (HttpWebRequest) WebRequest.Create(getHttpUrl);
+          HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(getHttpUrl);
           if (webRequest != null)
           {
               webRequest.Method = "GET";
               webRequest.ContentType = "appliction/json;charset=utf-8";
 
-              WebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
+              HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
               Stream stream = webResponse.GetResponseStream();
               if (stream != null)
               {

@@ -220,9 +220,9 @@ namespace WX_Tools
 
          
 
-                _reciveSender.toUserName = _fromUserName;
-                _reciveSender.fromUserName = _toUserName;
-                _reciveSender.createTime = new GetCreateTime().CreateTime();
+                _reciveSender.ToUserName = _fromUserName;
+                _reciveSender.FromUserName = _toUserName;
+                _reciveSender.CreateTime = new GetCreateTime().CreateTime();
 
 
 
@@ -230,33 +230,33 @@ namespace WX_Tools
 
                 new DebugLog().BugWriteTxt(rootXmlElement.OuterXml);
                 //推送过来文本消息
-                if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
+                if (_msgType.Equals(AllEnum.MsgTypeEnum.Text.ToString()))
                 {
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
                     Reply(appidSecret,_content);
 
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Link.ToString()))
                 {
                     new DebugLog().BugWriteTxt("这一条链接消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.image.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Image.ToString()))
                 {
                     new DebugLog().BugWriteTxt("这一条图片消息："+rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.location.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Location.ToString()))
                 {
                     new DebugLog().BugWriteTxt("这一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.voice.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Voice.ToString()))
                 {
                     new DebugLog().BugWriteTxt("这一条语音消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.video.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Video.ToString()))
                 {
                     new DebugLog().BugWriteTxt("这一条视频消息：" + rootXmlElement.OuterXml);
 
-                }else if (_msgType.Equals(AllEnum.MsgTypeEnum.shortvideo.ToString()))
+                }else if (_msgType.Equals(AllEnum.MsgTypeEnum.Shortvideo.ToString()))
                 {
                     new DebugLog().BugWriteTxt("这一条小视频消息：" + rootXmlElement.OuterXml);
                 }
@@ -265,11 +265,11 @@ namespace WX_Tools
                     new DebugLog().BugWriteTxt("这一条事件消息：" + rootXmlElement.OuterXml);
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
                 
-                    if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
+                    if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.Subscribe.ToString()))
                     {
                        DefaultReply();
                     }
-                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
+                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.Click.ToString()))
                     {
                        string menuButtonKey=rootXmlElement.SelectSingleNode("EventKey").InnerText;
 
@@ -277,9 +277,9 @@ namespace WX_Tools
 
 
                     }
-                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.location_select.ToString()))
+                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()))
                     {
-                        new DebugLog().BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.location_select.ToString()+"相等");
+                        new DebugLog().BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()+"相等");
                    
                         if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
                         {
@@ -306,13 +306,13 @@ namespace WX_Tools
             switch (contentStr)
             {
                 case "accessToken":
-         getAccessToken(appidSecret);
+         GetAccessToken(appidSecret);
                     break;
                 case "serverIP":
-         getServerIPString(appidSecret);
+         GetServerIpString(appidSecret);
                     break;
                 case "myGUID":
-                    myGUID();
+                    MyGuid();
                     break;
                default:
                     MenuName(contentStr);
@@ -364,7 +364,7 @@ namespace WX_Tools
         /// <summary>
         /// 回复获取的access_token
         /// </summary>
-        private void getAccessToken(AppidSecret appidSecret)
+        private void GetAccessToken(AppidSecret appidSecret)
         {
             try
             {
@@ -386,11 +386,11 @@ namespace WX_Tools
         /// <summary>
         /// 回复获取到的服务器IP地址
         /// </summary>
-        private void getServerIPString(AppidSecret appidSecret)
+        private void GetServerIpString(AppidSecret appidSecret)
         {
             try
             {
-                string serverIp = new Getcallbackip().getServerIPString(appidSecret);
+                string serverIp = new Getcallbackip().GetServerIpString(appidSecret);
                 new ReplyTemplate(_reciveSender).ReplyText(serverIp);
             }
             catch (Exception ex)
@@ -405,7 +405,7 @@ namespace WX_Tools
         /// <summary>
         /// 获取当前用户的微信号
         /// </summary>
-        private void myGUID()
+        private void MyGuid()
         {
             try
             {

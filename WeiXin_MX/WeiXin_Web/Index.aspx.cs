@@ -10,13 +10,13 @@ namespace WeiXin_Web
 {
     public partial class Index : Page
     {
-      public  AppidSecret appidSecret=new AppidSecret();
+      public  AppidSecret AppidSecret=new AppidSecret();
 
         protected void Page_Load(object sender, EventArgs e)
         {
        
-            appidSecret.appid = WebConfigurationManager.AppSettings["appid"];
-            appidSecret.secret = WebConfigurationManager.AppSettings["secret"];
+            AppidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+            AppidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
 
 
 
@@ -33,7 +33,7 @@ namespace WeiXin_Web
         {
        
             lab_menu_msg.InnerText = "创建菜单结果：" +
-                                     new CustomerMenu().CreateCustomerMenu(appidSecret, txt_menu.ToString().Trim());
+                                     new CustomerMenu().CreateCustomerMenu(AppidSecret, txt_menu.ToString().Trim());
 
         }
 
@@ -44,7 +44,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_access_token_OnClick(object sender, EventArgs e)
         {
-            lab_access_token.Text = new GetAccessToken().Get_access_token(appidSecret);
+            lab_access_token.Text = new GetAccessToken().Get_access_token(AppidSecret);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_server_ip_OnClick(object sender, EventArgs e)
         {
-            lab_server_ip.Text = new Getcallbackip().getServerIPString(appidSecret);
+            lab_server_ip.Text = new Getcallbackip().GetServerIpString(AppidSecret);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
-            new SendAll().SendAllText(appidSecret, txt_sendall.Text);
+            new SendAll().SendAllText(AppidSecret, txt_sendall.Text);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
-            new SendPreview().SendPriviewText(appidSecret, txt_send_preview.Text);
+            new SendPreview().SendPriviewText(AppidSecret, txt_send_preview.Text);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_send_tuwen_OnClick(object sender, EventArgs e)
         {
-           lab_send_tuwen_msg.Text= new MediaUpload().mediaUploadNews(appidSecret, txt_send_tuwen.Text.Trim());
+           lab_send_tuwen_msg.Text= new MediaUpload().MediaUploadNews(AppidSecret, txt_send_tuwen.Text.Trim());
         }
     }
 }

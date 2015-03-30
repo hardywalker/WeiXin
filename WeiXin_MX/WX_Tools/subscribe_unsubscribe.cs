@@ -9,7 +9,7 @@ namespace WX_Tools
     /// <summary>
     /// 订阅与取消订阅事件（关注 取消关注 ）
     /// </summary>
-   public class subscribe_unsubscribe
+   public class SubscribeUnsubscribe
     {
 
         /*

@@ -13,19 +13,19 @@ namespace WX_Tools.Entites
       /// <summary>
         /// 必须字段，接收方帐号（收到的OpenID）
       /// </summary>
-      public string toUserName { get; set; }
+      public string ToUserName { get; set; }
 
 
       /// <summary>
       /// 必须字段，开发者微信号
       /// </summary>
-      public string fromUserName { get; set; }
+      public string FromUserName { get; set; }
 
 
       /// <summary>
       /// 发送消息的时间戳
       /// </summary>
-      public int createTime { get; set; }
+      public int CreateTime { get; set; }
 
     }
 }

@@ -13,7 +13,7 @@ namespace WX_Tools
     /// </summary>
     public class MediaUpload
     {
-        private HttpContext context = HttpContext.Current;
+        private HttpContext _context = HttpContext.Current;
 
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="fileUrl">图片的完整路径</param>
         /// <returns></returns>
-        public string GetTemporaryMediaID(AppidSecret appidSecret,string fileUrl)
+        public string GetTemporaryMediaId(AppidSecret appidSecret,string fileUrl)
         {
             #region 上传临时素材接口说明
 
@@ -80,7 +80,7 @@ namespace WX_Tools
 
             #endregion
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().mediaUpload.ToString(), new GetAccessToken().Get_access_token(appidSecret), "image"));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().MediaUpload.ToString(), new GetAccessToken().Get_access_token(appidSecret), "image"));
             request.Method = "POST";
             MemoryStream postStream = new MemoryStream();
 
@@ -179,7 +179,7 @@ namespace WX_Tools
         /// <param name="appidSecret"></param>
         /// <param name="postJson"></param>
         /// <returns></returns>
-        public string mediaUploadNews(AppidSecret appidSecret,string postJson)
+        public string MediaUploadNews(AppidSecret appidSecret,string postJson)
         {
             #region 接口调用请求说明
 
@@ -245,8 +245,8 @@ namespace WX_Tools
             #endregion
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecret);
-            string mediaUploadNewsUrl = string.Format(new ApiAddress().mediaUploadNews, access_token);
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+            string mediaUploadNewsUrl = string.Format(new ApiAddress().MediaUploadNews, accessToken);
             WebRequest webRequest = (HttpWebRequest) WebRequest.Create(mediaUploadNewsUrl);
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded;";

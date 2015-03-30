@@ -52,7 +52,7 @@ namespace WX_Tools
         /// <returns></returns>
         public string Get_access_token(AppidSecret appidSecret)
         {
-            string accesstokenCachname = AllCach.AllCachEnum.access_token.ToString();
+            string accesstokenCachname = AllCach.AllCachEnum.AccessToken.ToString();
 
             var accesstokenCache=HttpContext.Current.Cache[accesstokenCachname];
 
@@ -73,7 +73,7 @@ namespace WX_Tools
             string accesstoken = "";
             //建立完整的访问url
      
-            string httpGetAccessToken = string.Format(new ApiAddress().access_token,appidSecret.appid,appidSecret.secret);
+            string httpGetAccessToken = string.Format(new ApiAddress().AccessToken,appidSecret.Appid,appidSecret.Secret);
             //创建HttpWebRequest对象
             HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccessToken) as HttpWebRequest;
             if (httpWebRequest != null)
@@ -97,7 +97,7 @@ namespace WX_Tools
                     stream.Close();
 
                     //把获取到access_token放入缓存中，设置失效时间为7000秒，比微信服务器上短一点就行
-                    HttpContext.Current.Cache.Insert(AllCach.AllCachEnum.access_token.ToString(),
+                    HttpContext.Current.Cache.Insert(AllCach.AllCachEnum.AccessToken.ToString(),
                         accesstoken, null, DateTime.Now.AddSeconds(7000),TimeSpan.Zero);
 
                

@@ -18,7 +18,7 @@ namespace WX_Tools
            /// <summary>
            /// 全局唯一票据，每天请求上限2000
            /// </summary>
-           access_token
+           AccessToken
        }
     }
 }
