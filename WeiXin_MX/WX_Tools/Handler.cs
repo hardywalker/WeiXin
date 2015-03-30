@@ -209,7 +209,7 @@ namespace WX_Tools
             xmlDocument.Load(xmlStream);
             //获取根节点
             XmlElement rootXmlElement = xmlDocument.DocumentElement;
-           
+          
             if (rootXmlElement != null)
             {
 
@@ -238,26 +238,28 @@ namespace WX_Tools
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
                 {
-
+                    new DebugLog().BugWriteTxt("这一条链接消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.image.ToString()))
                 {
-
+                    new DebugLog().BugWriteTxt("这一条图片消息："+rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.location.ToString()))
                 {
-                   
+                    new DebugLog().BugWriteTxt("这一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.voice.ToString()))
                 {
-
+                    new DebugLog().BugWriteTxt("这一条语音消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.video.ToString()))
                 {
+                    new DebugLog().BugWriteTxt("这一条视频消息：" + rootXmlElement.OuterXml);
 
                 }
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
+                    new DebugLog().BugWriteTxt("这一条事件消息：" + rootXmlElement.OuterXml);
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
                 
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.subscribe.ToString()))
@@ -280,12 +282,7 @@ namespace WX_Tools
                         {
                             new ReplyTemplate(_reciveSender).ReplyText(rootXmlElement.SelectSingleNode("SendLocationInfo").InnerText);
                         }
-                        //StreamReader srStreamReader=new StreamReader(xmlStream);
-                        
-                        //new DebugLog().BugWriteTxt(srStreamReader.ReadToEnd());
-                        //string myLocation = rootXmlElement.SelectSingleNode("Label").InnerText;
-                        //new DebugLog().BugWriteTxt("获取地址："+myLocation);
-                        //new ReplyTemplate(_reciveSender).ReplyText(myLocation);
+                      
                     }
                 }
              
