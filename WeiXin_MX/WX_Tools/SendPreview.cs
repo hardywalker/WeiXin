@@ -17,7 +17,7 @@ namespace WX_Tools
       /// 发送文本预览消息  
       /// </summary>
       /// <param name="strJson">消息体json</param>
-        public void SendPriviewText(AppidSecret appidSecret,string strJson)
+        public string SendPriviewText(AppidSecret appidSecret,string strJson)
         {
             #region 发送文本预览消息
 
@@ -64,19 +64,19 @@ namespace WX_Tools
             streamWrite.Write(postBytes, 0, postBytes.Length);
             streamWrite.Close();
 
-            string createResult = "";
+            string result = "";
             HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
             Stream streamRead = httpWebResponse.GetResponseStream();
             if (streamRead != null)
             {
                 StreamReader streamReader = new StreamReader(streamRead, Encoding.UTF8);
-                string result = streamReader.ReadToEnd();
+                 result = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamRead.Close();
 
                 new DebugLog().BugWriteTxt(result);
             }
-
+          return result;
         }
     }
 }
