@@ -13,8 +13,13 @@
         测试号申请地址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
         <hr/>
         <h1>配置信息</h1>
-        appid:<asp:TextBox ID="txt_appid" runat="server" Width="300px">wxa29576cd9bb8fa92</asp:TextBox><br/>
-        secret:<asp:TextBox ID="txt_secret" runat="server" Width="300px">841a341dc0e60c105a14ee9734d51319</asp:TextBox><br/>
+        公司账号<br/>
+        wxa8f97bba9ebb7d27<br/>
+        1f9381bd5c8f08b0c4dda7ac55b19769 
+        测试账号<br />
+        wxa29576cd9bb8fa92<br/>
+        841a341dc0e60c105a14ee9734d51319
+
         token:<asp:TextBox ID="txt_token" runat="server" Width="300px">anyangmaxin</asp:TextBox><br/>
   <asp:Button runat="server" ID="btn_get_access_token" OnClick="btn_get_access_token_OnClick" Text="获取access_token"/><br/>
         <asp:Label runat="server" ID="lab_access_token"></asp:Label>

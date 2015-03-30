@@ -56,6 +56,11 @@ namespace WX_Tools
           video,
 
           /// <summary>
+          /// 小视频消息
+          /// </summary>
+          shortvideo,
+
+          /// <summary>
           /// 地理位置消息
           /// </summary>
           location,

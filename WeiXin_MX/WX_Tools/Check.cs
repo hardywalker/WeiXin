@@ -19,16 +19,16 @@ namespace WX_Tools
             */
       
      
-       public bool ValidateUrl()
+       public bool ValidateUrl(string strToken)
        {
               HttpContext httpContext = HttpContext.Current;
            string signature = httpContext.Request["signature"];
            string timestamp = httpContext.Request["timestamp"];
            string nonce = httpContext.Request["nonce"];
            string echostr = httpContext.Request["echostr"];
-           string token = "anyangmaxin";
 
-           string[] temp1 = { token, timestamp, nonce };
+
+           string[] temp1 = { strToken, timestamp, nonce };
 
            //排序
            Array.Sort(temp1);
@@ -36,15 +36,6 @@ namespace WX_Tools
            //sha1加密
            string temp2 = string.Join("", temp1);
            string temp3 = FormsAuthentication.HashPasswordForStoringInConfigFile(temp2, "SHA1");
-
-
-           //对比
-           //if (temp3.ToLower().Equals(signature))
-           //{
-           //    File.WriteAllText(httpContext.Server.MapPath("/ErrorTXT/" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt"), "我是验证时候的记录|" + signature + "|" + timestamp + "|" + nonce);
-           //    return echostr;
-           //}
-           //return "";
 
 
            return temp3.ToLower().Equals(signature);

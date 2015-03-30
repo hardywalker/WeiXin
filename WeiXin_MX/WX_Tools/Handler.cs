@@ -227,8 +227,8 @@ namespace WX_Tools
 
 
                 _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
-         
 
+                new DebugLog().BugWriteTxt(rootXmlElement.OuterXml);
                 //推送过来文本消息
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
                 {
@@ -256,6 +256,9 @@ namespace WX_Tools
                 {
                     new DebugLog().BugWriteTxt("这一条视频消息：" + rootXmlElement.OuterXml);
 
+                }else if (_msgType.Equals(AllEnum.MsgTypeEnum.shortvideo.ToString()))
+                {
+                    new DebugLog().BugWriteTxt("这一条小视频消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using WX_Tools;
 using WX_Tools.Entites;
@@ -14,10 +15,10 @@ namespace WeiXin_Web
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            appidSecret.appid = WebConfigurationManager.AppSettings["appid"];
+            appidSecret.secret = WebConfigurationManager.AppSettings["secret"];
+        
 
-            appidSecret.appid = txt_appid.Text;
-            appidSecret.secret = txt_secret.Text.Trim();
-         
 
 
         }

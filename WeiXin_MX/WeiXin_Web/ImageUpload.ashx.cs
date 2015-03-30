@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Web;
+using System.Web.Configuration;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -16,8 +17,8 @@ namespace WeiXin_Web
         public void ProcessRequest(HttpContext context)
         {
           
-                    appidSecret.appid = "wxa29576cd9bb8fa92";
-                    appidSecret.secret = "841a341dc0e60c105a14ee9734d51319";
+                    appidSecret.appid = WebConfigurationManager.AppSettings["appid"];
+                    appidSecret.secret = WebConfigurationManager.AppSettings["secret"];
             context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");
 
@@ -39,9 +40,9 @@ namespace WeiXin_Web
                 _upfile.SaveAs(context.Server.MapPath("/Upload/" + imgName + ".jpg"));
                 flag = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                
+                new DebugLog().BugWriteTxt("保存图片出错："+e.ToString());
                
             }
 

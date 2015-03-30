@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Configuration;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -13,6 +14,9 @@ namespace WeiXin_Web
         public AppidSecret AppidSecret=new AppidSecret();
         public void ProcessRequest(HttpContext context)
         {
+
+            string token = WebConfigurationManager.AppSettings["token"];
+
             context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");
 
@@ -20,7 +24,7 @@ namespace WeiXin_Web
             {
                
                 //校验
-                if (new Check().ValidateUrl())
+                if (new Check().ValidateUrl(token))
                 {
                     context.Response.Write(context.Request["echostr"].ToString());
                 }     
@@ -28,7 +32,7 @@ namespace WeiXin_Web
             else
             {
               
-                if (!new Check().ValidateUrl())
+                if (!new Check().ValidateUrl(token))
                 {
                    
                     context.Response.Write("参数错误");
@@ -51,8 +55,7 @@ namespace WeiXin_Web
 
                 try
                 {
-                    AppidSecret.appid = "wxa29576cd9bb8fa92";
-                    AppidSecret.secret = "841a341dc0e60c105a14ee9734d51319";
+               
                     //接收并响应
                     new Handler().ExecHandler(AppidSecret);
                 }
