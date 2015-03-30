@@ -18,7 +18,7 @@ namespace WX_Tools
       /// 群发文本消息
       /// <param name="strText">要群发的消息</param>
       /// </summary>
-        public void SendAllText(AppidSecret appidSecret,string strText)
+        public string SendAllText(AppidSecret appidSecret,string strJson)
         {
           #region 群发文本消息说明
 
@@ -42,8 +42,8 @@ namespace WX_Tools
 
          // string msg ="{\"filter\":{\"is_to_all\":true},\"text\": {\"content\": \""+strText+"\"},\"msgtype\": \"text\"}";
 
-            new DebugLog().BugWriteTxt(strText);
-            byte[] postBytes = Encoding.UTF8.GetBytes(strText.ToString());
+            new DebugLog().BugWriteTxt(strJson);
+            byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             string accessToken = new GetAccessToken().Get_access_token(appidSecret);
             string createMenuUrl = string.Format(new ApiAddress().SendAll, accessToken);
@@ -58,19 +58,19 @@ namespace WX_Tools
             streamWrite.Write(postBytes, 0, postBytes.Length);
             streamWrite.Close();
 
-            string createResult = "";
+            string result = "";
             HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
             Stream streamRead = httpWebResponse.GetResponseStream();
             if (streamRead != null)
             {
                 StreamReader streamReader = new StreamReader(streamRead, Encoding.UTF8);
-                string result = streamReader.ReadToEnd();
+            result = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamRead.Close();
 
                 new DebugLog().BugWriteTxt(result);
             }
-
+          return result;
 
         }
     }

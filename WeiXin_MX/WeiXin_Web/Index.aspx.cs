@@ -64,7 +64,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
-            new SendAll().SendAllText(_appidSecret,txt_sendall.Text);
+           lab_send_all_msg.Text=new SendAll().SendAllText(_appidSecret,txt_sendall.Text.Trim());
         }
 
         /// <summary>
