@@ -13,10 +13,11 @@ namespace WX_Tools
     /// </summary>
   public  class SendPreview
     {
-      /// <summary>
-      /// 发送文本预览消息  
-      /// </summary>
-      /// <param name="strJson">消息体json</param>
+        /// <summary>
+        /// 发送文本预览消息  
+        /// </summary>
+        /// <param name="appidSecret"></param>
+        /// <param name="strJson">消息体json</param>
         public string SendPriviewText(AppidSecret appidSecret,string strJson)
         {
             #region 发送文本预览消息

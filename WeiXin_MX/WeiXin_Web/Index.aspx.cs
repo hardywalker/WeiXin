@@ -31,7 +31,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_createMenu_OnClick(object sender, EventArgs e)
         {
-            new DebugLog().BugWriteTxt(txt_menu.Text.Trim());
+          
             lab_menu_msg.InnerText = "创建菜单结果：" +
                                      new CustomerMenu().CreateCustomerMenu(_appidSecret,txt_menu.Text.Trim());
 
