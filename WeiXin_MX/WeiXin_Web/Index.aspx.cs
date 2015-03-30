@@ -14,10 +14,10 @@ namespace WeiXin_Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+       
             appidSecret.appid = WebConfigurationManager.AppSettings["appid"];
             appidSecret.secret = WebConfigurationManager.AppSettings["secret"];
-        
+
 
 
 

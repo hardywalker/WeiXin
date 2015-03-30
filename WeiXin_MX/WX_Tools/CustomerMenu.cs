@@ -42,12 +42,13 @@ namespace WX_Tools
             if (streamRead != null)
             {
                 StreamReader streamReader = new StreamReader(streamRead, Encoding.UTF8);
-                string result = streamReader.ReadToEnd();
-                streamReader.Close();
-                streamRead.Close();
-                JObject jObject = JObject.Parse(result);
-                createResult = jObject["errmsg"].ToString();
-                
+                //string result = streamReader.ReadToEnd();
+                //streamReader.Close();
+                //streamRead.Close();
+                //JObject jObject = JObject.Parse(result);
+                //createResult = jObject["errmsg"].ToString();
+                createResult = streamReader.ReadToEnd();
+
             }
 
             return createResult;
