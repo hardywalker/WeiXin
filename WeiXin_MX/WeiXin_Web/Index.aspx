@@ -15,12 +15,11 @@
         <h1>配置信息</h1>
         公司账号<br/>
         wxa8f97bba9ebb7d27<br/>
-        1f9381bd5c8f08b0c4dda7ac55b19769 
+        1f9381bd5c8f08b0c4dda7ac55b19769 <br/>
         测试账号<br />
         wxa29576cd9bb8fa92<br/>
         841a341dc0e60c105a14ee9734d51319
-
-        token:<asp:TextBox ID="txt_token" runat="server" Width="300px">anyangmaxin</asp:TextBox><br/>
+        <hr/>
   <asp:Button runat="server" ID="btn_get_access_token" OnClick="btn_get_access_token_OnClick" Text="获取access_token"/><br/>
         <asp:Label runat="server" ID="lab_access_token"></asp:Label>
         <hr/>
