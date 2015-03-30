@@ -8,7 +8,7 @@ namespace WX_Tools
     /// <summary>
     /// 全局所用的统一名称，枚举方式记录，包括事件等
     /// </summary>
-  public  class AllEnum
+  public partial  class AllEnum
     {
 
       /// <summary>

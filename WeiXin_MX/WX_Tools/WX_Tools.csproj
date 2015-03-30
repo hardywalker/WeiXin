@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllEnum.cs" />
+    <Compile Include="AllEnum_ReturnCode.cs" />
     <Compile Include="ApiAddress.cs" />
     <Compile Include="AllCach.cs" />
     <Compile Include="Check.cs" />
