@@ -55,7 +55,8 @@ namespace WeiXin_Web
 
                 try
                 {
-               
+                    AppidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+                    AppidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
                     //接收并响应
                     new Handler().ExecHandler(AppidSecret);
                 }
