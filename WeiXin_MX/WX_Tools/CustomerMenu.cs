@@ -21,12 +21,12 @@ namespace WX_Tools
         {
          
 
-            byte[] postBytes = Encoding.UTF8.GetBytes(jsonMenu.ToString());
+            byte[] postBytes = Encoding.UTF8.GetBytes(jsonMenu);
         
             string accessToken = new GetAccessToken().Get_access_token(appidSecret);
             string createMenuUrl = string.Format(new ApiAddress().CreateMenu, accessToken);
 
-            WebRequest webRequest = (HttpWebRequest)WebRequest.Create(createMenuUrl);
+            HttpWebRequest webRequest = WebRequest.Create(createMenuUrl) as HttpWebRequest;
 
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -34,10 +34,11 @@ namespace WX_Tools
 
             Stream streamWrite = webRequest.GetRequestStream();
             streamWrite.Write(postBytes, 0, postBytes.Length);
+            new DebugLog().BugWriteTxt(streamWrite.ToString());
             streamWrite.Close();
 
             string createResult = "";
-            HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
+            HttpWebResponse httpWebResponse = webRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
             if (streamRead != null)
             {
