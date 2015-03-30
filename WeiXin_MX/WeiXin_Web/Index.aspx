@@ -31,6 +31,13 @@
         
          <asp:TextBox ID="txt_menu" runat="server" TextMode="MultiLine" Width="100%" Height="300px">{"button":[{"name":"菜单一","sub_button":[{"type":"click","name":"accessToken","key":"accessToken"},{"type":"click","name":"serverIP","key":"serverIP"},{"type":"click","name":"myGUID","key":"myGUID"},{"type":"view","name":"搜索","url":"http://www.baidu.com"},{"type":"view","name":"视频","url":"http://www.youku.com"}]},{"name":"菜单二","sub_button":[{"type":"location_select","name":"GPS","key":"GPS"},{"type":"click","name":"菜单二二","key":"菜单二二"},{"type":"click","name":"菜单二三","key":"菜单二三"},{"type":"click","name":"菜单二四","key":"菜单二四"},{"type":"click","name":"菜单二五","key":"菜单二五"}]},{"name":"菜单三","sub_button":[{"type":"click","name":"菜单三一","key":"菜单三一"},{"type":"click","name":"菜单三二","key":"菜单三二"},{"type":"click","name":"菜单三三","key":"菜单三三"},{"type":"click","name":"菜单三四","key":"菜单三四"},{"type":"click","name":"菜单三五","key":"菜单三五"}]}]}</asp:TextBox><br/>
         <asp:Button runat="server" ID="btn_createMenu" OnClick="btn_createMenu_OnClick" Text="生成菜单"/><label runat="server" id="lab_menu_msg"></label>
+        <hr/>
+        获取现有菜单：<br/>
+        <asp:TextBox ID="txt_now_menu" runat="server" TextMode="MultiLine" Width="100%" Height="200px" ></asp:TextBox>
+        <asp:Button runat="server" Text="获取菜单" OnClick="btn_get_now_menu_OnClick" ID="btn_get_now_menu"/>
+        <hr/>
+        删除现有菜单：<br/>
+        <asp:Button runat="server" ID="btn_delete_now_menu" OnClick="btn_delete_now_menu_OnClick" Text="删除菜单"/> <asp:Label runat="server" ID="lab_delete_menu_msg"></asp:Label>
         <hr />
      
          <h1>群发文本消息</h1><br/>

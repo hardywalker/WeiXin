@@ -86,5 +86,29 @@ namespace WeiXin_Web
         {
            lab_send_tuwen_msg.Text= new MediaUpload().MediaUploadNews(AppidSecret, txt_send_tuwen.Text.Trim());
         }
+
+
+        /// <summary>
+        /// 获取现有已经有的菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_get_now_menu_OnClick(object sender, EventArgs e)
+        {
+
+            txt_now_menu.Text = new CustomerMenu().GetCustomerMenu(AppidSecret);
+
+        }
+
+
+        /// <summary>
+        /// 删除现有菜单 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_delete_now_menu_OnClick(object sender, EventArgs e)
+        {
+            lab_delete_menu_msg.Text = new CustomerMenu().DeleteCustomerMenu(AppidSecret);
+        }
     }
 }
