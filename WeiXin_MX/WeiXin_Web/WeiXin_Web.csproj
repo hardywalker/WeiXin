@@ -87,6 +87,7 @@
     <Content Include="User.aspx" />
     <Content Include="UserControl\Header.html" />
     <Content Include="UserJS\LoadHeader.js" />
+    <Content Include="UserManage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,13 @@
     </Compile>
     <Compile Include="User.aspx.designer.cs">
       <DependentUpon>User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManage.aspx.cs">
+      <DependentUpon>UserManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManage.aspx.designer.cs">
+      <DependentUpon>UserManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="WXCheck.ashx.cs">
       <DependentUpon>WXCheck.ashx</DependentUpon>

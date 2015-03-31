@@ -30,11 +30,9 @@
         <asp:Button runat="server" ID="btn_get_server_ip" OnClick="btn_get_server_ip_OnClick" Text="获取服务器ip"/><br/>
         <asp:Label runat="server" ID="lab_server_ip"></asp:Label>
         <hr/>
-        
-        <hr />
+
      
-        
-           <hr/>
+
     <h1>上传图文消息素材【订阅号与服务号认证后均可用】 </h1>
     示例：{
    "articles": [{"thumb_media_id":"qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
