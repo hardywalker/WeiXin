@@ -49,6 +49,17 @@
         public string DeleteCustomerMenuUrl = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token={0}";
         #endregion
 
+
+
+        #region 获取用户列表  GET 
+        /// <summary>
+        /// 获取用户列表  GET   需要传入access_token,next_openid(可不传)  占位符已写好 
+        /// https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID
+        /// </summary>
+        public string GetUser = "https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}&next_openid={1}";
+        #endregion
+
+
         #endregion
 
 
