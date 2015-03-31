@@ -10,7 +10,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        测试号申请地址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
+        测试号申请地址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login<br />
+        官方帮助文档：http://mp.weixin.qq.com/wiki/home/index.html
         <hr/>
         <h1>配置信息</h1>
         公司账号<br/>

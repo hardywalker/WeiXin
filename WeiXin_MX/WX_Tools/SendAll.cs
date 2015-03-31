@@ -42,13 +42,15 @@ namespace WX_Tools
 
          // string msg ="{\"filter\":{\"is_to_all\":true},\"text\": {\"content\": \""+strText+"\"},\"msgtype\": \"text\"}";
 
+            //把群发的消息体内容写入日志
             new DebugLog().BugWriteTxt(strJson);
+
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             string accessToken = new GetAccessToken().Get_access_token(appidSecret);
-            string createMenuUrl = string.Format(new ApiAddress().SendAll, accessToken);
+            string sendAllUrl = string.Format(new ApiAddress().SendAll, accessToken);
 
-            WebRequest webRequest = (HttpWebRequest)WebRequest.Create(createMenuUrl);
+            HttpWebRequest webRequest =WebRequest.Create(sendAllUrl) as HttpWebRequest;
 
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -59,12 +61,12 @@ namespace WX_Tools
             streamWrite.Close();
 
             string result = "";
-            HttpWebResponse httpWebResponse = (HttpWebResponse)webRequest.GetResponse();
+            HttpWebResponse httpWebResponse = webRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
             if (streamRead != null)
             {
                 StreamReader streamReader = new StreamReader(streamRead, Encoding.UTF8);
-            result = streamReader.ReadToEnd();
+                result = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamRead.Close();
 
