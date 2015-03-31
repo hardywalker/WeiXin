@@ -56,7 +56,7 @@
         /// 获取用户列表  GET   需要传入access_token,next_openid(可不传)  占位符已写好 
         /// https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID
         /// </summary>
-        public string GetUser = "https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}&next_openid={1}";
+        public string GetUserUrl = "https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}&next_openid={1}";
         #endregion
 
 
