@@ -6,10 +6,19 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>微信公众账号测试平台</title>
+    <script type="text/javascript" src="Scripts/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#header").css({"width":"100%","float":"left","margin-bottom":"20px"});
+            $("#header").load("/UserControl/Header.html");
+        })
+  
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
+        <div id="header"></div>
         测试号申请地址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login<br />
         官方帮助文档：http://mp.weixin.qq.com/wiki/home/index.html
         <hr/>
