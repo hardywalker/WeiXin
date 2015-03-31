@@ -46,25 +46,7 @@ namespace WeiXin_Web
             lab_server_ip.Text = new Getcallbackip().GetServerIpString(_appidSecret);
         }
 
-        /// <summary>
-        /// 群发消息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btn_sendall_OnClick(object sender, EventArgs e)
-        {
-           lab_send_all_msg.Text=new SendAll().SendAllText(_appidSecret,txt_sendall.Text.Trim());
-        }
-
-        /// <summary>
-        /// 向指定用户发送预览消息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btn_send_preview_OnClick(object sender, EventArgs e)
-        {
-          lab_send_preview_msg.Text=new SendPreview().SendPriviewText(_appidSecret,txt_send_preview.Text);
-        }
+       
 
         /// <summary>
         /// 提交图文消息
