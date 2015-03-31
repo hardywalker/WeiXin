@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="test.aspx.cs" Inherits="WeiXin_Web.test" %>
-
-
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
