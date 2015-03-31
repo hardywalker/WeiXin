@@ -33,7 +33,7 @@ namespace WeiXin_Web
         {
           
             lab_menu_msg.InnerText = "创建菜单结果：" +
-                                     new CustomerMenu().CreateCustomerMenu(_appidSecret,txt_menu.Text.Trim());
+                                     new WX_Tools.CustomerMenu().CreateCustomerMenu(_appidSecret,txt_menu.Text.Trim());
 
         }
 
@@ -96,7 +96,7 @@ namespace WeiXin_Web
         protected void btn_get_now_menu_OnClick(object sender, EventArgs e)
         {
 
-            txt_now_menu.Text = new CustomerMenu().GetCustomerMenu(_appidSecret);
+            txt_now_menu.Text = new WX_Tools.CustomerMenu().GetCustomerMenu(_appidSecret);
 
         }
 
@@ -108,7 +108,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_delete_now_menu_OnClick(object sender, EventArgs e)
         {
-            lab_delete_menu_msg.Text = new CustomerMenu().DeleteCustomerMenu(_appidSecret);
+            lab_delete_menu_msg.Text = new WX_Tools.CustomerMenu().DeleteCustomerMenu(_appidSecret);
         }
     }
 }

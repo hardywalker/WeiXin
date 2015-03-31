@@ -7,13 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>微信公众账号测试平台</title>
     <script type="text/javascript" src="Scripts/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#header").css({"width":"100%","float":"left","margin-bottom":"20px"});
-            $("#header").load("/UserControl/Header.html");
-        })
-  
-    </script>
+    <script type="text/javascript" src="UserJS/LoadHeader.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
