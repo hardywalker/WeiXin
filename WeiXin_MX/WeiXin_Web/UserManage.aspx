@@ -13,7 +13,9 @@
     <form id="form1" runat="server">
         <div>
     <div id="header"></div>
-    
+    <h1>获取用户列表</h1>
+<asp:Label runat="server" ID="lab_user_list_json" Width="100%" Height="80px"></asp:Label>
+            <asp:Button runat="server" ID="btn_get_user_list" Text="获取用户列表" OnClick="btn_get_user_list_OnClick"/>
     </div>
     </form>
 </body>

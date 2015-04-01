@@ -13,5 +13,15 @@ namespace WeiXin_Web
         {
 
         }
+
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_get_user_list_OnClick(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
