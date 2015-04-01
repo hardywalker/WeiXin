@@ -26,10 +26,25 @@ namespace WX_Tools
             {
                 filePath = Path.Combine(filePath, fileName);
                 //根据路径 ，把文件放入文件流
-                FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                FileStream fileStream=null;
+                try
+                {
+                    fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
-                XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
-                return xmlSerializer.Deserialize(fileStream);
+                    XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                    return xmlSerializer.Deserialize(fileStream);
+                }
+                catch (Exception ex)
+                {
+                   new DebugLog().BugWriteTxt(ex.ToString());
+                }
+                finally
+                {
+                    if (fileStream != null)
+                    {
+                        fileStream.Close();
+                    }
+                }
             }
             return null;
         }
@@ -48,9 +63,24 @@ namespace WX_Tools
             //判断路径是否存在，不存在创建路径 
             DirectoryIsExists(filePath);
             filePath = Path.Combine(filePath, fileName);
-            FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-            XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
-            xmlSerializer.Serialize(fileStream, obj);
+            FileStream fileStream = null;
+            try
+            {
+                fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+                XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+                xmlSerializer.Serialize(fileStream, obj);
+            }
+            catch (Exception ex)
+            {
+                new DebugLog().BugWriteTxt(ex.ToString());
+            }
+            finally
+            {
+                if (fileStream != null)
+                {
+                    fileStream.Close();
+                }
+            }
 
         }
 
