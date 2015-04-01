@@ -83,6 +83,7 @@
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="SendMsg.aspx" />
+    <Content Include="Set.aspx" />
     <Content Include="test.aspx" />
     <Content Include="UserControl\Header.html" />
     <Content Include="UserJS\LoadHeader.js" />
@@ -114,6 +115,13 @@
     </Compile>
     <Compile Include="SendMsg.aspx.designer.cs">
       <DependentUpon>SendMsg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Set.aspx.cs">
+      <DependentUpon>Set.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Set.aspx.designer.cs">
+      <DependentUpon>Set.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
