@@ -67,6 +67,7 @@
     <Compile Include="SendPreview.cs" />
     <Compile Include="subscribe_unsubscribe.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="XmlReadWrite.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
