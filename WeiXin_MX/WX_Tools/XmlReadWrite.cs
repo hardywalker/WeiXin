@@ -51,7 +51,7 @@ namespace WX_Tools
 
 
         /// <summary>
-        /// 根据相对路径来生成xml文件，需要传入实体对象
+        /// 根据相对路径来生成xml文件，需要传入实体对象  序列化方式
         /// </summary>
         /// <param name="filePath">相对路径(/aa/aaa/)</param>
         /// <param name="obj">实体对象</param>

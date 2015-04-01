@@ -18,7 +18,7 @@
 <asp:Label runat="server" ID="lab_user_list_json" Width="100%" Height="80px"></asp:Label>
             <hr/>
             <h1>用户分组管理</h1>
-        
+        <h2>查询所有分组</h2>
     </div>
     </form>
 </body>
