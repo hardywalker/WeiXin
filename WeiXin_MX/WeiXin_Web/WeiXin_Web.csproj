@@ -84,7 +84,6 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="SendMsg.aspx" />
     <Content Include="test.aspx" />
-    <Content Include="User.aspx" />
     <Content Include="UserControl\Header.html" />
     <Content Include="UserJS\LoadHeader.js" />
     <Content Include="UserManage.aspx" />
@@ -122,13 +121,6 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User.aspx.cs">
-      <DependentUpon>User.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User.aspx.designer.cs">
-      <DependentUpon>User.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserManage.aspx.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>
