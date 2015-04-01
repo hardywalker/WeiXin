@@ -21,7 +21,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="fileUrl">图片的完整路径</param>
         /// <returns></returns>
-        public string GetTemporaryMediaId(AppidSecret appidSecret,string fileUrl)
+        public string GetTemporaryMediaId(AppidSecretToken appidSecret,string fileUrl)
         {
             #region 上传临时素材接口说明
 
@@ -179,7 +179,7 @@ namespace WX_Tools
         /// <param name="appidSecret"></param>
         /// <param name="postJson"></param>
         /// <returns></returns>
-        public string MediaUploadNews(AppidSecret appidSecret,string postJson)
+        public string MediaUploadNews(AppidSecretToken appidSecret,string postJson)
         {
             #region 接口调用请求说明
 

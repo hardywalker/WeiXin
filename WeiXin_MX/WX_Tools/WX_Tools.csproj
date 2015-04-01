@@ -53,7 +53,7 @@
     <Compile Include="CustomerMenu.cs" />
     <Compile Include="CustomerMenuEventPush.cs" />
     <Compile Include="DebugLog.cs" />
-    <Compile Include="Entites\AppidSecret.cs" />
+    <Compile Include="Entites\AppidSecretToken.cs" />
     <Compile Include="Entites\News.cs" />
     <Compile Include="Entites\Sender.cs" />
     <Compile Include="GetCallBackIP.cs" />

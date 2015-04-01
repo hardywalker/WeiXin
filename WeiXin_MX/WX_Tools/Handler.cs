@@ -17,7 +17,7 @@ namespace WX_Tools
         HttpContext _httpContext = HttpContext.Current;
         Sender _reciveSender = new Sender();
 
-        public void ExecHandler(AppidSecret appidSecret)
+        public void ExecHandler(AppidSecretToken appidSecret)
         {
             #region 各种消息类型
 
@@ -327,7 +327,7 @@ namespace WX_Tools
         /// 根据回复来调用不同方法
         /// </summary>
         /// <param name="contentStr"></param>
-        private void Reply(AppidSecret appidSecret,string contentStr)
+        private void Reply(AppidSecretToken appidSecret,string contentStr)
         {
             switch (contentStr)
             {
@@ -390,7 +390,7 @@ namespace WX_Tools
         /// <summary>
         /// 回复获取的access_token
         /// </summary>
-        private void GetAccessToken(AppidSecret appidSecret)
+        private void GetAccessToken(AppidSecretToken appidSecret)
         {
             try
             {
@@ -412,7 +412,7 @@ namespace WX_Tools
         /// <summary>
         /// 回复获取到的服务器IP地址
         /// </summary>
-        private void GetServerIpString(AppidSecret appidSecret)
+        private void GetServerIpString(AppidSecretToken appidSecret)
         {
             try
             {

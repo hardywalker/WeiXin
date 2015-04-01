@@ -18,7 +18,7 @@ namespace WX_Tools
       /// 群发文本消息
       /// <param name="strText">要群发的消息</param>
       /// </summary>
-        public string SendAllText(AppidSecret appidSecret,string strJson)
+        public string SendAllText(AppidSecretToken appidSecret,string strJson)
         {
           #region 群发文本消息说明
 

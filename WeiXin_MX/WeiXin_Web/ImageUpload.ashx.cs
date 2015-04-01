@@ -12,7 +12,7 @@ namespace WeiXin_Web
     /// </summary>
     public class ImageUpload : IHttpHandler
     {
-        AppidSecret _appidSecret=new AppidSecret();
+        AppidSecretToken _appidSecret=new AppidSecretToken();
         
         public void ProcessRequest(HttpContext context)
         {

@@ -50,7 +50,7 @@ namespace WX_Tools
         /// 取得access_token
         /// </summary>
         /// <returns></returns>
-        public string Get_access_token(AppidSecret appidSecret)
+        public string Get_access_token(AppidSecretToken appidSecret)
         {
             string accesstokenCachname = AllCach.AllCachEnum.AccessToken.ToString();
 
@@ -68,7 +68,7 @@ namespace WX_Tools
         /// 获取access_token，如果有就从缓存中获取，如果没有，就从微信服务器获取。
         /// </summary>
         /// <returns></returns>
-        private string InsertCache_access_token(AppidSecret appidSecret)
+        private string InsertCache_access_token(AppidSecretToken appidSecret)
         {
             string accesstoken = "";
             //建立完整的访问url

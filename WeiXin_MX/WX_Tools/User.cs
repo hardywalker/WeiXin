@@ -19,7 +19,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecret">appidSecret对象</param>
         /// <param name="nextOpenid">根据此openid获取以后的用户列表，可不填写</param>
-        public string GetUserList(AppidSecret appidSecret, string nextOpenid = "")
+        public string GetUserList(AppidSecretToken appidSecret, string nextOpenid = "")
         {
             #region 使用说明
             /*

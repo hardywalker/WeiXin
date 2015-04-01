@@ -10,7 +10,7 @@ namespace WeiXin_Web
 {
     public partial class Index : Page
     {
-        private AppidSecret _appidSecret=new AppidSecret();
+        private AppidSecretToken _appidSecret=new AppidSecretToken();
 
         protected void Page_Load(object sender, EventArgs e)
         {

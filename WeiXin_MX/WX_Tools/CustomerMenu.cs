@@ -17,7 +17,7 @@ namespace WX_Tools
         /// <summary>
         /// 创建菜单
         /// </summary>
-        public string CreateCustomerMenu(AppidSecret appidSecret,string jsonMenu)
+        public string CreateCustomerMenu(AppidSecretToken appidSecret,string jsonMenu)
         {
          
 
@@ -61,7 +61,7 @@ namespace WX_Tools
       /// </summary>
       /// <param name="appidSecret"></param>
       /// <returns></returns>
-        public string GetCustomerMenu(AppidSecret appidSecret)
+        public string GetCustomerMenu(AppidSecretToken appidSecret)
         {
             /*
              * 使用接口创建自定义菜单后，开发者还可使用接口查询自定义菜单的结构。
@@ -108,7 +108,7 @@ namespace WX_Tools
       /// </summary>
       /// <param name="appidSecret"></param>
       /// <returns></returns>
-        public string DeleteCustomerMenu(AppidSecret appidSecret)
+        public string DeleteCustomerMenu(AppidSecretToken appidSecret)
         {
 
             /*

@@ -11,7 +11,7 @@ namespace WeiXin_Web
     /// </summary>
     public class WxCheck : IHttpHandler
     { 
-        public AppidSecret AppidSecret=new AppidSecret();
+        public AppidSecretToken AppidSecret=new AppidSecretToken();
         public void ProcessRequest(HttpContext context)
         {
 

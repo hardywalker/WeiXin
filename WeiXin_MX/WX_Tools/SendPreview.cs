@@ -18,7 +18,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecret"></param>
         /// <param name="strJson">消息体json</param>
-        public string SendPriviewText(AppidSecret appidSecret,string strJson)
+        public string SendPriviewText(AppidSecretToken appidSecret,string strJson)
         {
             #region 发送文本预览消息
 

@@ -18,7 +18,7 @@ namespace WX_Tools
       ///}
       /// </summary>
       /// <returns></returns>
-      public string GetServerIpString(AppidSecret appidSecret)
+      public string GetServerIpString(AppidSecretToken appidSecret)
       {
 
           string ipString = "";
