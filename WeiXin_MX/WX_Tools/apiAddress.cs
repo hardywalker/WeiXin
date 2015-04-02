@@ -12,7 +12,7 @@
         #region 获取access_token，appid   GET
 
         /// <summary>
-        /// 使用AppID和AppSecret调用本接口来获取access_token，appid  与appsecret已经写好占位符
+        /// 使用AppID和AppSecret调用本接口来获取access_token，appid  GET   与appsecret已经写好占位符
         /// https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
         /// </summary>
         public string AccessToken ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
@@ -24,7 +24,7 @@
         #region 获取微信服务器IP地址  GET
 
         /// <summary>
-        /// 获取微信服务器IP地址,access_token已经写好占位符，传入即可
+        /// 获取微信服务器IP地址     GET     access_token已经写好占位符，传入即可
         /// https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=ACCESS_TOKEN
         /// </summary>
         public string Getcallbackip = "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token={0}";
@@ -37,6 +37,7 @@
 
         /// <summary>
         /// 自定义菜单查询接口  GET方式   需要传入access_token   占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN
         /// </summary>
         public string GetMenuUrl = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token={0}";
         #endregion
@@ -44,7 +45,8 @@
 
         #region  删除当前使用的自定义菜单 GET 
         /// <summary>
-        /// 删除当前使用的自定义菜单  需要传入access_token  点位符已写
+        /// 删除当前使用的自定义菜单  GET  需要传入access_token  点位符已写
+        /// https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN
         /// </summary>
         public string DeleteCustomerMenuUrl = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token={0}";
         #endregion
@@ -57,6 +59,16 @@
         /// https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID
         /// </summary>
         public string GetUserUrl = "https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}&next_openid={1}";
+        #endregion
+
+
+        #region 查询所有分组  GET
+
+        /// <summary>
+        /// 查询所有分组    GET    需要传入access_token  占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/groups/get?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string GetGroupsUrl = "https://api.weixin.qq.com/cgi-bin/groups/get?access_token={0}";
         #endregion
 
 
@@ -81,6 +93,7 @@
 
         /// <summary>
         /// 新增临时素材  POST  需要传入access_token,type(image:图片，voice:语音，video:视频,thumb:缩略图)  占位符已写好
+        /// https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=image
         /// </summary>
         public string MediaUpload = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token={0}&type={1}";
 
@@ -89,9 +102,10 @@
         #region 上传图文消息素材【订阅号与服务号认证后均可用】  POST
 
         /// <summary>
-        /// 上传图文消息素材【订阅号与服务号认证后均可用】 POST  需要传入access_token  占位符已写
+        /// 上传图文消息素材【订阅号与服务号认证后均可用】   POST  需要传入access_token  占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token=ACCESS_TOKEN
         /// </summary>
-        public string MediaUploadNews = "https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token=ACCESS_TOKEN";
+        public string MediaUploadNews = "https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token={0}";
 
         #endregion
 
@@ -99,25 +113,81 @@
 
 
 
-        #region 群发url
+        #region 群发url  POST 
 
         /// <summary>
-        /// 根据分组进行群发【订阅号与服务号认证后均可用】 传入access_token即可，占位符已写
+        /// 根据分组进行群发【订阅号与服务号认证后均可用】   POST   传入access_token即可，占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=ACCESS_TOKEN
         /// </summary>
         public string SendAll = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token={0}";
 
         #endregion
 
 
-        #region  预览接口
+        #region  预览接口   POST
 
         /// <summary>
         /// 预览接口【订阅号与服务号认证后均可用】  POST 需要传入access_token   占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=ACCESS_TOKEN
         /// </summary>
         public string PreviewUrl = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token={0}";
 
         #endregion
 
+
+
+        #region 创建分组  POST
+
+        /// <summary>
+        /// 创建分组  POST  需要传入access_token 占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/groups/create?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string CreateGroupsUrl = "https://api.weixin.qq.com/cgi-bin/groups/create?access_token={0}";
+
+        #endregion
+
+
+        #region 查询用户所在分组  POST
+
+        /// <summary>
+        /// 查询用户所在分组  POST  需要传入access_token   占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/groups/getid?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string GetIDGroupsUrl = "https://api.weixin.qq.com/cgi-bin/groups/getid?access_token={0}";
+
+        #endregion
+
+
+        #region 修改分组名  POST
+
+        /// <summary>
+        /// 修改分组名  POST   需要传入access_token  占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/groups/update?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string UpdateGroupsUrl = "https://api.weixin.qq.com/cgi-bin/groups/update?access_token={0}";
+
+        #endregion
+
+     
+
+
+        #region 移动用户分组  POST 
+        /// <summary>
+        /// 移动用户分组  POST   需要传入access_token，占位符已写好
+        /// https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string UpdateMembersUrl = "https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token={0}";
+
+        #endregion
+
+        #region 批量移动用户分组  POST 
+        /// <summary>
+        /// 批量移动用户分组  POST    需要传入access_token  占位任已写
+        /// https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string BatchUpdateMembersUrl = "https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token={0}";
+
+        #endregion
 
 
         #endregion
