@@ -19,7 +19,8 @@
             <hr/>
             <h1>用户分组管理</h1>
         <h2>查询所有分组</h2>
-
+            <label runat="server" id="lab_all_groups" style="width: 100%"></label>
+            <input type="button" runat="server" id="btn_get_all_groups" value="获取所有分组" OnServerClick="btn_get_all_groups_OnServerClick"/>
     </div>
     </form>
 </body>
