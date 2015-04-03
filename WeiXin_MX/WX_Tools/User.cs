@@ -171,5 +171,60 @@ namespace WX_Tools
         }
         #endregion
 
+
+        #region  创建分组  POST
+
+        public string CreateGroups(AppidSecretToken appidSecretToken, string strJson)
+        {
+            #region  使用说明 
+            /**
+             * 一个公众账号，最多支持创建100个分组。
+
+                    接口调用请求说明
+                    
+                    http请求方式: POST（请使用https协议）
+                    https://api.weixin.qq.com/cgi-bin/groups/create?access_token=ACCESS_TOKEN
+                    POST数据格式：json
+                    POST数据例子：{"group":{"name":"test"}}
+                    
+                    参数说明
+                    参数 	说明
+                    access_token 	调用接口凭证
+                    name 	分组名字（30个字符以内）
+                    
+                    返回说明 正常时的返回JSON数据包示例：
+                    
+                    {
+                        "group": {
+                            "id": 107, 
+                            "name": "test"
+                        }
+                    }
+                    
+                    参数说明
+                    参数 	说明
+                    id 	分组id，由微信分配
+                    name 	分组名字，UTF8编码
+                    
+                    错误时的JSON数据包示例（该示例为AppID无效错误）：
+                    
+                    {"errcode":40013,"errmsg":"invalid appid"}
+
+             */
+            #endregion
+
+            string result = "";
+            byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string postUrl = string.Format(new ApiAddress().CreateGroupsUrl, access_token);
+            HttpWebRequest httpWebRequest=WebRequest.Create(postUrl) as HttpWebRequest;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
+            //TODO继续完成创建分组功能。
+
+            return result;
+        }
+        #endregion
+
     }
 }
