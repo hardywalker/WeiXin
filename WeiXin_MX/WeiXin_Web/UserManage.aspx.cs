@@ -42,5 +42,18 @@ namespace WeiXin_Web
         {
             lab_all_groups.InnerText = user.GetGroups(appidSecretToken);
         }
+
+
+        /// <summary>
+        /// 创建分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_create_groups_OnServerClick(object sender, EventArgs e)
+        {
+            lab_create_groups_msg.Text=new User().CreateGroups(appidSecretToken, txt_create_groups_json.Text.Trim());
+
+
+        }
     }
 }

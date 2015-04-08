@@ -40,6 +40,33 @@ namespace WeiXin_Web {
         protected global::System.Web.UI.WebControls.Label lab_user_list_json;
         
         /// <summary>
+        /// txt_create_groups_json 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_create_groups_json;
+        
+        /// <summary>
+        /// lab_create_groups_msg 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lab_create_groups_msg;
+        
+        /// <summary>
+        /// btn_create_groups 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_create_groups;
+        
+        /// <summary>
         /// lab_all_groups 控件。
         /// </summary>
         /// <remarks>

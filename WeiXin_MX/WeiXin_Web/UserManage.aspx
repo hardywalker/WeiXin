@@ -18,9 +18,16 @@
 <asp:Label runat="server" ID="lab_user_list_json" Width="100%" Height="80px"></asp:Label>
             <hr/>
             <h1>用户分组管理</h1>
+              <h2>创建分组</h2>
+            {"group":{"name":"test"}}
+            <asp:TextBox runat="server" ID="txt_create_groups_json" Width="100%" Height="20px" >{"group":{"name":"test"}}</asp:TextBox>
+            <asp:Label runat="server" ID="lab_create_groups_msg" Width="100%"></asp:Label><input runat="server" type="button" id="btn_create_groups" value="创建分组" OnServerClick="btn_create_groups_OnServerClick" />
         <h2>查询所有分组</h2>
             <label runat="server" id="lab_all_groups" style="width: 100%"></label>
             <input type="button" runat="server" id="btn_get_all_groups" value="获取所有分组" OnServerClick="btn_get_all_groups_OnServerClick"/>
+            <h2>查询用户所在分组</h2>
+
+          
     </div>
     </form>
 </body>

@@ -13,7 +13,7 @@ namespace WX_Tools
     /// </summary>
     public class User
     {
-        #region 获取用户列表
+        #region 获取用户列表  GET
 
         /// <summary>
         /// 获取用户列表  最大一次获取10000，获取更多的话，需要写上next_openid
@@ -85,7 +85,7 @@ namespace WX_Tools
 
 
 
-        #region  查询所有分组
+        #region  查询所有分组  GET
 
         /// <summary>
         /// 查询所有分组  GET  方式   传入AppidSecretToken对象
@@ -174,6 +174,12 @@ namespace WX_Tools
 
         #region  创建分组  POST
 
+        /// <summary>
+        ///创建分组
+        /// </summary>
+        /// <param name="appidSecretToken"></param>
+        /// <param name="strJson"></param>
+        /// <returns></returns>
         public string CreateGroups(AppidSecretToken appidSecretToken, string strJson)
         {
             #region  使用说明 
@@ -220,11 +226,163 @@ namespace WX_Tools
             HttpWebRequest httpWebRequest=WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
-            //TODO继续完成创建分组功能。
+            httpWebRequest.ContentLength = postBytes.Length;
+
+
+            Stream streamWriter = httpWebRequest.GetRequestStream();
+            streamWriter.Write(postBytes,0,postBytes.Length);
+            new DebugLog().BugWriteTxt("创建分组：" + streamWriter.ToString());
+            streamWriter.Close();
+
+            HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+            Stream streamRead = httpWebResponse.GetResponseStream();
+            if (streamRead != null)
+            {
+                StreamReader streamReader=new StreamReader(streamRead,Encoding.UTF8);
+                result = streamReader.ReadToEnd();
+            }
+            
 
             return result;
         }
         #endregion
 
+
+
+        #region  查询用户所在分组  POST
+
+        /// <summary>
+        /// 根据OPENID查询出用户所在分组  POSt   返回用户分组ID
+        /// </summary>
+        /// <param name="appidSecretToken">AppidSecretToken对象 </param>
+        /// <param name="openId">用户唯一识别码</param>
+        /// <returns>返回json</returns>
+        public string GetGroupId(AppidSecretToken appidSecretToken,string openId)
+        {
+            #region  使用说明
+            /**
+             * 通过用户的OpenID查询其所在的GroupID。 接口调用请求说明
+                    
+                    http请求方式: POST（请使用https协议）
+                    https://api.weixin.qq.com/cgi-bin/groups/getid?access_token=ACCESS_TOKEN
+                    POST数据格式：json
+                    POST数据例子：{"openid":"od8XIjsmk6QdVTETa9jLtGWA6KBc"}
+                    
+                    参数说明
+                    参数 	说明
+                    access_token 	调用接口凭证
+                    openid 	用户的OpenID
+                    
+                    返回说明 正常时的返回JSON数据包示例：
+                    
+                    {
+                        "groupid": 102
+                    }
+                    
+                    参数说明
+                    参数 	说明
+                    groupid 	用户所属的groupid
+                    
+                    错误时的JSON数据包示例（该示例为OpenID无效错误）：
+                    
+                    {"errcode":40003,"errmsg":"invalid openid"}
+
+             */
+            #endregion
+
+            string result = "";
+
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string postUrl = string.Format(new ApiAddress().GetIDGroupsUrl, access_token);
+            byte[] postBytes = Encoding.UTF8.GetBytes(openId);
+
+            HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
+            httpWebRequest.ContentLength = postBytes.Length;
+
+            Stream streamWrite = httpWebRequest.GetRequestStream();
+            streamWrite.Write(postBytes,0,postBytes.Length);
+            new DebugLog().BugWriteTxt("查询用户所在分组："+streamWrite.ToString());
+
+            HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+            Stream streamRead = httpWebResponse.GetResponseStream();
+
+            if (streamRead != null)
+            {
+                StreamReader streamReader=new StreamReader(streamRead,Encoding.UTF8);
+                result = streamReader.ReadToEnd();
+            }
+
+
+
+
+            return result;
+        }
+
+        #endregion 
+
+
+
+        #region 修改分组名   POST 
+
+        /// <summary>
+        /// 根据groupid修改分组名称  POST
+        /// </summary>
+        /// <param name="appidSecretToken">AppidSecretToken对象</param>
+        /// <param name="strJson">json字符串</param>
+        /// <returns>返回结果</returns>
+        public string UpdateGroupsName(AppidSecretToken appidSecretToken,string strJson)
+        {
+            #region 使用说明 
+            /**
+             * 接口调用请求说明
+
+                    http请求方式: POST（请使用https协议）
+                    https://api.weixin.qq.com/cgi-bin/groups/update?access_token=ACCESS_TOKEN
+                    POST数据格式：json
+                    POST数据例子：{"group":{"id":108,"name":"test2_modify2"}}
+                    
+                    参数说明
+                    参数 	说明
+                    access_token 	调用接口凭证
+                    id 	分组id，由微信分配
+                    name 	分组名字（30个字符以内）
+                    
+                    返回说明 正常时的返回JSON数据包示例：
+                    
+                    {"errcode": 0, "errmsg": "ok"}
+                    
+                    错误时的JSON数据包示例（该示例为AppID无效错误）：
+                    
+                    {"errcode":40013,"errmsg":"invalid appid"}
+
+             */
+            #endregion
+
+            string result = "";
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
+            byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
+
+            HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
+            httpWebRequest.ContentLength = postBytes.Length;
+
+            Stream stream = httpWebRequest.GetRequestStream();
+            stream.Write(postBytes,0,postBytes.Length);
+
+            HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+            Stream streamRead = httpWebResponse.GetResponseStream();
+            if (streamRead != null)
+            {
+                StreamReader streamReader=new StreamReader(streamRead,Encoding.UTF8);
+                result = streamReader.ReadToEnd();
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

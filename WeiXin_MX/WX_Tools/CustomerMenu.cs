@@ -15,7 +15,7 @@ namespace WX_Tools
   public  class CustomerMenu
     {
         /// <summary>
-        /// 创建菜单
+        /// 创建菜单  POST
         /// </summary>
         public string CreateCustomerMenu(AppidSecretToken appidSecret,string jsonMenu)
         {
@@ -34,7 +34,7 @@ namespace WX_Tools
 
             Stream streamWrite = webRequest.GetRequestStream();
             streamWrite.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(streamWrite.ToString());
+            new DebugLog().BugWriteTxt("创建菜单："+streamWrite.ToString());
             streamWrite.Close();
 
             string createResult = "";
