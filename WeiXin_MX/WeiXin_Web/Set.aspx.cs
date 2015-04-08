@@ -12,13 +12,17 @@ namespace WeiXin_Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _appidSecret = xmlReadWrite.Read("/XML/", _appidSecret, "set.config") as AppidSecretToken;
-            if (_appidSecret != null)
+            if (!IsPostBack)
             {
-                txt_appid.Text = _appidSecret.Appid;
-                txt_secret.Text = _appidSecret.Secret;
-                txt_token.Text = _appidSecret.Token;
+                _appidSecret = xmlReadWrite.Read("/XML/", _appidSecret, "set.config") as AppidSecretToken;
+                if (_appidSecret != null)
+                {
+                    txt_appid.Text = _appidSecret.Appid;
+                    txt_secret.Text = _appidSecret.Secret;
+                    txt_token.Text = _appidSecret.Token;
+                }
             }
+          
         }
 
         /// <summary>
