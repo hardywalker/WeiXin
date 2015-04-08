@@ -89,6 +89,7 @@
     <Content Include="UserJS\LoadHeader.js" />
     <Content Include="UserManage.aspx" />
     <Content Include="Web.config" />
+    <Content Include="XML\set.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerMenu.aspx.cs">

@@ -41,8 +41,8 @@
             <span runat="server" id="lab_update_members_msg"></span>
             <h2>批量移动用户分组</h2>
             {"openid_list":["oDF3iYx0ro3_7jD4HFRDfrjdCM58","oDF3iY9FGSSRHom3B-0w5j4jlEyY"],"to_groupid":108}<br/>
-            <textarea runat="server" id="txt_batch_update_members">{"openid_list":["oDF3iYx0ro3_7jD4HFRDfrjdCM58","oDF3iY9FGSSRHom3B-0w5j4jlEyY"],"to_groupid":108}</textarea>
-          I<input type="button" runat="server" id="btn_batch_update_members" value="批量移动用户分组" OnServerClick="btn_batch_update_members_OnServerClick"/>
+            <textarea style="width: 100%; height: 30px" runat="server" id="txt_batch_update_members">{"openid_list":["oDF3iYx0ro3_7jD4HFRDfrjdCM58","oDF3iY9FGSSRHom3B-0w5j4jlEyY"],"to_groupid":108}</textarea>
+          <input type="button" runat="server" id="btn_batch_update_members" value="批量移动用户分组" OnServerClick="btn_batch_update_members_OnServerClick"/>
             <span runat="server" id="lab_batch_update_members_msg"></span>
     </div>
     </form>

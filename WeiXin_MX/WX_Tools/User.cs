@@ -304,6 +304,7 @@ namespace WX_Tools
             Stream streamWrite = httpWebRequest.GetRequestStream();
             streamWrite.Write(postBytes,0,postBytes.Length);
             new DebugLog().BugWriteTxt("查询用户所在分组："+streamWrite.ToString());
+            streamWrite.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
@@ -372,7 +373,8 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes,0,postBytes.Length);
-
+            new DebugLog().BugWriteTxt("修改分组名：" + stream.ToString());
+            stream.Close();
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
             if (streamRead != null)
@@ -434,6 +436,9 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
+            new DebugLog().BugWriteTxt("移动用户分组：" + stream.ToString());
+            stream.Close();
+
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
@@ -497,6 +502,10 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
+            new DebugLog().BugWriteTxt("批量移动用户分组：" + stream.ToString());
+            stream.Close();
+
+
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
