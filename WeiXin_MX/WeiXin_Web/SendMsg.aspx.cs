@@ -8,7 +8,7 @@ namespace WeiXin_Web
 {
     public partial class SendMsg : Page
     {
-        private AppidSecretToken _appidSecret = new AppidSecretToken();
+        private readonly AppidSecretToken _appidSecret = new AppidSecretToken();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,7 +20,7 @@ namespace WeiXin_Web
 
 
         /// <summary>
-        /// 群发消息
+        /// 根据用户分组群发消息
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -37,6 +37,16 @@ namespace WeiXin_Web
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
             lab_send_preview_msg.Text = new SendPreview().SendPriviewText(_appidSecret, txt_send_preview.Text);
+        }
+
+        /// <summary>
+        /// 根据用户列表进行群发
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_sendmsg_openlist_OnServerClick(object sender, EventArgs e)
+        {
+         //Todo:2015年4月8日18:12:48 尚未完成根据用户列表群发功能，需要把发送消息封装成一个单独类
         }
     }
 }
