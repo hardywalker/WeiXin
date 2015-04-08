@@ -55,5 +55,47 @@ namespace WeiXin_Web
 
 
         }
+
+        /// <summary>
+        /// 查询用户所在分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_getGroupId_OnServerClick(object sender, EventArgs e)
+        {
+            lab_getgroupid_msg.InnerText = new User().GetGroupId(appidSecretToken, txt_getgroupid.Value.Trim());
+        }
+
+        /// <summary>
+        /// 修改分组名
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_updateGroup_OnServerClick(object sender, EventArgs e)
+        {
+            lab_updateGroup_msg.InnerText = new User().UpdateGroupsName(appidSecretToken, txt_updateGroup.Value.Trim());
+        }
+
+        /// <summary>
+        /// 移动用户分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_update_members_OnServerClick(object sender, EventArgs e)
+        {
+            lab_update_members_msg.InnerText = new User().UpdateMembers(appidSecretToken,
+                txt_update_members.Value.Trim());
+        }
+
+        /// <summary>
+        /// 批量移动用户分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_batch_update_members_OnServerClick(object sender, EventArgs e)
+        {
+            lab_batch_update_members_msg.InnerText = new User().BatchUpdateMembers(appidSecretToken,
+                txt_batch_update_members.Value.Trim());
+        }
     }
 }
