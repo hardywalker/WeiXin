@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using WX_Tools;
 using WX_Tools.Entites;
 
 namespace WeiXin_Web
 {
-    public partial class UserManage : System.Web.UI.Page
+    public partial class UserManage : Page
     {
-        User user=new User();
-        AppidSecretToken appidSecretToken=new AppidSecretToken();
+        readonly User _user=new User();
+        AppidSecretToken _appidSecretToken=new AppidSecretToken();
         protected void Page_Load(object sender, EventArgs e)
         {
         
-            appidSecretToken = new XmlReadWrite().Read("/XML/", appidSecretToken, "set.config") as AppidSecretToken;
+            _appidSecretToken = new XmlReadWrite().Read("/XML/", _appidSecretToken, "set.config") as AppidSecretToken;
     
         }
 
@@ -29,7 +25,7 @@ namespace WeiXin_Web
         {
             
 
-          lab_user_list_json.Text= user.GetUserList(appidSecretToken);
+          lab_user_list_json.Text= _user.GetUserList(_appidSecretToken);
         }
 
 
@@ -40,7 +36,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_all_groups_OnServerClick(object sender, EventArgs e)
         {
-            lab_all_groups.InnerText = user.GetGroups(appidSecretToken);
+            lab_all_groups.InnerText = _user.GetGroups(_appidSecretToken);
         }
 
 
@@ -51,7 +47,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_create_groups_OnServerClick(object sender, EventArgs e)
         {
-            lab_create_groups_msg.Text=new User().CreateGroups(appidSecretToken, txt_create_groups_json.Text.Trim());
+            lab_create_groups_msg.Text = _user.CreateGroups(_appidSecretToken, txt_create_groups_json.Text.Trim());
 
 
         }
@@ -63,7 +59,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_getGroupId_OnServerClick(object sender, EventArgs e)
         {
-            lab_getgroupid_msg.InnerText = new User().GetGroupId(appidSecretToken, txt_getgroupid.Value.Trim());
+            lab_getgroupid_msg.InnerText = _user.GetGroupId(_appidSecretToken, txt_getgroupid.Value.Trim());
         }
 
         /// <summary>
@@ -73,7 +69,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_updateGroup_OnServerClick(object sender, EventArgs e)
         {
-            lab_updateGroup_msg.InnerText = new User().UpdateGroupsName(appidSecretToken, txt_updateGroup.Value.Trim());
+            lab_updateGroup_msg.InnerText = _user.UpdateGroupsName(_appidSecretToken, txt_updateGroup.Value.Trim());
         }
 
         /// <summary>
@@ -83,7 +79,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_update_members_OnServerClick(object sender, EventArgs e)
         {
-            lab_update_members_msg.InnerText = new User().UpdateMembers(appidSecretToken,
+            lab_update_members_msg.InnerText = _user.UpdateMembers(_appidSecretToken,
                 txt_update_members.Value.Trim());
         }
 
@@ -94,7 +90,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_batch_update_members_OnServerClick(object sender, EventArgs e)
         {
-            lab_batch_update_members_msg.InnerText = new User().BatchUpdateMembers(appidSecretToken,
+            lab_batch_update_members_msg.InnerText = _user.BatchUpdateMembers(_appidSecretToken,
                 txt_batch_update_members.Value.Trim());
         }
     }
