@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Text;
 using WX_Tools.Entites;
@@ -231,7 +228,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt("创建分组：" + streamWriter.ToString());
+            new DebugLog().BugWriteTxt("创建分组：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -303,7 +300,7 @@ namespace WX_Tools
 
             Stream streamWrite = httpWebRequest.GetRequestStream();
             streamWrite.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt("查询用户所在分组："+streamWrite.ToString());
+            new DebugLog().BugWriteTxt("查询用户所在分组：" + openId);
             streamWrite.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -373,7 +370,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt("修改分组名：" + stream.ToString());
+            new DebugLog().BugWriteTxt("修改分组名：" + strJson);
             stream.Close();
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
@@ -426,7 +423,7 @@ namespace WX_Tools
 
             string result = "";
             string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
+            string postUrl = string.Format(new ApiAddress().UpdateMembersUrl, access_token);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
@@ -436,7 +433,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("移动用户分组：" + stream.ToString());
+            new DebugLog().BugWriteTxt("移动用户分组：" + strJson);
             stream.Close();
 
 
@@ -492,7 +489,7 @@ namespace WX_Tools
 
             string result = "";
             string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
+            string postUrl = string.Format(new ApiAddress().BatchUpdateMembersUrl, access_token);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
@@ -502,7 +499,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("批量移动用户分组：" + stream.ToString());
+            new DebugLog().BugWriteTxt("批量移动用户分组：" + strJson);
             stream.Close();
 
 
