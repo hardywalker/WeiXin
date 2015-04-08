@@ -447,5 +447,67 @@ namespace WX_Tools
         }
 
         #endregion
+
+        #region  批量移动用户分组   POST 
+
+        /// <summary>
+        /// 根据用户openid以及指定分组id,批量移动用户到指定分组，用户openid不能超过50个
+        /// </summary>
+        /// <param name="appidSecretToken">AppidSecretToken对象 </param>
+        /// <param name="strJson">json字符串</param>
+        /// <returns>返回结果</returns>
+        public string BatchUpdateMembers(AppidSecretToken appidSecretToken, string strJson)
+        {
+            #region 使用说明 
+            /**
+             * 接口调用请求说明
+
+                    http请求方式: POST（请使用https协议）
+                    https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token=ACCESS_TOKEN
+                    POST数据格式：json
+                    POST数据例子：{"openid_list":["oDF3iYx0ro3_7jD4HFRDfrjdCM58","oDF3iY9FGSSRHom3B-0w5j4jlEyY"],"to_groupid":108}
+                    
+                    参数说明
+                    参数 	说明
+                    access_token 	调用接口凭证
+                    openid_list 	用户唯一标识符openid的列表（size不能超过50）
+                    to_groupid 	分组id
+                    
+                    返回说明 正常时的返回JSON数据包示例：
+                    
+                    {"errcode": 0, "errmsg": "ok"}
+                    
+                    错误时的JSON数据包示例（该示例为AppID无效错误）：
+                    
+                    {"errcode":40013,"errmsg":"invalid appid"}
+
+             */
+            #endregion
+
+
+            string result = "";
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
+            byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
+
+            HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
+            httpWebRequest.ContentLength = postBytes.Length;
+
+            Stream stream = httpWebRequest.GetRequestStream();
+            stream.Write(postBytes, 0, postBytes.Length);
+
+            HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+            Stream streamRead = httpWebResponse.GetResponseStream();
+            if (streamRead != null)
+            {
+                StreamReader streamReader = new StreamReader(streamRead, Encoding.UTF8);
+                result = streamReader.ReadToEnd();
+            }
+
+            return result;
+        }
+        #endregion
     }
 }
