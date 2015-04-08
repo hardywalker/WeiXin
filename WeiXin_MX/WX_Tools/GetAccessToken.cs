@@ -50,11 +50,19 @@ namespace WX_Tools
         /// 取得access_token
         /// </summary>
         /// <returns></returns>
-        public string Get_access_token(AppidSecretToken appidSecret)
+        public string Get_access_token(AppidSecretToken appidSecret,string serverORcatch)
         {
-            string accesstokenCachname = AllCach.AllCachEnum.AccessToken.ToString();
 
-            var accesstokenCache=HttpContext.Current.Cache[accesstokenCachname];
+            string accesstokenCachname = AllCach.AllCachEnum.AccessToken.ToString();
+            var accesstokenCache = HttpContext.Current.Cache[accesstokenCachname];
+           
+            
+            if (serverORcatch.Equals("server"))
+            {
+                accesstokenCache = null;
+            }
+
+         
 
 
             if (accesstokenCache == null)

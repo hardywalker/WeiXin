@@ -59,7 +59,7 @@ namespace WX_Tools
 
             string result = "";
 
-            string access_token = new GetAccessToken().Get_access_token(appidSecret);
+            string access_token = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string getUrl = string.Format(new ApiAddress().GetUserUrl, access_token, nextOpenid);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(getUrl) as HttpWebRequest;
@@ -154,7 +154,7 @@ namespace WX_Tools
             #endregion
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
             string getUrl = string.Format(new ApiAddress().GetGroupsUrl, access_token);
             HttpWebRequest httpWebRequest = WebRequest.Create(getUrl) as HttpWebRequest;
             httpWebRequest.Method = "GET";
@@ -221,7 +221,7 @@ namespace WX_Tools
 
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
             string postUrl = string.Format(new ApiAddress().CreateGroupsUrl, access_token);
             HttpWebRequest httpWebRequest=WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
@@ -292,7 +292,7 @@ namespace WX_Tools
 
             string result = "";
 
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
             string postUrl = string.Format(new ApiAddress().GetIDGroupsUrl, access_token);
             byte[] postBytes = Encoding.UTF8.GetBytes(openId);
 
@@ -362,7 +362,7 @@ namespace WX_Tools
             #endregion
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
             string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
@@ -425,7 +425,7 @@ namespace WX_Tools
             #endregion
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
             string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
@@ -491,7 +491,7 @@ namespace WX_Tools
 
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken);
+            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
             string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 

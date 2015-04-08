@@ -33,7 +33,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_access_token_OnClick(object sender, EventArgs e)
         {
-            lab_access_token.Text = new GetAccessToken().Get_access_token(_appidSecret);
+            lab_access_token.Text = new GetAccessToken().Get_access_token(_appidSecret,"catch");
         }
 
         /// <summary>
@@ -58,7 +58,14 @@ namespace WeiXin_Web
            lab_send_tuwen_msg.Text= new MediaUpload().MediaUploadNews(_appidSecret, txt_send_tuwen.Text.Trim());
         }
 
-
-      
+        /// <summary>
+        /// 更新access_token
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_update_access_token_OnServerClick(object sender, EventArgs e)
+        {
+            lab_access_token.Text = new GetAccessToken().Get_access_token(_appidSecret, "server");
+        }
     }
 }

@@ -80,7 +80,7 @@ namespace WX_Tools
 
             #endregion
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().MediaUpload.ToString(), new GetAccessToken().Get_access_token(appidSecret), "image"));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().MediaUpload.ToString(), new GetAccessToken().Get_access_token(appidSecret, "catch"), "image"));
             request.Method = "POST";
             MemoryStream postStream = new MemoryStream();
 
@@ -245,7 +245,7 @@ namespace WX_Tools
             #endregion
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postJson);
-            string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string mediaUploadNewsUrl = string.Format(new ApiAddress().MediaUploadNews, accessToken);
             WebRequest webRequest = (HttpWebRequest) WebRequest.Create(mediaUploadNewsUrl);
             webRequest.Method = "POST";

@@ -22,9 +22,9 @@ namespace WX_Tools
       {
 
           string ipString = "";
-       
 
-          string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+
+          string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
              string getHttpUrl =string.Format(new ApiAddress().Getcallbackip,accessToken);
 
           HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(getHttpUrl);

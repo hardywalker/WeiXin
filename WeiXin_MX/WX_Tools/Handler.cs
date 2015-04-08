@@ -394,7 +394,7 @@ namespace WX_Tools
         {
             try
             {
-                string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+                string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
                 new ReplyTemplate(_reciveSender).ReplyText(accessToken);
             }
             catch (Exception ex)

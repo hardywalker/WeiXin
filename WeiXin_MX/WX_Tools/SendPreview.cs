@@ -52,7 +52,7 @@ namespace WX_Tools
             new DebugLog().BugWriteTxt(strJson);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson.ToString());
 
-            string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string actionUrl = string.Format(new ApiAddress().PreviewUrl, accessToken);
 
             WebRequest webRequest = (HttpWebRequest)WebRequest.Create(actionUrl);

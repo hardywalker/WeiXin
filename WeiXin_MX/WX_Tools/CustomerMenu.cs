@@ -23,7 +23,7 @@ namespace WX_Tools
 
             byte[] postBytes = Encoding.UTF8.GetBytes(jsonMenu);
         
-            string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret,"catch");
             string createMenuUrl = string.Format(new ApiAddress().CreateMenu, accessToken);
 
             HttpWebRequest webRequest = WebRequest.Create(createMenuUrl) as HttpWebRequest;
@@ -80,7 +80,7 @@ namespace WX_Tools
 
             string result = "";
 
-            string accessToken = new GetAccessToken().Get_access_token(appidSecret);
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string getUrl = string.Format(new ApiAddress().GetMenuUrl, accessToken);
 
             HttpWebRequest httpWebRequest = (HttpWebRequest) WebRequest.Create(getUrl);
@@ -127,7 +127,7 @@ namespace WX_Tools
              */
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecret);
+            string access_token = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string getUrl = string.Format(new ApiAddress().DeleteCustomerMenuUrl, access_token);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(getUrl) as HttpWebRequest;

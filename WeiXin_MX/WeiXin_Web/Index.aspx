@@ -19,7 +19,8 @@
        
 
   <asp:Button runat="server" ID="btn_get_access_token" OnClick="btn_get_access_token_OnClick" Text="获取access_token"/><br/>
-        <asp:Label runat="server" ID="lab_access_token"></asp:Label>
+        <asp:Label runat="server" ID="lab_access_token"></asp:Label><br/>
+        <input type="button" id="btn_update_access_token" value="更新access_token" runat="server" OnServerClick="btn_update_access_token_OnServerClick"/>
         <hr/>
         <asp:Button runat="server" ID="btn_get_server_ip" OnClick="btn_get_server_ip_OnClick" Text="获取服务器ip"/><br/>
         <asp:Label runat="server" ID="lab_server_ip"></asp:Label>
