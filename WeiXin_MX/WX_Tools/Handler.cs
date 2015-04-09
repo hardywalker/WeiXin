@@ -16,6 +16,9 @@ namespace WX_Tools
         string _toUserName, _fromUserName, _msgType, _content, _menuEvent;
         readonly HttpContext _httpContext = HttpContext.Current;
         readonly Sender _reciveSender = new Sender();
+        readonly DebugLog _debugLog=new DebugLog();
+        ReplyTemplate replyTemplate=null;
+     
 
         public void ExecHandler(AppidSecretToken appidSecret)
         {
@@ -235,7 +238,7 @@ namespace WX_Tools
             xmlDocument.Load(xmlStream);
 
             //获取的xml完整文本
-            new DebugLog().BugWriteTxt(xmlDocument.OuterXml);
+            _debugLog.BugWriteTxt("这是入口：" + xmlDocument.OuterXml);
 
             //获取根节点
             XmlElement rootXmlElement = xmlDocument.DocumentElement;
@@ -254,45 +257,47 @@ namespace WX_Tools
                 _reciveSender.FromUserName = _toUserName;
                 _reciveSender.CreateTime = new GetCreateTime().CreateTime();
 
+                replyTemplate=new ReplyTemplate(_reciveSender);
 
 
                 _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
 
-                new DebugLog().BugWriteTxt(rootXmlElement.OuterXml);
+          
                 //推送过来文本消息
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.Text.ToString()))
                 {
+                    _debugLog.BugWriteTxt("这是一条文本消息：" + rootXmlElement.OuterXml);
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
                     Reply(appidSecret,_content);
 
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Link.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这是一条链接消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条链接消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Image.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这是一条图片消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条图片消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Location.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这是一条地理位置消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Voice.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这是一条语音消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条语音消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Video.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这是一条视频消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条视频消息：" + rootXmlElement.OuterXml);
 
                 }else if (_msgType.Equals(AllEnum.MsgTypeEnum.Shortvideo.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这是一条小视频消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条小视频消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
-                    new DebugLog().BugWriteTxt("这是一条事件消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt("这是一条事件消息：" + rootXmlElement.OuterXml);
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
                 
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.Subscribe.ToString()))
@@ -309,11 +314,11 @@ namespace WX_Tools
                     }
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()))
                     {
-                        new DebugLog().BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()+"相等");
+                        _debugLog.BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString() + "相等");
                    
                         if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
                         {
-                            new ReplyTemplate(_reciveSender).ReplyText(rootXmlElement.SelectSingleNode("SendLocationInfo").InnerText);
+                            replyTemplate.ReplyText(rootXmlElement.SelectSingleNode("SendLocationInfo").InnerText);
                         }
                       
                     }
@@ -324,15 +329,16 @@ namespace WX_Tools
         
             
         }
-        
 
 
         /// <summary>
         /// 根据回复来调用不同方法
         /// </summary>
+        /// <param name="appidSecret"></param>
         /// <param name="contentStr"></param>
         private void Reply(AppidSecretToken appidSecret,string contentStr)
         {
+
             switch (contentStr)
             {
                 case "accessToken":
@@ -361,30 +367,34 @@ namespace WX_Tools
             try
             {
 
-                new ReplyTemplate(_reciveSender).ReplyText("微信公众平台测试号欢迎你的关注。\r\n请操作菜单来获取相应信息。");
+                replyTemplate.ReplyText("微信公众平台测试号欢迎你的关注。\r\n请操作菜单来获取相应信息。");
 
 
             }
             catch (Exception e)
             {
 
-                new DebugLog().BugWriteTxt("默认回复时的异常:" + e.Message + "|" + e);
+                _debugLog.BugWriteTxt("默认回复时的异常:" + e.Message + "|" + e);
             }
 
        
         }
 
 
+        /// <summary>
+        /// 回复菜单key
+        /// </summary>
+        /// <param name="menuName"></param>
         private void MenuName(string menuName)
         {
             try
             {
 
-                new ReplyTemplate(_reciveSender).ReplyText(menuName);
+                replyTemplate.ReplyText(menuName);
             }
             catch (Exception ex)
             {
-                new DebugLog().BugWriteTxt("获取菜单名称时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt("获取菜单名称时异常:" + ex + "|" + ex.Message);
 
             }
         }
@@ -399,11 +409,11 @@ namespace WX_Tools
             try
             {
                 string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
-                new ReplyTemplate(_reciveSender).ReplyText(accessToken);
+                replyTemplate.ReplyText(accessToken);
             }
             catch (Exception ex)
             {
-                new DebugLog().BugWriteTxt("获取access_token时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt("获取access_token时异常:" + ex + "|" + ex.Message);
 
             }
 
@@ -421,12 +431,12 @@ namespace WX_Tools
             try
             {
                 string serverIp = new Getcallbackip().GetServerIpString(appidSecret);
-                new ReplyTemplate(_reciveSender).ReplyText(serverIp);
+                replyTemplate.ReplyText(serverIp);
             }
             catch (Exception ex)
             {
 
-                new DebugLog().BugWriteTxt("获取服务器IP地址时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt("获取服务器IP地址时异常:" + ex + "|" + ex.Message);
             }
 
         }
@@ -440,16 +450,19 @@ namespace WX_Tools
             try
             {
                 string myGuid = _fromUserName;
-                new ReplyTemplate(_reciveSender).ReplyText(myGuid);
+                replyTemplate.ReplyText(myGuid);
             }
             catch (Exception ex)
             {
-                new DebugLog().BugWriteTxt("获取myGuid时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt("获取myGuid时异常:" + ex + "|" + ex.Message);
 
             }
         }
 
-
+        private void ReplySelf(string strMsg)
+        {
+            //todo:2015年4月9日17:05:35 回复功能有待完善
+        }
         
     }
 

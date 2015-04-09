@@ -13,12 +13,12 @@ namespace WX_Tools
     /// </summary>
     public class ReplyTemplate
     {
-        HttpContext _httpContext = HttpContext.Current;
+        readonly HttpContext _httpContext = HttpContext.Current;
 
         /// <summary>
         /// 回复的xml消息中的前一部分，因为此部分是一样的
         /// </summary>
-        private string _replyXmsMsgHeader;
+        private readonly string _replyXmsMsgHeader;
 
         /// <summary>
         /// 有参数的构造函数

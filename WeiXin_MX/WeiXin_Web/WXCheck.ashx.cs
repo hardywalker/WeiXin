@@ -10,8 +10,8 @@ namespace WeiXin_Web
     /// WXCheck 的摘要说明
     /// </summary>
     public class WxCheck : IHttpHandler
-    { 
-        public AppidSecretToken AppidSecret=new AppidSecretToken();
+    {
+        private readonly AppidSecretToken _appidSecret=new AppidSecretToken();
         public void ProcessRequest(HttpContext context)
         {
 
@@ -38,27 +38,14 @@ namespace WeiXin_Web
                     context.Response.Write("参数错误");
                     return;
                 }
-              
-                /*
-                 *  <xml>
-                        <ToUserName><![CDATA[toUser]]></ToUserName>
-                        <FromUserName><![CDATA[fromUser]]></FromUserName> 
-                        <CreateTime>1348831860</CreateTime>
-                        <MsgType><![CDATA[text]]></MsgType>
-                        <Content><![CDATA[this is a test]]></Content>
-                        <MsgId>1234567890123456</MsgId>
-                    </xml>
-                 * 
-                 * 
-                 *
-                 */
+          
 
                 try
                 {
-                    AppidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
-                    AppidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+                    _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+                    _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
                     //接收并响应
-                    new Handler().ExecHandler(AppidSecret);
+                    new Handler().ExecHandler(_appidSecret);
                 }
                 catch (Exception ex)
                 {

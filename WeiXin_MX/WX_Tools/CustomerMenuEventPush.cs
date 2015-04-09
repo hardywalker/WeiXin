@@ -11,8 +11,8 @@ namespace WX_Tools
     public class CustomerMenuEventPush
     {
 
-        #region 点击菜单拉取消息时的事件推送
-        /*
+            #region 点击菜单拉取消息时的事件推送
+            /*
              * 点击菜单拉取消息时的事件推送
 
                     推送XML数据包示例：
@@ -36,16 +36,9 @@ namespace WX_Tools
                     EventKey 	事件KEY值，与自定义菜单接口中KEY值对应
                     
              */
-        #endregion
+            #endregion
 
-        public void CustomerMenuClick()
-        {
-            
-        }
-
-
-           
-
+        
             #region 点击菜单跳转链接时的事件推送
             /*
              * 点击菜单跳转链接时的事件推送
