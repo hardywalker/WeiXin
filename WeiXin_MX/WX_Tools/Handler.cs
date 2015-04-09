@@ -14,8 +14,8 @@ namespace WX_Tools
 
         //开发者微信号
         string _toUserName, _fromUserName, _msgType, _content, _menuEvent;
-        HttpContext _httpContext = HttpContext.Current;
-        Sender _reciveSender = new Sender();
+        readonly HttpContext _httpContext = HttpContext.Current;
+        readonly Sender _reciveSender = new Sender();
 
         public void ExecHandler(AppidSecretToken appidSecret)
         {
@@ -233,6 +233,10 @@ namespace WX_Tools
             //构造xml对象
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(xmlStream);
+
+            //获取的xml完整文本
+            new DebugLog().BugWriteTxt(xmlDocument.OuterXml);
+
             //获取根节点
             XmlElement rootXmlElement = xmlDocument.DocumentElement;
           
@@ -264,31 +268,31 @@ namespace WX_Tools
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Link.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这一条链接消息：" + rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条链接消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Image.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这一条图片消息："+rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条图片消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Location.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这一条地理位置消息：" + rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Voice.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这一条语音消息：" + rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条语音消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Video.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这一条视频消息：" + rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条视频消息：" + rootXmlElement.OuterXml);
 
                 }else if (_msgType.Equals(AllEnum.MsgTypeEnum.Shortvideo.ToString()))
                 {
-                    new DebugLog().BugWriteTxt("这一条小视频消息：" + rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条小视频消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
-                    new DebugLog().BugWriteTxt("这一条事件消息：" + rootXmlElement.OuterXml);
+                    new DebugLog().BugWriteTxt("这是一条事件消息：" + rootXmlElement.OuterXml);
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
                 
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.Subscribe.ToString()))
