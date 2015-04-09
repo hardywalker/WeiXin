@@ -9,7 +9,7 @@ namespace WeiXin_Web
     public partial class SendMsg : Page
     {
         private readonly AppidSecretToken _appidSecret = new AppidSecretToken();
-
+        readonly MessageMass _messageMass=new MessageMass();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -26,7 +26,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
-            lab_send_all_msg.Text = new MessageMass().MessageMassSendAll(_appidSecret, txt_sendall.Text.Trim());
+            lab_send_all_msg.Text = _messageMass.MessageMassSendAll(_appidSecret, txt_sendall.Text.Trim());
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
-            lab_send_preview_msg.Text = new MessageMass().MessageMassPreview(_appidSecret, txt_send_preview.Text);
+            lab_send_preview_msg.Text = _messageMass.MessageMassPreview(_appidSecret, txt_send_preview.Text);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendmsg_openlist_OnServerClick(object sender, EventArgs e)
         {
-         //Todo:2015年4月8日18:12:48 尚未完成根据用户列表群发功能，需要把发送消息封装成一个单独类
+            lab_sendmsg_openlist_msg.InnerText = _messageMass.MessageMassSend(_appidSecret, txt_send_openlist.Value.Trim());
         }
     }
 }

@@ -15,8 +15,7 @@
     <div id="header"></div>
      <h1>配置信息</h1>
         公司账号<br/>
-        wxa8f97bba9ebb7d27<br/>
-        1f9381bd5c8f08b0c4dda7ac55b19769
+        wxa8f97bba9ebb7d27<br/>1f9381bd5c8f08b0c4dda7ac55b19769
             <hr/>
         测试账号<br />
         wxa29576cd9bb8fa92<br/>
