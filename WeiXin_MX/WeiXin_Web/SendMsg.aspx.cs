@@ -36,7 +36,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
-            lab_send_preview_msg.Text = new SendPreview().SendPriviewText(_appidSecret, txt_send_preview.Text);
+            lab_send_preview_msg.Text = new MessageMass().MessageMassPreview(_appidSecret, txt_send_preview.Text);
         }
 
         /// <summary>

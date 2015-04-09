@@ -64,7 +64,6 @@
     <Compile Include="MessageMass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyTemplate.cs" />
-    <Compile Include="SendPreview.cs" />
     <Compile Include="subscribe_unsubscribe.cs" />
     <Compile Include="User.cs" />
     <Compile Include="XmlReadWrite.cs" />
