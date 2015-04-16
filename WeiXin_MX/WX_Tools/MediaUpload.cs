@@ -111,7 +111,7 @@ namespace WX_Tools
             catch (Exception e)
             {
                 //写入异常日志
-                new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, e.ToString());
+                new DebugLog().BugWriteTxt("/Exception/", e.ToString());
             }
 
 
@@ -269,7 +269,7 @@ namespace WX_Tools
                 streamRead.Close();
                // JObject jObject = JObject.Parse(resultjson);
                // resultjson = jObject["media_id"].ToString();
-                new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "这是一条上传好的消息media_id:" + resultjson);
+          
             }
             return resultjson;
 

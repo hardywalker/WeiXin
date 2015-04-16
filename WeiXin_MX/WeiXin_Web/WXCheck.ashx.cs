@@ -85,7 +85,7 @@ namespace WeiXin_Web
         readonly Sender _reciveSender = new Sender();
         //写入日志功能
         readonly DebugLog _debugLog = new DebugLog();
-        ReplyTemplate replyTemplate = null;
+        ReplyTemplate _replyTemplate;
 
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace WeiXin_Web
         /// <param name="appidSecret"></param>
         private void ExecHandler(AppidSecretToken appidSecret)
         {
-            #region 各种消息类型
+            #region 接收普通消息
 
-                 #region 文本消息类型
+                  #region 文本消息类型
 
             /*
              *     ToUserName 	开发者微信号
@@ -276,7 +276,13 @@ namespace WeiXin_Web
 
             #endregion
 
-                 #region 关注/取消关注事件
+
+            #endregion
+
+
+            #region 接收事件推送
+
+            #region 关注/取消关注事件
 
             /*
            * <xml>
@@ -296,6 +302,146 @@ namespace WeiXin_Web
                 Event 	事件类型，subscribe(订阅)、unsubscribe(取消订阅) 
            */
 
+            #endregion
+
+            #region 扫描带参数二维码事件
+
+            /*
+           * 用户扫描带场景值二维码时，可能推送以下两种事件：
+
+                        如果用户还未关注公众号，则用户可以关注公众号，关注后微信会将带场景值关注事件推送给开发者。
+                        如果用户已经关注公众号，则微信会将带场景值扫描事件推送给开发者。 
+                    
+                    1. 用户未关注时，进行关注后的事件推送
+                    
+                    推送XML数据包示例：
+                    
+                    <xml><ToUserName><![CDATA[toUser]]></ToUserName>
+                    <FromUserName><![CDATA[FromUser]]></FromUserName>
+                    <CreateTime>123456789</CreateTime>
+                    <MsgType><![CDATA[event]]></MsgType>
+                    <Event><![CDATA[subscribe]]></Event>
+                    <EventKey><![CDATA[qrscene_123123]]></EventKey>
+                    <Ticket><![CDATA[TICKET]]></Ticket>
+                    </xml>
+                    
+                    参数说明：
+                    参数 	描述
+                    ToUserName 	开发者微信号
+                    FromUserName 	发送方帐号（一个OpenID）
+                    CreateTime 	消息创建时间 （整型）
+                    MsgType 	消息类型，event
+                    Event 	事件类型，subscribe
+                    EventKey 	事件KEY值，qrscene_为前缀，后面为二维码的参数值
+                    Ticket 	二维码的ticket，可用来换取二维码图片
+                    
+                    2. 用户已关注时的事件推送
+                    
+                    推送XML数据包示例：
+                    
+                    <xml>
+                    <ToUserName><![CDATA[toUser]]></ToUserName>
+                    <FromUserName><![CDATA[FromUser]]></FromUserName>
+                    <CreateTime>123456789</CreateTime>
+                    <MsgType><![CDATA[event]]></MsgType>
+                    <Event><![CDATA[SCAN]]></Event>
+                    <EventKey><![CDATA[SCENE_VALUE]]></EventKey>
+                    <Ticket><![CDATA[TICKET]]></Ticket>
+                    </xml>
+                    
+                    参数说明：
+                    参数 	描述
+                    ToUserName 	开发者微信号
+                    FromUserName 	发送方帐号（一个OpenID）
+                    CreateTime 	消息创建时间 （整型）
+                    MsgType 	消息类型，event
+                    Event 	事件类型，SCAN
+                    EventKey 	事件KEY值，是一个32位无符号整数，即创建二维码时的二维码scene_id
+                    Ticket 	二维码的ticket，可用来换取二维码图片 
+           */
+
+            #endregion
+
+            #region 上报地理位置事件
+
+            /**
+             * 用户同意上报地理位置后，每次进入公众号会话时，都会在进入时上报地理位置，或在进入会话后每5秒上报一次地理位置，公众号可以在公众平台网站中修改以上设置。上报地理位置时，微信会将上报地理位置事件推送到开发者填写的URL。
+
+                    推送XML数据包示例：
+                    
+                    <xml>
+                    <ToUserName><![CDATA[toUser]]></ToUserName>
+                    <FromUserName><![CDATA[fromUser]]></FromUserName>
+                    <CreateTime>123456789</CreateTime>
+                    <MsgType><![CDATA[event]]></MsgType>
+                    <Event><![CDATA[LOCATION]]></Event>
+                    <Latitude>23.137466</Latitude>
+                    <Longitude>113.352425</Longitude>
+                    <Precision>119.385040</Precision>
+                    </xml>
+                    
+                    参数说明：
+                    参数 	描述
+                    ToUserName 	开发者微信号
+                    FromUserName 	发送方帐号（一个OpenID）
+                    CreateTime 	消息创建时间 （整型）
+                    MsgType 	消息类型，event
+                    Event 	事件类型，LOCATION
+                    Latitude 	地理位置纬度
+                    Longitude 	地理位置经度
+                    Precision 	地理位置精度 
+             */
+
+            #endregion
+
+
+            #region  点击菜单拉取消息时的事件推送
+
+            /**
+             * 推送XML数据包示例：
+
+                    <xml>
+                    <ToUserName><![CDATA[toUser]]></ToUserName>
+                    <FromUserName><![CDATA[FromUser]]></FromUserName>
+                    <CreateTime>123456789</CreateTime>
+                    <MsgType><![CDATA[event]]></MsgType>
+                    <Event><![CDATA[CLICK]]></Event>
+                    <EventKey><![CDATA[EVENTKEY]]></EventKey>
+                    </xml>
+                    
+                    参数说明：
+                    参数 	描述
+                    ToUserName 	开发者微信号
+                    FromUserName 	发送方帐号（一个OpenID）
+                    CreateTime 	消息创建时间 （整型）
+                    MsgType 	消息类型，event
+                    Event 	事件类型，CLICK
+                    EventKey 	事件KEY值，与自定义菜单接口中KEY值对应 
+             */
+            #endregion
+
+            #region 点击菜单跳转链接时的事件推送
+            /**
+             * 推送XML数据包示例：
+
+                    <xml>
+                    <ToUserName><![CDATA[toUser]]></ToUserName>
+                    <FromUserName><![CDATA[FromUser]]></FromUserName>
+                    <CreateTime>123456789</CreateTime>
+                    <MsgType><![CDATA[event]]></MsgType>
+                    <Event><![CDATA[VIEW]]></Event>
+                    <EventKey><![CDATA[www.qq.com]]></EventKey>
+                    </xml>
+                    
+                    参数说明：
+                    参数 	描述
+                    ToUserName 	开发者微信号
+                    FromUserName 	发送方帐号（一个OpenID）
+                    CreateTime 	消息创建时间 （整型）
+                    MsgType 	消息类型，event
+                    Event 	事件类型，VIEW
+                    EventKey 	事件KEY值，设置的跳转URL 
+             */
             #endregion
 
             #endregion
@@ -328,14 +474,15 @@ namespace WeiXin_Web
                 _reciveSender.FromUserName = _toUserName;
                 _reciveSender.CreateTime = new GetCreateTime().CreateTime();
 
-                replyTemplate = new ReplyTemplate(_reciveSender);
+                _replyTemplate = new ReplyTemplate(_reciveSender);
 
 
-                _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
+                //获取消息类型  转化为小写，方便与全局枚举类对比
+                _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText.ToLower();
 
 
                 //推送过来文本消息  全部转化为小写来比较
-                if (_msgType.ToLower().Equals(AllEnum.MsgTypeEnum.text.ToString()))
+                if (_msgType.Equals(AllEnum.MsgTypeEnum.text.ToString()))
                 {
                     //写入日志
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath,"这是一条文本消息：" + rootXmlElement.OuterXml);
@@ -343,7 +490,7 @@ namespace WeiXin_Web
                     //推送过来的内容
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
                    
-                    //默认回复 原消息内容
+                    //回复内容
                     Reply(appidSecret, _content);
 
                 }
@@ -372,31 +519,31 @@ namespace WeiXin_Web
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条小视频消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals("event"))//菜单按钮事件
+                else if (_msgType.Equals("event"))//菜单按钮消息类型
                 {
-                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条事件消息：" + rootXmlElement.OuterXml);
-                    _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条菜单事件消息：" + rootXmlElement.OuterXml);
 
-                    if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.Subscribe.ToString()))
+                    
+                    //事件类型
+                    _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText.ToLower();
+
+                    //获取点击按钮的key
+                    string menuButtonKey = rootXmlElement.SelectSingleNode("EventKey").InnerText;
+
+
+                    //订阅关注事件
+                    if (_menuEvent.Equals(AllEnum.EventEnum.subscribe.ToString()))
                     {
-                        DefaultReply();
-                    }
-                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
+                        
+                    }//取消关注事件
+                    else if (_menuEvent.Equals(AllEnum.EventEnum.unsubscribe.ToString()))
                     {
-                        string menuButtonKey = rootXmlElement.SelectSingleNode("EventKey").InnerText;
 
-                        Reply(appidSecret, menuButtonKey);
-
-
-                    }
-                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.locationselect.ToString()))
+                    } //点击事件
+                    else if (_menuEvent.Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
                     {
-                        _debugLog.BugWriteTxt(_log.LogTxtPhyPath, _menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.locationselect.ToString() + "相等");
 
-                        if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
-                        {
-                            replyTemplate.ReplyText(rootXmlElement.SelectSingleNode("SendLocationInfo").InnerText);
-                        }
+
 
                     }
                 }
@@ -433,7 +580,7 @@ namespace WeiXin_Web
             //}
 
             //默认回复原文
-         string returnValue= replyTemplate.ReplyText(contentStr);
+         string returnValue= _replyTemplate.ReplyText(contentStr);
 
          _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条回复文本消息：" + returnValue);
          _httpContext.Response.Write(returnValue);
@@ -445,14 +592,14 @@ namespace WeiXin_Web
         }
 
         /// <summary>
-        /// 默认回复 
+        /// 默认回复 关注后
         /// </summary>
         private void DefaultReply()
         {
             try
             {
 
-                replyTemplate.ReplyText("微信公众平台测试号欢迎你的关注。\r\n请操作菜单来获取相应信息。");
+                _replyTemplate.ReplyText("微信公众平台测试号欢迎你的关注。\r\n请操作菜单来获取相应信息。");
 
 
             }
@@ -475,7 +622,7 @@ namespace WeiXin_Web
             try
             {
 
-                replyTemplate.ReplyText(menuName);
+                _replyTemplate.ReplyText(menuName);
             }
             catch (Exception ex)
             {
@@ -494,7 +641,7 @@ namespace WeiXin_Web
             try
             {
                 string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
-                replyTemplate.ReplyText(accessToken);
+                _replyTemplate.ReplyText(accessToken);
             }
             catch (Exception ex)
             {
@@ -516,7 +663,7 @@ namespace WeiXin_Web
             try
             {
                 string serverIp = new Getcallbackip().GetServerIpString(appidSecret);
-                replyTemplate.ReplyText(serverIp);
+                _replyTemplate.ReplyText(serverIp);
             }
             catch (Exception ex)
             {
@@ -535,7 +682,7 @@ namespace WeiXin_Web
             try
             {
                 string myGuid = _fromUserName;
-                replyTemplate.ReplyText(myGuid);
+                _replyTemplate.ReplyText(myGuid);
             }
             catch (Exception ex)
             {

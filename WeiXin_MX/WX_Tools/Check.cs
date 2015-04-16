@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Web;
 using System.Web.Security;
 
@@ -19,13 +18,18 @@ namespace WX_Tools
             */
       
      
+       /// <summary>
+       /// 验证token
+       /// </summary>
+       /// <param name="strToken">token</param>
+       /// <returns>返回布尔值</returns>
        public bool ValidateUrl(string strToken)
        {
               HttpContext httpContext = HttpContext.Current;
            string signature = httpContext.Request["signature"];
            string timestamp = httpContext.Request["timestamp"];
            string nonce = httpContext.Request["nonce"];
-           string echostr = httpContext.Request["echostr"];
+           //string echostr = httpContext.Request["echostr"];
 
 
            string[] temp1 = { strToken, timestamp, nonce };

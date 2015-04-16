@@ -60,12 +60,10 @@
     <Compile Include="GetCallBackIP.cs" />
     <Compile Include="GetCreateTime.cs" />
     <Compile Include="GetAccessToken.cs" />
-    <Compile Include="Handler.cs" />
     <Compile Include="MediaUpload.cs" />
     <Compile Include="MessageMass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyTemplate.cs" />
-    <Compile Include="subscribe_unsubscribe.cs" />
     <Compile Include="User.cs" />
     <Compile Include="XmlReadWrite.cs" />
   </ItemGroup>

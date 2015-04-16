@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
-using System.Web.Caching;
 using Newtonsoft.Json.Linq;
 using WX_Tools.Entites;
 

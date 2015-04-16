@@ -17,6 +17,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecret">appidSecret对象</param>
         /// <param name="nextOpenid">根据此openid获取以后的用户列表，可不填写</param>
+        /// <returns>返回json格式结果</returns>
         public string GetUserList(AppidSecretToken appidSecret, string nextOpenid = "")
         {
             #region 使用说明
@@ -88,7 +89,7 @@ namespace WX_Tools
         /// 查询所有分组  GET  方式   传入AppidSecretToken对象
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
-        /// <returns>json字符串</returns>
+        /// <returns>返回json字符串</returns>
         public string GetGroups(AppidSecretToken appidSecretToken)
         {
             #region 使用说明
@@ -176,7 +177,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken"></param>
         /// <param name="strJson"></param>
-        /// <returns></returns>
+        /// <returns>返回json格式结果</returns>
         public string CreateGroups(AppidSecretToken appidSecretToken, string strJson)
         {
             #region  使用说明 
@@ -228,7 +229,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "创建分组：" + strJson);
+         
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -253,7 +254,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象 </param>
         /// <param name="openId">用户唯一识别码</param>
-        /// <returns>返回json</returns>
+        /// <returns>返回json格式结果</returns>
         public string GetGroupId(AppidSecretToken appidSecretToken,string openId)
         {
             #region  使用说明
@@ -300,7 +301,7 @@ namespace WX_Tools
 
             Stream streamWrite = httpWebRequest.GetRequestStream();
             streamWrite.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "查询用户所在分组：" + openId);
+     
             streamWrite.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -329,7 +330,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">json字符串</param>
-        /// <returns>返回结果</returns>
+        /// <returns>返回json格式结果</returns>
         public string UpdateGroupsName(AppidSecretToken appidSecretToken,string strJson)
         {
             #region 使用说明 
@@ -370,7 +371,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "修改分组名：" + strJson);
+        
             stream.Close();
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
@@ -392,7 +393,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">字符串</param>
-        /// <returns>返回结果</returns>
+        /// <returns>返回json格式结果</returns>
         public string UpdateMembers(AppidSecretToken appidSecretToken,string strJson)
         {
             #region 使用说明 
@@ -433,7 +434,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "移动用户分组：" + strJson);
+   
             stream.Close();
 
 
@@ -457,7 +458,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象 </param>
         /// <param name="strJson">json字符串</param>
-        /// <returns>返回结果</returns>
+        /// <returns>返回json格式结果</returns>
         public string BatchUpdateMembers(AppidSecretToken appidSecretToken, string strJson)
         {
             #region 使用说明 
@@ -499,7 +500,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "批量移动用户分组：" + strJson);
+         
             stream.Close();
 
 

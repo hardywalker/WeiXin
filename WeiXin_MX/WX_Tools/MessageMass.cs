@@ -20,7 +20,7 @@ namespace WX_Tools
       /// </summary>
       /// <param name="appidSecretToken">AppidSecretToken对象</param>
       /// <param name="strJson">json字符串</param>
-      /// <returns>返回结果</returns>
+      /// <returns>返回json格式结果</returns>
         public string MediaUploadNews(AppidSecretToken appidSecretToken, string strJson)
         {
             #region 接口调用请求说明
@@ -96,7 +96,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "上传图文消息素材：" + strJson);
+      
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -120,7 +120,7 @@ namespace WX_Tools
       /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
       /// <param name="strJson">json字符串</param>
-      /// <returns>返回字符串</returns>
+        /// <returns>返回json字符串</returns>
         public string MessageMassSendAll(AppidSecretToken appidSecretToken, string strJson)
         {
 
@@ -259,7 +259,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "根据分组进行群发：" + strJson);
+       
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -281,7 +281,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">json字符串</param>
-        /// <returns>返回字符串</returns>
+        /// <returns>返回json字符串</returns>
         public string MessageMassSend(AppidSecretToken appidSecretToken, string strJson)
         {
             #region 接口调用请求说明
@@ -417,7 +417,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "根据OpenID列表群发：" + strJson);
+   
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -437,9 +437,9 @@ namespace WX_Tools
         /// <summary>
         /// 删除群发【订阅号与服务号认证后均可用】 POST
         /// </summary>
-        /// <param name="appidSecretToken"></param>
-        /// <param name="strJson"></param>
-        /// <returns></returns>
+        /// <param name="appidSecretToken">AppidSecretToken 对象</param>
+        /// <param name="strJson">json格式</param>
+        /// <returns>返回json格式结果</returns>
         public string MessageMassDelete(AppidSecretToken appidSecretToken, string strJson)
         {
             #region 接口调用请求说明
@@ -487,7 +487,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "删除群发：" + strJson);
+      
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -612,7 +612,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "预览接口：" + strJson);
+  
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -714,7 +714,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "查询群发消息发送状态：" + strJson);
+      
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;

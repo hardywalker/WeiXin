@@ -14,12 +14,12 @@
           /// <summary>
           /// 订阅（关注）事件
           /// </summary>
-          Subscribe,
+          subscribe,
 
           /// <summary>
           /// 取消订阅（取消关注）事件
           /// </summary>
-          Unsubscribe
+          unsubscribe
       }
 
       /// <summary>
@@ -63,7 +63,8 @@
           /// <summary>
           /// 链接消息
           /// </summary>
-          link,
+          link
+          
 
           
       }

@@ -82,8 +82,9 @@ namespace WX_Tools
         /// <summary>
         /// 回复图片消息 media_id是必须的
         /// </summary>
-        /// <param name="mediaId"></param>
-        public void ReplyImage(string mediaId)
+        /// <param name="mediaId">素材id</param>
+        /// <returns>返回封装好的xml字符串</returns>
+        public string ReplyImage(string mediaId)
         {
             /*回复图片消息
              *  <xml>
@@ -106,12 +107,13 @@ namespace WX_Tools
 
             string replyImageXmlMsg = string.Format(@"{0}<![CDATA[image]]></MsgType><Image><MediaId><![CDATA[{1}]]></MediaId>
                     </Image></xml>", _replyXmsMsgHeader, mediaId);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复图片消息：{0}", replyImageXmlMsg));
 
 
-            _httpContext.Response.Write(replyImageXmlMsg);
+            return replyImageXmlMsg;
 
-            _httpContext.ApplicationInstance.CompleteRequest();
+            //_httpContext.Response.Write(replyImageXmlMsg);
+
+            //_httpContext.ApplicationInstance.CompleteRequest();
 
 
         }
@@ -123,8 +125,9 @@ namespace WX_Tools
         /// <summary>
         /// 回复语音消息  media_id是必须的
         /// </summary>
-        /// <param name="mediaId"></param>
-        public void ReplyVoice(string mediaId)
+        /// <param name="mediaId">素材id</param>
+        /// <returns>返回json格式的结果</returns>
+        public string ReplyVoice(string mediaId)
         {
             /*回复语音消息
              *  <xml>
@@ -147,12 +150,12 @@ namespace WX_Tools
 
             string replyVoiceXmlMsg = string.Format(@"{0}<![CDATA[voice]]></MsgType><Voice><MediaId><![CDATA[{1}]]></MediaId>
                     </Voice></xml>", _replyXmsMsgHeader, mediaId);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复语音消息：{0}", replyVoiceXmlMsg));
 
 
-            _httpContext.Response.Write(replyVoiceXmlMsg);
+            return replyVoiceXmlMsg;
+            //_httpContext.Response.Write(replyVoiceXmlMsg);
 
-            _httpContext.ApplicationInstance.CompleteRequest();
+            //_httpContext.ApplicationInstance.CompleteRequest();
         }
 
         #endregion
@@ -165,7 +168,8 @@ namespace WX_Tools
         /// <param name="mediaId">必须字段，通过上传多媒体文件，得到的id</param>
         /// <param name="title">视频消息的标题</param>
         /// <param name="description">视频消息的描述</param>
-        public void ReplyVideo(string mediaId, string title = "", string description = "")
+        /// <returns>返回封装好的xml字符串</returns>
+        public string ReplyVideo(string mediaId, string title = "", string description = "")
         {
             /*回复视频消息
              *  <xml>
@@ -193,12 +197,13 @@ namespace WX_Tools
             string replyVideoXmlMsg = string.Format(@"{0}<![CDATA[video]]></MsgType><Video><MediaId><![CDATA[{1}]]></MediaId>
                           <Title><![CDATA[{2}]]></Title><Description><![CDATA[{3}]]></Description>
                     </Video></xml>", _replyXmsMsgHeader, mediaId, title, description);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复视频消息：{0}", replyVideoXmlMsg));
+        
 
+            return replyVideoXmlMsg;
 
-            _httpContext.Response.Write(replyVideoXmlMsg);
+            //_httpContext.Response.Write(replyVideoXmlMsg);
 
-            _httpContext.ApplicationInstance.CompleteRequest();
+            //_httpContext.ApplicationInstance.CompleteRequest();
 
 
         }
@@ -215,7 +220,8 @@ namespace WX_Tools
         /// <param name="description">音乐描述</param>
         /// <param name="musicUrl">音乐链接</param>
         /// <param name="hQmusicUrl">高质量音乐链接，WIFI环境优先使用该链接播放音乐</param>
-        public void ReplyMusic(string thumbMediaId, string title = "", string description = "", string musicUrl = "", string hQmusicUrl = "")
+        /// <returns>返回封装好的xml字符串</returns>
+        public string ReplyMusic(string thumbMediaId, string title = "", string description = "", string musicUrl = "", string hQmusicUrl = "")
         {
             /*回复音乐消息
              *  <xml>
@@ -249,13 +255,13 @@ namespace WX_Tools
                         <HQMusicUrl><![CDATA[{4}]]></HQMusicUrl><ThumbMediaId><![CDATA[{5}]]></ThumbMediaId>
                     </Music></xml>", _replyXmsMsgHeader, title, description, musicUrl, hQmusicUrl, thumbMediaId);
 
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复音乐消息：{0}", replyMusicXmlMsg));
 
 
+            return replyMusicXmlMsg;
 
-            _httpContext.Response.Write(replyMusicXmlMsg);
+            //_httpContext.Response.Write(replyMusicXmlMsg);
 
-            _httpContext.ApplicationInstance.CompleteRequest();
+            //_httpContext.ApplicationInstance.CompleteRequest();
         }
 
         #endregion
@@ -267,7 +273,8 @@ namespace WX_Tools
         /// 回复图文消息  传入泛型
         /// </summary>
         /// <param name="newsList">文章列表（泛型）最多10 条</param>
-        public void ReplyNews(List<News> newsList)
+        /// <returns>返回封装好的xml字符串</returns>
+        public string ReplyNews(List<News> newsList)
         {
             /*回复图文消息
              *  <xml>
@@ -319,12 +326,12 @@ namespace WX_Tools
              string.Format(@"{0}<![CDATA[news]]></MsgType><ArticleCount>{1}</ArticleCount>
                         <Articles>{2}</Articles></xml>", _replyXmsMsgHeader, newsList.Count, newsItems.ToString());
 
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复图文消息：{0}", replyNewsXmlMsg));
 
+            return replyNewsXmlMsg;
 
-            _httpContext.Response.Write(replyNewsXmlMsg);
+            //_httpContext.Response.Write(replyNewsXmlMsg);
 
-            _httpContext.ApplicationInstance.CompleteRequest();
+            //_httpContext.ApplicationInstance.CompleteRequest();
         }
 
         #endregion

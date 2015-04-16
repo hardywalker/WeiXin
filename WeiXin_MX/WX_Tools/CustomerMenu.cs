@@ -6,20 +6,24 @@ using WX_Tools.Entites;
 namespace WX_Tools
 {
     /// <summary>
-    /// 自定义菜单类
+    /// 自定义菜单类处理类
     /// </summary>
-  public  class CustomerMenu
+    public class CustomerMenu
     {
+
         /// <summary>
-        /// 创建菜单  POST
+        /// 创建菜单 POST
         /// </summary>
-        public string CreateCustomerMenu(AppidSecretToken appidSecret,string jsonMenu)
+        /// <param name="appidSecret">AppidSecretToken对象</param>
+        /// <param name="jsonMenu">菜单json字符串</param>
+        /// <returns>返回创建结果json格式</returns>
+        public string CreateCustomerMenu(AppidSecretToken appidSecret, string jsonMenu)
         {
-         
+
 
             byte[] postBytes = Encoding.UTF8.GetBytes(jsonMenu);
-        
-            string accessToken = new GetAccessToken().Get_access_token(appidSecret,"catch");
+
+            string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string createMenuUrl = string.Format(new ApiAddress().CreateMenu, accessToken);
 
             HttpWebRequest webRequest = WebRequest.Create(createMenuUrl) as HttpWebRequest;
@@ -30,7 +34,7 @@ namespace WX_Tools
 
             Stream streamWrite = webRequest.GetRequestStream();
             streamWrite.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "创建菜单：" + streamWrite.ToString());
+
             streamWrite.Close();
 
             string createResult = "";
@@ -52,11 +56,11 @@ namespace WX_Tools
 
         }
 
-      /// <summary>
+        /// <summary>
         /// 查询自定义菜单
-      /// </summary>
-      /// <param name="appidSecret"></param>
-      /// <returns></returns>
+        /// </summary>
+        /// <param name="appidSecret">AppidSecretToken对象</param>
+        /// <returns>返回json格式的处理结果</returns>
         public string GetCustomerMenu(AppidSecretToken appidSecret)
         {
             /*
@@ -79,7 +83,7 @@ namespace WX_Tools
             string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
             string getUrl = string.Format(new ApiAddress().GetMenuUrl, accessToken);
 
-            HttpWebRequest httpWebRequest = (HttpWebRequest) WebRequest.Create(getUrl);
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(getUrl);
             httpWebRequest.Method = "GET";
             httpWebRequest.ContentType = "appliction/json;charset=utf-8";
 
@@ -87,7 +91,7 @@ namespace WX_Tools
             Stream stream = httpWebResponse.GetResponseStream();
             if (stream != null)
             {
-                StreamReader streamReader=new StreamReader(stream,Encoding.UTF8);
+                StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
                 result = streamReader.ReadToEnd();
 
             }
@@ -99,11 +103,11 @@ namespace WX_Tools
         }
 
 
-      /// <summary>
-      /// 删除自定义菜单
-      /// </summary>
-      /// <param name="appidSecret"></param>
-      /// <returns></returns>
+        /// <summary>
+        /// 删除自定义菜单
+        /// </summary>
+        /// <param name="appidSecret">AppidSecretToken对象</param>
+        /// <returns>返回json格式的处理结果</returns>
         public string DeleteCustomerMenu(AppidSecretToken appidSecret)
         {
 
@@ -136,7 +140,7 @@ namespace WX_Tools
 
             if (stream != null)
             {
-                StreamReader streamReader=new StreamReader(stream,Encoding.UTF8);
+                StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
 
                 result = streamReader.ReadToEnd();
             }
