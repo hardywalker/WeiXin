@@ -335,7 +335,7 @@ namespace WeiXin_Web
 
 
                 //推送过来文本消息  全部转化为小写来比较
-                if (_msgType.ToLower().Equals(AllEnum.MsgTypeEnum.Text.ToString().ToLower()))
+                if (_msgType.ToLower().Equals(AllEnum.MsgTypeEnum.text.ToString()))
                 {
                     //写入日志
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath,"这是一条文本消息：" + rootXmlElement.OuterXml);
@@ -347,28 +347,28 @@ namespace WeiXin_Web
                     Reply(appidSecret, _content);
 
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Link.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条链接消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Image.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.image.ToString()))
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条图片消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Location.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.location.ToString()))
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Voice.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.voice.ToString()))
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条语音消息：" + rootXmlElement.OuterXml);
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Video.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.video.ToString()))
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条视频消息：" + rootXmlElement.OuterXml);
 
                 }
-                else if (_msgType.Equals(AllEnum.MsgTypeEnum.Shortvideo.ToString()))
+                else if (_msgType.Equals(AllEnum.MsgTypeEnum.shortvideo.ToString()))
                 {
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条小视频消息：" + rootXmlElement.OuterXml);
                 }
@@ -381,7 +381,7 @@ namespace WeiXin_Web
                     {
                         DefaultReply();
                     }
-                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.Click.ToString()))
+                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
                     {
                         string menuButtonKey = rootXmlElement.SelectSingleNode("EventKey").InnerText;
 
@@ -389,9 +389,9 @@ namespace WeiXin_Web
 
 
                     }
-                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()))
+                    else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.locationselect.ToString()))
                     {
-                        _debugLog.BugWriteTxt(_log.LogTxtPhyPath, _menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString() + "相等");
+                        _debugLog.BugWriteTxt(_log.LogTxtPhyPath, _menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.locationselect.ToString() + "相等");
 
                         if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
                         {

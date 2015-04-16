@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WX_Tools
+﻿namespace WX_Tools
 {
     /// <summary>
-    /// 全局所用的统一名称，枚举方式记录，包括事件等
+    /// 全局所用的统一名称(全部小写)，枚举方式记录，包括事件等
     /// </summary>
   public partial  class AllEnum
     {
@@ -36,39 +31,39 @@ namespace WX_Tools
           /// <summary>
           /// 文本消息
           /// </summary>
-          Text,
+          text,
 
 
           /// <summary>
           /// 图片消息
           /// </summary>
-          Image,
+          image,
 
           /// <summary>
           /// 语音消息
           /// </summary>
-          Voice,
+          voice,
 
 
           /// <summary>
           /// 视频消息
           /// </summary>
-          Video,
+          video,
 
           /// <summary>
           /// 小视频消息
           /// </summary>
-          Shortvideo,
+          shortvideo,
 
           /// <summary>
           /// 地理位置消息
           /// </summary>
-          Location,
+          location,
 
           /// <summary>
           /// 链接消息
           /// </summary>
-          Link,
+          link,
 
           
       }
@@ -82,42 +77,42 @@ namespace WX_Tools
       /// <summary>
       /// 点击推事件
       /// </summary>
-      Click,
+      click,
 
       /// <summary>
       /// 跳转URL
       /// </summary>
-      View,
+      view,
 
       /// <summary>
       /// 扫码推事件
       /// </summary>
-      ScancodePush,
+      scancodepush,
 
       /// <summary>
       /// 扫码推事件且弹出“消息接收中”提示框
       /// </summary>
-      ScancodeWaitmsg,
+      scancodewaitmsg,
 
       /// <summary>
       /// 弹出系统拍照发图
       /// </summary>
-      PicSysphoto,
+      picsysphoto,
 
       /// <summary>
       /// 弹出拍照或者相册发图
       /// </summary>
-      PicPhotoOrAlbum,
+      picphotooralbum,
 
       /// <summary>
       /// 弹出微信相册发图器
       /// </summary>
-      PicWeixin,
+      picweixin,
 
       /// <summary>
       /// 弹出地理位置选择器
       /// </summary>
-      LocationSelect
+      locationselect
   }
 
     }
