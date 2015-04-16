@@ -63,6 +63,7 @@
        <asp:Button ID="btn_send_tuwen" runat="server" Text="提交图文消息素材"  OnClick="btn_send_tuwen_OnClick"/><asp:Label runat="server" ID="lab_send_tuwen_msg"></asp:Label>
 
     </div>
+        
     </form>
     <hr/>
       <form action="ImageUpload.ashx" method="post" enctype="multipart/form-data">
