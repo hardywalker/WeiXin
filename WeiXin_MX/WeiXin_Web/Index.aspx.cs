@@ -33,7 +33,9 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_access_token_OnClick(object sender, EventArgs e)
         {
-            lab_access_token.Text = new GetAccessToken().Get_access_token(_appidSecret,"catch");
+            string accesstoken=new GetAccessToken().Get_access_token(_appidSecret,"catch");
+            new DebugLog().BugWriteTxt(new Log(){LogTxtPhyPath = "/ErrorTXT/"}.LogTxtPhyPath,accesstoken);
+            lab_access_token.Text = accesstoken;
         }
 
         /// <summary>

@@ -66,6 +66,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CustomerMenu.aspx" />
+    <Content Include="ErrorTXT\错误日志.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
     <Content Include="Index.aspx" />
@@ -164,7 +165,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ErrorTXT\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <PropertyGroup>

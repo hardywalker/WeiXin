@@ -10,14 +10,14 @@ namespace WX_Tools
   public  class DebugLog
   {
 
-      private HttpContext _httpContext = HttpContext.Current;
+      private readonly HttpContext _httpContext = HttpContext.Current;
 
         /// <summary>
         /// 把运行记录写入txt文档
         /// </summary>
         /// <param name="debugMsg">需要写入的内容</param>
         /// <param name="txtPath">日志所存放的目录/***/</param>
-        public void BugWriteTxt(string debugMsg,string txtPath)
+        public void BugWriteTxt(string txtPath,string debugMsg)
         {
             //物理路径
            string phyPath= _httpContext.Server.MapPath(txtPath);

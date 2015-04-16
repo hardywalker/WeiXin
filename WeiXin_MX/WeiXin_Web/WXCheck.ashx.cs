@@ -13,7 +13,7 @@ namespace WeiXin_Web
     /// </summary>
     public class WxCheck : IHttpHandler
     {
-       Log _log=new Log()
+     public readonly Log _log=new Log()
        {
            LogTxtPhyPath = "/ErrorTXT/"
        };
@@ -21,6 +21,7 @@ namespace WeiXin_Web
         public void ProcessRequest(HttpContext context)
         {
 
+            //验证口令
             string token = WebConfigurationManager.AppSettings["token"];
 
             context.Response.ContentType = "text/plain";
@@ -32,6 +33,7 @@ namespace WeiXin_Web
                 //校验
                 if (new Check().ValidateUrl(token))
                 {
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "验证成功：" + context.Request["echostr"].ToString());
                     //校验正确，输出随机字符串
                     context.Response.Write(context.Request["echostr"].ToString());
                 }     
@@ -41,7 +43,7 @@ namespace WeiXin_Web
               
                 if (!new Check().ValidateUrl(token))
                 {
-                   
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "参数错误：" + context.Request["echostr"].ToString());
                     context.Response.Write("参数错误");
                     return;
                 }
@@ -332,11 +334,16 @@ namespace WeiXin_Web
                 _msgType = rootXmlElement.SelectSingleNode("MsgType").InnerText;
 
 
-                //推送过来文本消息
-                if (_msgType.Equals(AllEnum.MsgTypeEnum.Text.ToString()))
+                //推送过来文本消息  全部转化为小写来比较
+                if (_msgType.ToLower().Equals(AllEnum.MsgTypeEnum.Text.ToString().ToLower()))
                 {
+                    //写入日志
                     _debugLog.BugWriteTxt(_log.LogTxtPhyPath,"这是一条文本消息：" + rootXmlElement.OuterXml);
+                    
+                    //推送过来的内容
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
+                   
+                    //默认回复 原消息内容
                     Reply(appidSecret, _content);
 
                 }
@@ -409,23 +416,31 @@ namespace WeiXin_Web
         private void Reply(AppidSecretToken appidSecret, string contentStr)
         {
 
-            switch (contentStr)
-            {
-                case "accessToken":
-                    GetAccessToken(appidSecret);
-                    break;
-                case "serverIP":
-                    GetServerIpString(appidSecret);
-                    break;
-                case "myGUID":
-                    MyGuid();
-                    break;
-                default:
-                    MenuName(contentStr);
-                    break;
+            //switch (contentStr)
+            //{
+            //    case "accessToken":
+            //        GetAccessToken(appidSecret);
+            //        break;
+            //    case "serverIP":
+            //        GetServerIpString(appidSecret);
+            //        break;
+            //    case "myGUID":
+            //        MyGuid();
+            //        break;
+            //    default:
+            //        MenuName(contentStr);
+            //        break;
+            //}
 
+            //默认回复原文
+         string returnValue= replyTemplate.ReplyText(contentStr);
 
-            }
+         _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条回复文本消息：" + returnValue);
+         _httpContext.Response.Write(returnValue);
+
+            //完成响应
+             _httpContext.ApplicationInstance.CompleteRequest();
+
 
         }
 

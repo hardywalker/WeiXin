@@ -41,7 +41,8 @@ namespace WX_Tools
         /// 回复文本消息  MsgType:text   toUser:发送给谁的
         /// </summary>
         /// <param name="content">必须字段，回复的消息内容（换行：在content中能够换行，微信客户端就支持换行显示） </param>
-        public void ReplyText(string content)
+        /// <returns>返回封装好的xml消息体</returns>
+        public string ReplyText(string content)
         {
             /*回复文本消息  模板
              *  <xml>
@@ -63,13 +64,13 @@ namespace WX_Tools
 
 
             string replyTextXmlMsg = string.Format(@"{0}<![CDATA[text]]></MsgType><Content><![CDATA[{1}]]></Content></xml>", _replyXmsMsgHeader, content);
-            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复文本消息：{0}", replyTextXmlMsg));
+            
+            //_httpContext.Response.Write(replyTextXmlMsg);
 
+            //完成响应
+           // _httpContext.ApplicationInstance.CompleteRequest();
 
-            _httpContext.Response.Write(replyTextXmlMsg);
-
-            _httpContext.ApplicationInstance.CompleteRequest();
-
+            return replyTextXmlMsg;
         }
 
         #endregion
