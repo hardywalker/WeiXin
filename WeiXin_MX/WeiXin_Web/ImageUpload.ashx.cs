@@ -42,7 +42,7 @@ namespace WeiXin_Web
             }
             catch (Exception e)
             {
-                new DebugLog().BugWriteTxt("保存图片出错："+e.ToString());
+                new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "保存图片出错：" + e.ToString());
                
             }
 
@@ -51,7 +51,7 @@ namespace WeiXin_Web
                 string mediaId =
                     new MediaUpload().GetTemporaryMediaId(_appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
                context.Response.Write(mediaId);
-                new DebugLog().BugWriteTxt(mediaId);
+               new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, mediaId);
 
             }
             else

@@ -63,7 +63,7 @@ namespace WX_Tools
 
 
             string replyTextXmlMsg = string.Format(@"{0}<![CDATA[text]]></MsgType><Content><![CDATA[{1}]]></Content></xml>", _replyXmsMsgHeader, content);
-            new DebugLog().BugWriteTxt(string.Format("回复文本消息：{0}", replyTextXmlMsg));
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复文本消息：{0}", replyTextXmlMsg));
 
 
             _httpContext.Response.Write(replyTextXmlMsg);
@@ -105,7 +105,7 @@ namespace WX_Tools
 
             string replyImageXmlMsg = string.Format(@"{0}<![CDATA[image]]></MsgType><Image><MediaId><![CDATA[{1}]]></MediaId>
                     </Image></xml>", _replyXmsMsgHeader, mediaId);
-            new DebugLog().BugWriteTxt(string.Format("回复图片消息：{0}", replyImageXmlMsg));
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复图片消息：{0}", replyImageXmlMsg));
 
 
             _httpContext.Response.Write(replyImageXmlMsg);
@@ -146,7 +146,7 @@ namespace WX_Tools
 
             string replyVoiceXmlMsg = string.Format(@"{0}<![CDATA[voice]]></MsgType><Voice><MediaId><![CDATA[{1}]]></MediaId>
                     </Voice></xml>", _replyXmsMsgHeader, mediaId);
-            new DebugLog().BugWriteTxt(string.Format("回复语音消息：{0}", replyVoiceXmlMsg));
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复语音消息：{0}", replyVoiceXmlMsg));
 
 
             _httpContext.Response.Write(replyVoiceXmlMsg);
@@ -192,7 +192,7 @@ namespace WX_Tools
             string replyVideoXmlMsg = string.Format(@"{0}<![CDATA[video]]></MsgType><Video><MediaId><![CDATA[{1}]]></MediaId>
                           <Title><![CDATA[{2}]]></Title><Description><![CDATA[{3}]]></Description>
                     </Video></xml>", _replyXmsMsgHeader, mediaId, title, description);
-            new DebugLog().BugWriteTxt(string.Format("回复视频消息：{0}", replyVideoXmlMsg));
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复视频消息：{0}", replyVideoXmlMsg));
 
 
             _httpContext.Response.Write(replyVideoXmlMsg);
@@ -248,7 +248,7 @@ namespace WX_Tools
                         <HQMusicUrl><![CDATA[{4}]]></HQMusicUrl><ThumbMediaId><![CDATA[{5}]]></ThumbMediaId>
                     </Music></xml>", _replyXmsMsgHeader, title, description, musicUrl, hQmusicUrl, thumbMediaId);
 
-            new DebugLog().BugWriteTxt(string.Format("回复音乐消息：{0}", replyMusicXmlMsg));
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复音乐消息：{0}", replyMusicXmlMsg));
 
 
 
@@ -318,7 +318,7 @@ namespace WX_Tools
              string.Format(@"{0}<![CDATA[news]]></MsgType><ArticleCount>{1}</ArticleCount>
                         <Articles>{2}</Articles></xml>", _replyXmsMsgHeader, newsList.Count, newsItems.ToString());
 
-            new DebugLog().BugWriteTxt(string.Format("回复图文消息：{0}", replyNewsXmlMsg));
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, string.Format("回复图文消息：{0}", replyNewsXmlMsg));
 
 
             _httpContext.Response.Write(replyNewsXmlMsg);

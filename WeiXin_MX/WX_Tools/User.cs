@@ -228,7 +228,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt("创建分组：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "创建分组：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -300,7 +300,7 @@ namespace WX_Tools
 
             Stream streamWrite = httpWebRequest.GetRequestStream();
             streamWrite.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt("查询用户所在分组：" + openId);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "查询用户所在分组：" + openId);
             streamWrite.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -370,7 +370,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes,0,postBytes.Length);
-            new DebugLog().BugWriteTxt("修改分组名：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "修改分组名：" + strJson);
             stream.Close();
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
             Stream streamRead = httpWebResponse.GetResponseStream();
@@ -433,7 +433,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("移动用户分组：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "移动用户分组：" + strJson);
             stream.Close();
 
 
@@ -499,7 +499,7 @@ namespace WX_Tools
 
             Stream stream = httpWebRequest.GetRequestStream();
             stream.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("批量移动用户分组：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "批量移动用户分组：" + strJson);
             stream.Close();
 
 

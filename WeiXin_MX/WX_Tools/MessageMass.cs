@@ -96,7 +96,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("上传图文消息素材：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "上传图文消息素材：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -259,7 +259,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("根据分组进行群发：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "根据分组进行群发：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -417,7 +417,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("根据OpenID列表群发：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "根据OpenID列表群发：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -487,7 +487,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("删除群发：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "删除群发：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -612,7 +612,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("预览接口：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "预览接口：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
@@ -714,7 +714,7 @@ namespace WX_Tools
 
             Stream streamWriter = httpWebRequest.GetRequestStream();
             streamWriter.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("查询群发消息发送状态：" + strJson);
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "查询群发消息发送状态：" + strJson);
             streamWriter.Close();
 
             HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;

@@ -13,6 +13,10 @@ namespace WeiXin_Web
     /// </summary>
     public class WxCheck : IHttpHandler
     {
+       Log _log=new Log()
+       {
+           LogTxtPhyPath = "/ErrorTXT/"
+       };
         private readonly AppidSecretToken _appidSecret=new AppidSecretToken();
         public void ProcessRequest(HttpContext context)
         {
@@ -20,7 +24,7 @@ namespace WeiXin_Web
             string token = WebConfigurationManager.AppSettings["token"];
 
             context.Response.ContentType = "text/plain";
-            //context.Response.Write("Hello World");
+            
 
             if (context.Request.HttpMethod.ToLower().Equals("get"))
             {
@@ -28,6 +32,7 @@ namespace WeiXin_Web
                 //校验
                 if (new Check().ValidateUrl(token))
                 {
+                    //校验正确，输出随机字符串
                     context.Response.Write(context.Request["echostr"].ToString());
                 }     
             }
@@ -44,15 +49,18 @@ namespace WeiXin_Web
 
                 try
                 {
+                    //获取配置信息
                     _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
                     _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+                    
+                    
                     //接收并响应
                    // new Handler().ExecHandler(_appidSecret);
                     ExecHandler(_appidSecret);
                 }
                 catch (Exception ex)
                 {
-                    new DebugLog().BugWriteTxt("WXCheck.ashx页面异常："+ex.ToString());
+                    new DebugLog().BugWriteTxt(_log.LogTxtPhyPath,"WXCheck.ashx页面异常："+ex.ToString());
                 }
                
 
@@ -63,9 +71,17 @@ namespace WeiXin_Web
 
 
         //开发者微信号
-        string _toUserName, _fromUserName, _msgType, _content, _menuEvent;
+        string _toUserName,//接收者
+            _fromUserName,//发送者 
+            _msgType,//消息类型
+            _content,//内容
+            _menuEvent;//按钮事件
+
         readonly HttpContext _httpContext = HttpContext.Current;
+        
+        //
         readonly Sender _reciveSender = new Sender();
+        //写入日志功能
         readonly DebugLog _debugLog = new DebugLog();
         ReplyTemplate replyTemplate = null;
 
@@ -291,7 +307,7 @@ namespace WeiXin_Web
             xmlDocument.Load(xmlStream);
 
             //获取的xml完整文本
-            _debugLog.BugWriteTxt("这是入口：" + xmlDocument.OuterXml);
+            _debugLog.BugWriteTxt(_log.LogTxtPhyPath,"这是入口：" + xmlDocument.OuterXml);
 
             //获取根节点
             XmlElement rootXmlElement = xmlDocument.DocumentElement;
@@ -319,39 +335,39 @@ namespace WeiXin_Web
                 //推送过来文本消息
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.Text.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条文本消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath,"这是一条文本消息：" + rootXmlElement.OuterXml);
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
                     Reply(appidSecret, _content);
 
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Link.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条链接消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条链接消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Image.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条图片消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条图片消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Location.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条地理位置消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Voice.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条语音消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条语音消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Video.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条视频消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条视频消息：" + rootXmlElement.OuterXml);
 
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Shortvideo.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条小视频消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条小视频消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
-                    _debugLog.BugWriteTxt("这是一条事件消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条事件消息：" + rootXmlElement.OuterXml);
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
 
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.Subscribe.ToString()))
@@ -368,7 +384,7 @@ namespace WeiXin_Web
                     }
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()))
                     {
-                        _debugLog.BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString() + "相等");
+                        _debugLog.BugWriteTxt(_log.LogTxtPhyPath, _menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString() + "相等");
 
                         if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
                         {
@@ -428,7 +444,7 @@ namespace WeiXin_Web
             catch (Exception e)
             {
 
-                _debugLog.BugWriteTxt("默认回复时的异常:" + e.Message + "|" + e);
+                _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "默认回复时的异常:" + e.Message + "|" + e);
             }
 
 
@@ -448,7 +464,7 @@ namespace WeiXin_Web
             }
             catch (Exception ex)
             {
-                _debugLog.BugWriteTxt("获取菜单名称时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "获取菜单名称时异常:" + ex + "|" + ex.Message);
 
             }
         }
@@ -467,7 +483,7 @@ namespace WeiXin_Web
             }
             catch (Exception ex)
             {
-                _debugLog.BugWriteTxt("获取access_token时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "获取access_token时异常:" + ex + "|" + ex.Message);
 
             }
 
@@ -490,7 +506,7 @@ namespace WeiXin_Web
             catch (Exception ex)
             {
 
-                _debugLog.BugWriteTxt("获取服务器IP地址时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "获取服务器IP地址时异常:" + ex + "|" + ex.Message);
             }
 
         }
@@ -508,7 +524,7 @@ namespace WeiXin_Web
             }
             catch (Exception ex)
             {
-                _debugLog.BugWriteTxt("获取myGuid时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "获取myGuid时异常:" + ex + "|" + ex.Message);
 
             }
         }

@@ -238,7 +238,7 @@ namespace WX_Tools
             xmlDocument.Load(xmlStream);
 
             //获取的xml完整文本
-            _debugLog.BugWriteTxt("这是入口：" + xmlDocument.OuterXml);
+            _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是入口：" + xmlDocument.OuterXml);
 
             //获取根节点
             XmlElement rootXmlElement = xmlDocument.DocumentElement;
@@ -266,38 +266,38 @@ namespace WX_Tools
                 //推送过来文本消息
                 if (_msgType.Equals(AllEnum.MsgTypeEnum.Text.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条文本消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条文本消息：" + rootXmlElement.OuterXml);
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
                     Reply(appidSecret,_content);
 
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Link.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条链接消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条链接消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Image.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条图片消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条图片消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Location.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条地理位置消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条地理位置消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Voice.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条语音消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条语音消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.Video.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条视频消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条视频消息：" + rootXmlElement.OuterXml);
 
                 }else if (_msgType.Equals(AllEnum.MsgTypeEnum.Shortvideo.ToString()))
                 {
-                    _debugLog.BugWriteTxt("这是一条小视频消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条小视频消息：" + rootXmlElement.OuterXml);
                 }
                 else if (_msgType.Equals("event"))//菜单按钮事件
                 {
-                    _debugLog.BugWriteTxt("这是一条事件消息：" + rootXmlElement.OuterXml);
+                    _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "这是一条事件消息：" + rootXmlElement.OuterXml);
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText;
                 
                     if (_menuEvent.ToLower().Equals(AllEnum.EventEnum.Subscribe.ToString()))
@@ -314,7 +314,7 @@ namespace WX_Tools
                     }
                     else if (_menuEvent.ToLower().Equals(AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString()))
                     {
-                        _debugLog.BugWriteTxt(_menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString() + "相等");
+                        _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, _menuEvent + "与" + AllEnum.CustomerMenuButtonEvent.LocationSelect.ToString() + "相等");
                    
                         if (rootXmlElement.SelectSingleNode("EventKey").InnerText.Equals("GPS"))
                         {
@@ -374,7 +374,7 @@ namespace WX_Tools
             catch (Exception e)
             {
 
-                _debugLog.BugWriteTxt("默认回复时的异常:" + e.Message + "|" + e);
+                _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "默认回复时的异常:" + e.Message + "|" + e);
             }
 
        
@@ -394,7 +394,7 @@ namespace WX_Tools
             }
             catch (Exception ex)
             {
-                _debugLog.BugWriteTxt("获取菜单名称时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "获取菜单名称时异常:" + ex + "|" + ex.Message);
 
             }
         }
@@ -413,7 +413,7 @@ namespace WX_Tools
             }
             catch (Exception ex)
             {
-                _debugLog.BugWriteTxt("获取access_token时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "获取access_token时异常:" + ex + "|" + ex.Message);
 
             }
 
@@ -436,7 +436,7 @@ namespace WX_Tools
             catch (Exception ex)
             {
 
-                _debugLog.BugWriteTxt("获取服务器IP地址时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "获取服务器IP地址时异常:" + ex + "|" + ex.Message);
             }
 
         }
@@ -454,7 +454,7 @@ namespace WX_Tools
             }
             catch (Exception ex)
             {
-                _debugLog.BugWriteTxt("获取myGuid时异常:" + ex + "|" + ex.Message);
+                _debugLog.BugWriteTxt(new Log().LogTxtPhyPath, "获取myGuid时异常:" + ex + "|" + ex.Message);
 
             }
         }

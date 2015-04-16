@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Text;
-using Newtonsoft.Json.Linq;
 using WX_Tools.Entites;
 
 namespace WX_Tools
@@ -34,7 +30,7 @@ namespace WX_Tools
 
             Stream streamWrite = webRequest.GetRequestStream();
             streamWrite.Write(postBytes, 0, postBytes.Length);
-            new DebugLog().BugWriteTxt("创建菜单："+streamWrite.ToString());
+            new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, "创建菜单：" + streamWrite.ToString());
             streamWrite.Close();
 
             string createResult = "";

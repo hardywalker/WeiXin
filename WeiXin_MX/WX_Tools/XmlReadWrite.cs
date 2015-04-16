@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using System.Xml.Serialization;
+using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -36,7 +37,7 @@ namespace WX_Tools
                 }
                 catch (Exception ex)
                 {
-                   new DebugLog().BugWriteTxt(ex.ToString());
+                    new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, ex.ToString());
                 }
                 finally
                 {
@@ -72,7 +73,7 @@ namespace WX_Tools
             }
             catch (Exception ex)
             {
-                new DebugLog().BugWriteTxt(ex.ToString());
+                new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, ex.ToString());
             }
             finally
             {
