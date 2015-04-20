@@ -36,7 +36,8 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_server_ip_OnClick(object sender, EventArgs e)
         {
-          //  lab_server_ip.Text = new Getcallbackip().GetServerIpString(_appidSecret);
+         // lab_server_ip.Text = new Getcallbackip().GetServerIpString(_commonClass.Get_access_token(_appidSecret,"catch"));
+            lab_server_ip.Text = _commonClass.GET_IP_List(_appidSecret);
         }
 
        

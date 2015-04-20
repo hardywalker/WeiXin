@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -49,6 +50,25 @@ namespace WeiXin_Web.Common
 
 
             return accesstokenCache.ToString();
+        }
+
+        /// <summary>
+        /// 获取服务器Ip地址,
+        /// </summary>
+        /// <param name="appidSecretToken"></param>
+        /// <returns></returns>
+
+        public string GET_IP_List(AppidSecretToken appidSecretToken)
+        {
+            string accesstoken = Get_access_token(appidSecretToken, "catch");
+
+            
+
+          string jsonResult=  new Getcallbackip().GetServerIpString(accesstoken);
+            JObject jObject = JObject.Parse(jsonResult);//获取服务器Ip,这样获得是的json格式
+            JArray jArray = JArray.Parse(jObject["ip_list"].ToString());//转换指定的ip_list
+            
+          return string.Join(",", jArray);
         }
     }
 }
