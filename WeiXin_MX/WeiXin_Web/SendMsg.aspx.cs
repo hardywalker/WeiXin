@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Configuration;
 using System.Web.UI;
+using WeiXin_Web.Common;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -10,11 +11,16 @@ namespace WeiXin_Web
     {
         private readonly AppidSecretToken _appidSecret = new AppidSecretToken();
         readonly MessageMass _messageMass=new MessageMass();
+        CommonClass _commonClass = new CommonClass();
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
-            _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+            if (IsPostBack)
+            {
+                //为AppidSecretToken对象赋值
+                _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+                _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+            }
 
         }
 
@@ -26,7 +32,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
-           // lab_send_all_msg.Text = _messageMass.MessageMassSendAll(_appidSecret, txt_sendall.Text.Trim());
+            lab_send_all_msg.Text = _messageMass.MessageMassSendAll(_commonClass.Get_access_token(_appidSecret, "catch"), txt_sendall.Text.Trim());
         }
 
         /// <summary>
@@ -36,7 +42,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
-           // lab_send_preview_msg.Text = _messageMass.MessageMassPreview(_appidSecret, txt_send_preview.Text);
+            lab_send_preview_msg.Text = _messageMass.MessageMassPreview(_commonClass.Get_access_token(_appidSecret, "catch"), txt_send_preview.Text);
         }
 
         /// <summary>
@@ -46,7 +52,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendmsg_openlist_OnServerClick(object sender, EventArgs e)
         {
-           // lab_sendmsg_openlist_msg.InnerText = _messageMass.MessageMassSend(_appidSecret, txt_send_openlist.Value.Trim());
+            lab_sendmsg_openlist_msg.InnerText = _messageMass.MessageMassSend(_commonClass.Get_access_token(_appidSecret, "catch"), txt_send_openlist.Value.Trim());
         }
     }
 }
