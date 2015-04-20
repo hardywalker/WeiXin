@@ -9,6 +9,10 @@ namespace WeiXin_Web.Common
 {
     public class CommonClass
     {
+        AppidSecretToken _appidSecret = new AppidSecretToken();
+        readonly XmlReadWrite _xmlReadWrite = new XmlReadWrite();
+
+
         /// <summary>
         /// 取得access_token
         /// </summary>
@@ -70,5 +74,16 @@ namespace WeiXin_Web.Common
             
           return string.Join(",", jArray);
         }
+
+
+        /// <summary>
+        /// 获取appid secret token等信息
+        /// </summary>
+        /// <returns>返回AppidSecretToken对象</returns>
+        public AppidSecretToken GetAppidSecretToken()
+        {
+          return  _appidSecret = _xmlReadWrite.Read("/XML/", _appidSecret, "set.config") as AppidSecretToken;
+        }
+
     }
 }
