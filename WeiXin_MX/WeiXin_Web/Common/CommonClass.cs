@@ -4,15 +4,10 @@ using System.Web.Script.Serialization;
 using WX_Tools;
 using WX_Tools.Entites;
 
-namespace WeiXin_Web
+namespace WeiXin_Web.Common
 {
-
-
-
-    public class MyClass
+    public class CommonClass
     {
-     
-
         /// <summary>
         /// 取得access_token
         /// </summary>
@@ -55,8 +50,5 @@ namespace WeiXin_Web
 
             return accesstokenCache.ToString();
         }
-
     }
-
 }
-

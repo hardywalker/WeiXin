@@ -93,7 +93,7 @@
     <Content Include="XML\set.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyClass.cs" />
+    <Compile Include="Common\CommonClass.cs" />
     <Compile Include="CustomerMenu.aspx.cs">
       <DependentUpon>CustomerMenu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

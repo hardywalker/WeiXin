@@ -1,30 +1,29 @@
 ﻿using System;
+using System.Runtime.Remoting.Lifetime;
 using System.Web.Configuration;
 using System.Web.UI;
+using WeiXin_Web.Common;
 using WX_Tools;
 using WX_Tools.Entites;
-
-
-
-
-
 
 namespace WeiXin_Web
 {
     public partial class Index : Page
     {
         private AppidSecretToken _appidSecret=new AppidSecretToken();
+        CommonClass _commonClass=new CommonClass();
+
+
  
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack) { 
             //为AppidSecretToken对象赋值
             _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
             _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
-      
-
-
             }
+      
+        }
         
 
        
@@ -61,10 +60,9 @@ namespace WeiXin_Web
         protected void btn_get_access_token_OnClick(object sender, EventArgs e)
         {
 
-        
-            //string accesstoken = Get_access_token(_appidSecret, "catch");
-            //new DebugLog().BugWriteTxt(new Log() { LogTxtPhyPath = "/ErrorTXT/" }.LogTxtPhyPath, accesstoken);
-            //lab_access_token.Text = accesstoken;
+        string accesstoken =_commonClass.Get_access_token(_appidSecret, "catch");
+            new DebugLog().BugWriteTxt(new Log() { LogTxtPhyPath = "/ErrorTXT/" }.LogTxtPhyPath, accesstoken);
+            lab_access_token.Text = accesstoken;
         }
 
 
@@ -78,7 +76,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_update_access_token_OnServerClick(object sender, EventArgs e)
         {
-           // lab_access_token.Text = Get_access_token(_appidSecret, "server");
+            lab_access_token.Text =_commonClass.Get_access_token(_appidSecret, "server");
        
         }
 
