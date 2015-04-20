@@ -10,9 +10,19 @@ namespace WX_Tools.Entites
     /// </summary>
 public  class Log
     {
-    /// <summary>
-    /// 需要保存的物理路径 格式 /***/
-    /// </summary>
-        public string LogTxtPhyPath { get; set; }
+
+        private string logTxtPhyPath;
+
+        /// <summary>
+        /// 需要保存的物理路径 格式 /***/
+        /// </summary>
+        public string LogTxtPhyPath
+        {
+            get { return logTxtPhyPath; }
+            set { logTxtPhyPath = value; }
+
+        }
+
+
     }
 }

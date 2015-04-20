@@ -15,7 +15,7 @@ namespace WeiXin_Web
     {
      public readonly Log _log=new Log()
        {
-           LogTxtPhyPath = "/ErrorTXT/"
+           LogTxtPhyPath =  "/ErrorTXT/"
        };
         private readonly AppidSecretToken _appidSecret=new AppidSecretToken();
         public void ProcessRequest(HttpContext context)
@@ -633,26 +633,6 @@ namespace WeiXin_Web
 
 
 
-        /// <summary>
-        /// 回复获取的access_token
-        /// </summary>
-        private void GetAccessToken(AppidSecretToken appidSecret)
-        {
-            try
-            {
-                string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
-                _replyTemplate.ReplyText(accessToken);
-            }
-            catch (Exception ex)
-            {
-                _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "获取access_token时异常:" + ex + "|" + ex.Message);
-
-            }
-
-
-
-
-        }
 
 
         /// <summary>
@@ -662,8 +642,8 @@ namespace WeiXin_Web
         {
             try
             {
-                string serverIp = new Getcallbackip().GetServerIpString(appidSecret);
-                _replyTemplate.ReplyText(serverIp);
+              //  string serverIp = new Getcallbackip().GetServerIpString(appidSecret);
+              //  _replyTemplate.ReplyText(serverIp);
             }
             catch (Exception ex)
             {

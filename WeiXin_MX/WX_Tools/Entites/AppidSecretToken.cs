@@ -10,20 +10,38 @@ namespace WX_Tools.Entites
     /// </summary>
    public  class AppidSecretToken
     {
+
+
+        private string appid;
+
        /// <summary>
        /// appid
        /// </summary>
-       public  string Appid { get; set; }
+       public  string Appid {
+           get { return appid; }
+           set { appid = value; }
+       }
 
+
+
+        private string secret;
        /// <summary>
        /// secret
        /// </summary>
-       public  string Secret { get; set; }
+       public  string Secret {
+           get { return secret; }
+           set { secret = value; }
+       }
 
 
+
+        private string token;
        /// <summary>
        /// Token
        /// </summary>
-        public string Token { get; set; }
+        public string Token {
+           get { return token; }
+           set { token = value; }
+        }
     }
 }

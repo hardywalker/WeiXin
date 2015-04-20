@@ -21,7 +21,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="fileUrl">图片的完整路径</param>
         /// <returns></returns>
-        public string GetTemporaryMediaId(AppidSecretToken appidSecret,string fileUrl)
+        public string GetTemporaryMediaId(string accesstoken, string fileUrl)
         {
             #region 上传临时素材接口说明
 
@@ -80,7 +80,7 @@ namespace WX_Tools
 
             #endregion
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().MediaUpload.ToString(), new GetAccessToken().Get_access_token(appidSecret, "catch"), "image"));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(new ApiAddress().MediaUpload, accesstoken, "image"));
             request.Method = "POST";
             MemoryStream postStream = new MemoryStream();
 
@@ -179,7 +179,7 @@ namespace WX_Tools
         /// <param name="appidSecret"></param>
         /// <param name="postJson"></param>
         /// <returns></returns>
-        public string MediaUploadNews(AppidSecretToken appidSecret,string postJson)
+        public string MediaUploadNews(string accesstoken, string postJson)
         {
             #region 接口调用请求说明
 
@@ -245,8 +245,8 @@ namespace WX_Tools
             #endregion
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postJson);
-            string accessToken = new GetAccessToken().Get_access_token(appidSecret, "catch");
-            string mediaUploadNewsUrl = string.Format(new ApiAddress().MediaUploadNews, accessToken);
+        
+            string mediaUploadNewsUrl = string.Format(new ApiAddress().MediaUploadNews, accesstoken);
             WebRequest webRequest = (HttpWebRequest) WebRequest.Create(mediaUploadNewsUrl);
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded;";

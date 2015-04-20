@@ -18,7 +18,7 @@ namespace WX_Tools
         /// <param name="appidSecret">appidSecret对象</param>
         /// <param name="nextOpenid">根据此openid获取以后的用户列表，可不填写</param>
         /// <returns>返回json格式结果</returns>
-        public string GetUserList(AppidSecretToken appidSecret, string nextOpenid = "")
+        public string GetUserList(string accesstoken,string nextOpenid = "")
         {
             #region 使用说明
 
@@ -57,8 +57,8 @@ namespace WX_Tools
 
             string result = "";
 
-            string access_token = new GetAccessToken().Get_access_token(appidSecret, "catch");
-            string getUrl = string.Format(new ApiAddress().GetUserUrl, access_token, nextOpenid);
+        
+            string getUrl = string.Format(new ApiAddress().GetUserUrl, accesstoken, nextOpenid);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(getUrl) as HttpWebRequest;
 
@@ -90,7 +90,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <returns>返回json字符串</returns>
-        public string GetGroups(AppidSecretToken appidSecretToken)
+        public string GetGroups(string accesstoken)
         {
             #region 使用说明
 
@@ -152,8 +152,8 @@ namespace WX_Tools
             #endregion
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string getUrl = string.Format(new ApiAddress().GetGroupsUrl, access_token);
+       
+            string getUrl = string.Format(new ApiAddress().GetGroupsUrl, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(getUrl) as HttpWebRequest;
             httpWebRequest.Method = "GET";
             httpWebRequest.ContentType = "application/json;charset=utf-8";
@@ -178,7 +178,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken"></param>
         /// <param name="strJson"></param>
         /// <returns>返回json格式结果</returns>
-        public string CreateGroups(AppidSecretToken appidSecretToken, string strJson)
+        public string CreateGroups(string accesstoken, string strJson)
         {
             #region  使用说明 
             /**
@@ -219,8 +219,8 @@ namespace WX_Tools
 
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().CreateGroupsUrl, access_token);
+
+            string postUrl = string.Format(new ApiAddress().CreateGroupsUrl, accesstoken);
             HttpWebRequest httpWebRequest=WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -255,7 +255,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象 </param>
         /// <param name="openId">用户唯一识别码</param>
         /// <returns>返回json格式结果</returns>
-        public string GetGroupId(AppidSecretToken appidSecretToken,string openId)
+        public string GetGroupId(string accesstoken,string openId)
         {
             #region  使用说明
             /**
@@ -290,8 +290,8 @@ namespace WX_Tools
 
             string result = "";
 
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().GetIDGroupsUrl, access_token);
+        
+            string postUrl = string.Format(new ApiAddress().GetIDGroupsUrl, accesstoken);
             byte[] postBytes = Encoding.UTF8.GetBytes(openId);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
@@ -331,7 +331,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">json字符串</param>
         /// <returns>返回json格式结果</returns>
-        public string UpdateGroupsName(AppidSecretToken appidSecretToken,string strJson)
+        public string UpdateGroupsName(string accesstoken,string strJson)
         {
             #region 使用说明 
             /**
@@ -360,8 +360,8 @@ namespace WX_Tools
             #endregion
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, access_token);
+        
+            string postUrl = string.Format(new ApiAddress().UpdateGroupsUrl, accesstoken);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
@@ -394,7 +394,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">字符串</param>
         /// <returns>返回json格式结果</returns>
-        public string UpdateMembers(AppidSecretToken appidSecretToken,string strJson)
+        public string UpdateMembers(string accesstoken,string strJson)
         {
             #region 使用说明 
             /**
@@ -423,8 +423,8 @@ namespace WX_Tools
             #endregion
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().UpdateMembersUrl, access_token);
+       
+            string postUrl = string.Format(new ApiAddress().UpdateMembersUrl, accesstoken);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
@@ -459,7 +459,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象 </param>
         /// <param name="strJson">json字符串</param>
         /// <returns>返回json格式结果</returns>
-        public string BatchUpdateMembers(AppidSecretToken appidSecretToken, string strJson)
+        public string BatchUpdateMembers(string accesstoken, string strJson)
         {
             #region 使用说明 
             /**
@@ -489,8 +489,8 @@ namespace WX_Tools
 
 
             string result = "";
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().BatchUpdateMembersUrl, access_token);
+
+            string postUrl = string.Format(new ApiAddress().BatchUpdateMembersUrl, accesstoken);
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
 
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;

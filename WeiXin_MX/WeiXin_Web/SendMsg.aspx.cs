@@ -26,7 +26,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendall_OnClick(object sender, EventArgs e)
         {
-            lab_send_all_msg.Text = _messageMass.MessageMassSendAll(_appidSecret, txt_sendall.Text.Trim());
+           // lab_send_all_msg.Text = _messageMass.MessageMassSendAll(_appidSecret, txt_sendall.Text.Trim());
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_send_preview_OnClick(object sender, EventArgs e)
         {
-            lab_send_preview_msg.Text = _messageMass.MessageMassPreview(_appidSecret, txt_send_preview.Text);
+           // lab_send_preview_msg.Text = _messageMass.MessageMassPreview(_appidSecret, txt_send_preview.Text);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_sendmsg_openlist_OnServerClick(object sender, EventArgs e)
         {
-            lab_sendmsg_openlist_msg.InnerText = _messageMass.MessageMassSend(_appidSecret, txt_send_openlist.Value.Trim());
+           // lab_sendmsg_openlist_msg.InnerText = _messageMass.MessageMassSend(_appidSecret, txt_send_openlist.Value.Trim());
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Text;
-using System.Web;
 using Newtonsoft.Json.Linq;
 using WX_Tools.Entites;
 
@@ -45,39 +43,15 @@ namespace WX_Tools
     
        
 
-        /// <summary>
-        /// 取得access_token
-        /// </summary>
-        /// <returns></returns>
-        public string Get_access_token(AppidSecretToken appidSecret,string serverORcatch)
-        {
-
-            string accesstokenCachname = AllCach.AllCachEnum.AccessToken.ToString();
-            var accesstokenCache = HttpContext.Current.Cache[accesstokenCachname];
-           
-            
-            if (serverORcatch.Equals("server"))
-            {
-                accesstokenCache = null;
-            }
-
-         
-
-
-            if (accesstokenCache == null)
-            {
-                return InsertCache_access_token(appidSecret);
-            }
-            return accesstokenCache.ToString();
-        }
+       
 
         /// <summary>
         /// 获取access_token，如果有就从缓存中获取，如果没有，就从微信服务器获取。
         /// </summary>
         /// <returns></returns>
-        private string InsertCache_access_token(AppidSecretToken appidSecret)
+        public string get_access_token(AppidSecretToken appidSecret)
         {
-            string accesstoken = "";
+            string result = "";
             //建立完整的访问url
      
             string httpGetAccessToken = string.Format(new ApiAddress().AccessToken,appidSecret.Appid,appidSecret.Secret);
@@ -95,24 +69,15 @@ namespace WX_Tools
                 {
                     StreamReader streamReader = new StreamReader(stream, Encoding.GetEncoding("UTF-8"));
                     //获取返回的流字符串
-                    string jsonData = streamReader.ReadToEnd();
+                   result = streamReader.ReadToEnd();
 
-
-                    JObject jsonJObject = JObject.Parse(jsonData);
-                     accesstoken = jsonJObject["access_token"].ToString();
                     streamReader.Close();
                     stream.Close();
-
-                    //把获取到access_token放入缓存中，设置失效时间为7000秒，比微信服务器上短一点就行
-                    HttpContext.Current.Cache.Insert(AllCach.AllCachEnum.AccessToken.ToString(),
-                        accesstoken, null, DateTime.Now.AddSeconds(7000),TimeSpan.Zero);
-
-               
                     
                 }
            
             }
-            return accesstoken;
+            return result;
 
         }
 

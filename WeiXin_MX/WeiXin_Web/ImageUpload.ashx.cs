@@ -48,10 +48,10 @@ namespace WeiXin_Web
 
             if (flag)
             {
-                string mediaId =
-                    new MediaUpload().GetTemporaryMediaId(_appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
-               context.Response.Write(mediaId);
-               new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, mediaId);
+               // string mediaId =
+                  //  new MediaUpload().GetTemporaryMediaId(_appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
+             //  context.Response.Write(mediaId);
+             //  new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, mediaId);
 
             }
             else

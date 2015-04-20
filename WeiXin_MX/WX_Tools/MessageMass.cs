@@ -21,7 +21,7 @@ namespace WX_Tools
       /// <param name="appidSecretToken">AppidSecretToken对象</param>
       /// <param name="strJson">json字符串</param>
       /// <returns>返回json格式结果</returns>
-        public string MediaUploadNews(AppidSecretToken appidSecretToken, string strJson)
+      public string MediaUploadNews(string accesstoken, string strJson)
         {
             #region 接口调用请求说明
 
@@ -86,8 +86,8 @@ namespace WX_Tools
 
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().media_uploadnews, access_token);
+     
+            string postUrl = string.Format(new ApiAddress().media_uploadnews, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -121,7 +121,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
       /// <param name="strJson">json字符串</param>
         /// <returns>返回json字符串</returns>
-        public string MessageMassSendAll(AppidSecretToken appidSecretToken, string strJson)
+      public string MessageMassSendAll(string accesstoken, string strJson)
         {
 
             #region 接口调用请求说明
@@ -249,8 +249,8 @@ namespace WX_Tools
             #endregion
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().message_mass_sendall, access_token);
+        
+            string postUrl = string.Format(new ApiAddress().message_mass_sendall, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -282,7 +282,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">json字符串</param>
         /// <returns>返回json字符串</returns>
-        public string MessageMassSend(AppidSecretToken appidSecretToken, string strJson)
+      public string MessageMassSend(string accesstoken, string strJson)
         {
             #region 接口调用请求说明
             /**
@@ -407,8 +407,8 @@ namespace WX_Tools
             #endregion
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().message_mass_send, access_token);
+       
+            string postUrl = string.Format(new ApiAddress().message_mass_send, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -440,7 +440,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken 对象</param>
         /// <param name="strJson">json格式</param>
         /// <returns>返回json格式结果</returns>
-        public string MessageMassDelete(AppidSecretToken appidSecretToken, string strJson)
+      public string MessageMassDelete(string accesstoken, string strJson)
         {
             #region 接口调用请求说明
             /**
@@ -477,8 +477,8 @@ namespace WX_Tools
 
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().message_mass_delete, access_token);
+     
+            string postUrl = string.Format(new ApiAddress().message_mass_delete, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -512,7 +512,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">json字符串</param>
         /// <returns>返回字符串</returns>
-        public string MessageMassPreview(AppidSecretToken appidSecretToken, string strJson)
+      public string MessageMassPreview(string accesstoken, string strJson)
         {
 
             #region 接口调用请求说明
@@ -602,8 +602,8 @@ namespace WX_Tools
             #endregion
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().message_mass_preview, access_token);
+      
+            string postUrl = string.Format(new ApiAddress().message_mass_preview, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
@@ -636,7 +636,7 @@ namespace WX_Tools
         /// <param name="appidSecretToken">AppidSecretToken对象</param>
         /// <param name="strJson">json字符串</param>
         /// <returns>返回字符串</returns>
-        public string MessageMassGet(AppidSecretToken appidSecretToken, string strJson)
+      public string MessageMassGet(string accesstoken, string strJson)
         {
             #region 接口调用请求说明
             /**
@@ -704,8 +704,8 @@ namespace WX_Tools
             #endregion
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
-            string access_token = new GetAccessToken().Get_access_token(appidSecretToken, "catch");
-            string postUrl = string.Format(new ApiAddress().message_mass_get, access_token);
+      
+            string postUrl = string.Format(new ApiAddress().message_mass_get, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";
