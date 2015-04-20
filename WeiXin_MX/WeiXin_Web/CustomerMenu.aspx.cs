@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Configuration;
 using System.Web.UI;
+using WeiXin_Web.Common;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -9,12 +10,16 @@ namespace WeiXin_Web
     public partial class CustomerMenu : Page
     {
         private readonly AppidSecretToken _appidSecret = new AppidSecretToken();
-
+        CommonClass _commonClass = new CommonClass();
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
-            _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+            if (IsPostBack)
+            {
+                //为AppidSecretToken对象赋值
+                _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+                _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+            }
 
         }
 
@@ -29,8 +34,7 @@ namespace WeiXin_Web
 
             new DebugLog().BugWriteTxt("/ErrorTXT/", txt_menu.Text.Trim());
 
-          //  lab_menu_msg.InnerText = "创建菜单结果：" +
-                                //     new WX_Tools.CustomerMenu().CreateCustomerMenu(_appidSecret, txt_menu.Text.Trim());
+          lab_menu_msg.InnerText = "创建菜单结果：" + new WX_Tools.CustomerMenu().CreateCustomerMenu(_commonClass.Get_access_token(_appidSecret,"catch"), txt_menu.Text.Trim());
 
         }
 
@@ -43,7 +47,7 @@ namespace WeiXin_Web
         protected void btn_get_now_menu_OnClick(object sender, EventArgs e)
         {
 
-          //  txt_now_menu.Text = new WX_Tools.CustomerMenu().GetCustomerMenu(_appidSecret);
+            txt_now_menu.Text = new WX_Tools.CustomerMenu().GetCustomerMenu(_commonClass.Get_access_token(_appidSecret, "catch"));
 
         }
 
@@ -55,7 +59,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_delete_now_menu_OnClick(object sender, EventArgs e)
         {
-           // lab_delete_menu_msg.Text = new WX_Tools.CustomerMenu().DeleteCustomerMenu(_appidSecret);
+            lab_delete_menu_msg.Text = new WX_Tools.CustomerMenu().DeleteCustomerMenu(_commonClass.Get_access_token(_appidSecret, "catch"));
         }
 
     }
