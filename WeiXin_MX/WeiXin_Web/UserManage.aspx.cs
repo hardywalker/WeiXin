@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Web.Configuration;
 using System.Web.UI;
+using WeiXin_Web.Common;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -8,11 +10,17 @@ namespace WeiXin_Web
     public partial class UserManage : Page
     {
         readonly User _user=new User();
-        AppidSecretToken _appidSecretToken=new AppidSecretToken();
+        AppidSecretToken _appidSecret=new AppidSecretToken();
+        CommonClass _commonClass = new CommonClass();
         protected void Page_Load(object sender, EventArgs e)
         {
         
-            _appidSecretToken = new XmlReadWrite().Read("/XML/", _appidSecretToken, "set.config") as AppidSecretToken;
+       if (IsPostBack)
+            {
+                //为AppidSecretToken对象赋值
+                _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
+                _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+            }
     
         }
 
