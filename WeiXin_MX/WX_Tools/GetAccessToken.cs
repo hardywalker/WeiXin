@@ -48,12 +48,12 @@ namespace WX_Tools
         /// 获取access_token，如果有就从缓存中获取，如果没有，就从微信服务器获取。
         /// </summary>
         /// <returns></returns>
-        public string get_access_token(AppidSecretToken appidSecret)
+        public string get_access_token(Configuration configuration)
         {
             string result = "";
             //建立完整的访问url
-     
-            string httpGetAccessToken = string.Format(new ApiAddress().AccessToken,appidSecret.Appid,appidSecret.Secret);
+
+            string httpGetAccessToken = string.Format(new ApiAddress().AccessToken, configuration.Appid, configuration.AppSecret);
             //创建HttpWebRequest对象
             HttpWebRequest httpWebRequest = WebRequest.Create(httpGetAccessToken) as HttpWebRequest;
             if (httpWebRequest != null)

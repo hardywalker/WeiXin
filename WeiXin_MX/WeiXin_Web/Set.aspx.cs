@@ -7,19 +7,19 @@ namespace WeiXin_Web
 {
     public partial class Set : Page
     {
-       AppidSecretToken _appidSecret=new AppidSecretToken();
+        Configuration _configuration = new Configuration();
         XmlReadWrite xmlReadWrite=new XmlReadWrite();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                _appidSecret = xmlReadWrite.Read("/XML/", _appidSecret, "set.config") as AppidSecretToken;
-                if (_appidSecret != null)
+                _configuration = xmlReadWrite.Read("/XML/", _configuration, "set.config") as Configuration;
+                if (_configuration != null)
                 {
-                    txt_appid.Text = _appidSecret.Appid;
-                    txt_secret.Text = _appidSecret.Secret;
-                    txt_token.Text = _appidSecret.Token;
+                    txt_appid.Text = _configuration.Appid;
+                    txt_secret.Text = _configuration.AppSecret;
+                    txt_token.Text = _configuration.Token;
                 }
             }
           
@@ -32,10 +32,10 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_save_set_OnClick(object sender, EventArgs e)
         {
-            _appidSecret.Appid = txt_appid.Text;
-            _appidSecret.Secret = txt_secret.Text;
-            _appidSecret.Token = txt_token.Text;
-            SaveConfig(_appidSecret);
+            _configuration.Appid = txt_appid.Text;
+            _configuration.AppSecret = txt_secret.Text;
+            _configuration.Token = txt_token.Text;
+            SaveConfig(_configuration);
         }
 
 

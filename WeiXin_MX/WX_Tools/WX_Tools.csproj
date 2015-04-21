@@ -55,7 +55,7 @@
     <Compile Include="CustomerMenuEventPush.cs" />
     <Compile Include="DebugLog.cs" />
     <Compile Include="Entites\AccessToken.cs" />
-    <Compile Include="Entites\AppidSecretToken.cs" />
+    <Compile Include="Entites\Configuration.cs" />
     <Compile Include="Entites\Log.cs" />
     <Compile Include="Entites\News.cs" />
     <Compile Include="Entites\Sender.cs" />

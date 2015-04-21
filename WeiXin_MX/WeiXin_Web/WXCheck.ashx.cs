@@ -17,13 +17,13 @@ namespace WeiXin_Web
        {
            LogTxtPhyPath =  "/ErrorTXT/"
        };
-        private  AppidSecretToken _appidSecret=new AppidSecretToken();
+        private  Configuration _configuration=new Configuration();
         readonly CommonClass _commonClass=new CommonClass();
         public void ProcessRequest(HttpContext context)
         {
 
             //验证口令
-            string token = _commonClass.GetAppidSecretToken().Token;
+            string token = _commonClass.GetConfiguration().Token;
 
             context.Response.ContentType = "text/plain";
             
@@ -53,13 +53,13 @@ namespace WeiXin_Web
                 try
                 {
                     //获取配置信息
-                    _appidSecret = _commonClass.GetAppidSecretToken();
+                    _configuration = _commonClass.GetConfiguration();
                   
                     
                     
                     //接收并响应
                    // new Handler().ExecHandler(_appidSecret);
-                    ExecHandler(_appidSecret);
+                    ExecHandler(_configuration);
                 }
                 catch (Exception ex)
                 {
@@ -93,7 +93,7 @@ namespace WeiXin_Web
         /// 开始处理微信请求
         /// </summary>
         /// <param name="appidSecret"></param>
-        private void ExecHandler(AppidSecretToken appidSecret)
+        private void ExecHandler(Configuration appidSecret)
         {
             #region 接收普通消息
 
@@ -561,7 +561,7 @@ namespace WeiXin_Web
         /// </summary>
         /// <param name="appidSecret"></param>
         /// <param name="contentStr"></param>
-        private void Reply(AppidSecretToken appidSecret, string contentStr)
+        private void Reply(Configuration appidSecret, string contentStr)
         {
 
             //switch (contentStr)
@@ -639,7 +639,7 @@ namespace WeiXin_Web
         /// <summary>
         /// 回复获取到的服务器IP地址
         /// </summary>
-        private void GetServerIpString(AppidSecretToken appidSecret)
+        private void GetServerIpString(Configuration appidSecret)
         {
             try
             {

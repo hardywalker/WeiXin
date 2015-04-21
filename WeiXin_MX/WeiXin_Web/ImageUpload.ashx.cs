@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using System.Web.Configuration;
+using WeiXin_Web.Common;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -12,13 +13,13 @@ namespace WeiXin_Web
     /// </summary>
     public class ImageUpload : IHttpHandler
     {
-        AppidSecretToken _appidSecret=new AppidSecretToken();
-        
+        Configuration _configuration=new Configuration();
+        CommonClass _commonClass=new CommonClass();
         public void ProcessRequest(HttpContext context)
         {
-          
-                    _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
-                    _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+
+            _configuration = _commonClass.GetConfiguration();
+                    
             context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");
 

@@ -9,7 +9,7 @@ namespace WeiXin_Web
     public partial class UserManage : Page
     {
         readonly User _user=new User();
-        AppidSecretToken _appidSecret=new AppidSecretToken();
+        Configuration _configuration=new Configuration();
         CommonClass _commonClass = new CommonClass();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,7 +19,7 @@ namespace WeiXin_Web
             {
 
                 //获得AppidSecretToken对象
-                _appidSecret = _commonClass.GetAppidSecretToken();
+                _configuration = _commonClass.GetConfiguration();
 
             }
     
@@ -34,7 +34,7 @@ namespace WeiXin_Web
         {
             
 
-        lab_user_list_json.Text= _user.GetUserList(_commonClass.Get_access_token(_appidSecret,"catch"));
+        lab_user_list_json.Text= _user.GetUserList(_commonClass.Get_access_token(_configuration,"catch"));
         }
 
 
@@ -45,7 +45,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_get_all_groups_OnServerClick(object sender, EventArgs e)
         {
-            lab_all_groups.InnerText = _user.GetGroups(_commonClass.Get_access_token(_appidSecret, "catch"));
+            lab_all_groups.InnerText = _user.GetGroups(_commonClass.Get_access_token(_configuration, "catch"));
         }
 
 
@@ -56,7 +56,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_create_groups_OnServerClick(object sender, EventArgs e)
         {
-            lab_create_groups_msg.Text = _user.CreateGroups(_commonClass.Get_access_token(_appidSecret, "catch"), txt_create_groups_json.Text.Trim());
+            lab_create_groups_msg.Text = _user.CreateGroups(_commonClass.Get_access_token(_configuration, "catch"), txt_create_groups_json.Text.Trim());
 
 
         }
@@ -68,7 +68,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_getGroupId_OnServerClick(object sender, EventArgs e)
         {
-            lab_getgroupid_msg.InnerText = _user.GetGroupId(_commonClass.Get_access_token(_appidSecret, "catch"), txt_getgroupid.Value.Trim());
+            lab_getgroupid_msg.InnerText = _user.GetGroupId(_commonClass.Get_access_token(_configuration, "catch"), txt_getgroupid.Value.Trim());
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_updateGroup_OnServerClick(object sender, EventArgs e)
         {
-            lab_updateGroup_msg.InnerText = _user.UpdateGroupsName(_commonClass.Get_access_token(_appidSecret, "catch"), txt_updateGroup.Value.Trim());
+            lab_updateGroup_msg.InnerText = _user.UpdateGroupsName(_commonClass.Get_access_token(_configuration, "catch"), txt_updateGroup.Value.Trim());
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_update_members_OnServerClick(object sender, EventArgs e)
         {
-            lab_update_members_msg.InnerText = _user.UpdateMembers(_commonClass.Get_access_token(_appidSecret, "catch"),txt_update_members.Value.Trim());
+            lab_update_members_msg.InnerText = _user.UpdateMembers(_commonClass.Get_access_token(_configuration, "catch"),txt_update_members.Value.Trim());
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace WeiXin_Web
         /// <param name="e"></param>
         protected void btn_batch_update_members_OnServerClick(object sender, EventArgs e)
         {
-            lab_batch_update_members_msg.InnerText = _user.BatchUpdateMembers(_commonClass.Get_access_token(_appidSecret, "catch"),txt_batch_update_members.Value.Trim());
+            lab_batch_update_members_msg.InnerText = _user.BatchUpdateMembers(_commonClass.Get_access_token(_configuration, "catch"),txt_batch_update_members.Value.Trim());
         }
     }
 }
