@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.Configuration;
 using System.Web.UI;
 using WeiXin_Web.Common;
 using WX_Tools;
@@ -9,7 +8,7 @@ namespace WeiXin_Web
 {
     public partial class SendMsg : Page
     {
-        private readonly AppidSecretToken _appidSecret = new AppidSecretToken();
+        private AppidSecretToken _appidSecret = new AppidSecretToken();
         readonly MessageMass _messageMass=new MessageMass();
         CommonClass _commonClass = new CommonClass();
         protected void Page_Load(object sender, EventArgs e)
@@ -17,9 +16,9 @@ namespace WeiXin_Web
 
             if (IsPostBack)
             {
-                //为AppidSecretToken对象赋值
-                _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
-                _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+                //AppidSecretToken对象
+                _appidSecret = _commonClass.GetAppidSecretToken();
+
             }
 
         }
