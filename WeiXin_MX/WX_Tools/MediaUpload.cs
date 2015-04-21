@@ -3,8 +3,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
-using Newtonsoft.Json.Linq;
-using WX_Tools.Entites;
 
 namespace WX_Tools
 {
@@ -20,7 +18,7 @@ namespace WX_Tools
         /// 上传临时素材，获取media_id,有效期为三天
         /// </summary>
         /// <param name="fileUrl">图片的完整路径</param>
-        /// <returns></returns>
+        /// <returns>返回json格式字符串</returns>
         public string GetTemporaryMediaId(string accesstoken, string fileUrl)
         {
             #region 上传临时素材接口说明
@@ -158,16 +156,9 @@ namespace WX_Tools
             {
                 using (StreamReader myStreamReader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8")))
                 {
-                    string retString = myStreamReader.ReadToEnd();
+                     result = myStreamReader.ReadToEnd();
 
-                    //解析json
-                    JObject jObject = JObject.Parse(retString);
-                    if (!string.IsNullOrWhiteSpace(jObject["media_id"].ToString()))
-                    {
-                        result= jObject["media_id"].ToString();
-                    }
-
-                }
+               }
             }
             return result;
 

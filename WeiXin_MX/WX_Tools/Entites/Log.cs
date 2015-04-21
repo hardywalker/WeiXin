@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WX_Tools.Entites
+﻿namespace WX_Tools.Entites
 {
     /// <summary>
     /// 错误日志实体类

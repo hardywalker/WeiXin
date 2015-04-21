@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Web;
-using System.Web.Configuration;
 using System.Xml;
+using WeiXin_Web.Common;
 using WX_Tools;
 using WX_Tools.Entites;
 
@@ -17,12 +17,13 @@ namespace WeiXin_Web
        {
            LogTxtPhyPath =  "/ErrorTXT/"
        };
-        private readonly AppidSecretToken _appidSecret=new AppidSecretToken();
+        private  AppidSecretToken _appidSecret=new AppidSecretToken();
+        readonly CommonClass _commonClass=new CommonClass();
         public void ProcessRequest(HttpContext context)
         {
 
             //验证口令
-            string token = WebConfigurationManager.AppSettings["token"];
+            string token = _commonClass.GetAppidSecretToken().Token;
 
             context.Response.ContentType = "text/plain";
             
@@ -52,8 +53,8 @@ namespace WeiXin_Web
                 try
                 {
                     //获取配置信息
-                    _appidSecret.Appid = WebConfigurationManager.AppSettings["appid"];
-                    _appidSecret.Secret = WebConfigurationManager.AppSettings["secret"];
+                    _appidSecret = _commonClass.GetAppidSecretToken();
+                  
                     
                     
                     //接收并响应

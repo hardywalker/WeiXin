@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Net;
 using System.Text;
-using Newtonsoft.Json.Linq;
 using WX_Tools.Entites;
 
 namespace WX_Tools

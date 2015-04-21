@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-
-namespace WX_Tools.Entites
+﻿namespace WX_Tools.Entites
 {
     /// <summary>
     /// 回复消息时发送人与指定接收者实体
