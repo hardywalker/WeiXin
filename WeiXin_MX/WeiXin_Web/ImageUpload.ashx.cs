@@ -13,12 +13,12 @@ namespace WeiXin_Web
     /// </summary>
     public class ImageUpload : IHttpHandler
     {
-        Configuration _configuration=new Configuration();
+        WeiXinConfiguration _weiXinConfiguration = new WeiXinConfiguration();
         CommonClass _commonClass=new CommonClass();
         public void ProcessRequest(HttpContext context)
         {
 
-            _configuration = _commonClass.GetConfiguration();
+            _weiXinConfiguration = _commonClass.GetConfiguration();
                     
             context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");

@@ -9,7 +9,7 @@ namespace WeiXin_Web.Common
 {
     public class CommonClass
     {
-        Configuration _configuration = new Configuration();
+        WeiXinConfiguration _weiXinConfiguration = new WeiXinConfiguration();
         readonly XmlReadWrite _xmlReadWrite = new XmlReadWrite();
 
 
@@ -17,7 +17,7 @@ namespace WeiXin_Web.Common
         /// 取得access_token
         /// </summary>
         /// <returns></returns>
-        public string Get_access_token(Configuration configuration, string serverORcatch)
+        public string Get_access_token(WeiXinConfiguration weiXinConfiguration, string serverORcatch)
         {
 
             //access_token缓存名称
@@ -38,7 +38,7 @@ namespace WeiXin_Web.Common
             if (accesstokenCache == null)
             {
 
-                string resultJson = new GetAccessToken().get_access_token(_configuration);
+                string resultJson = new GetAccessToken().get_access_token(weiXinConfiguration);
 
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 AccessToken accessToken = javaScriptSerializer.Deserialize(resultJson, typeof(AccessToken)) as AccessToken;
@@ -62,9 +62,9 @@ namespace WeiXin_Web.Common
         /// <param name="appidSecretToken"></param>
         /// <returns></returns>
 
-        public string GET_IP_List(Configuration configuration)
+        public string GET_IP_List(WeiXinConfiguration weiXinConfiguration)
         {
-            string accesstoken = Get_access_token(configuration, "catch");
+            string accesstoken = Get_access_token(weiXinConfiguration, "catch");
 
             
 
@@ -80,9 +80,9 @@ namespace WeiXin_Web.Common
         /// 获取appid secret token等信息
         /// </summary>
         /// <returns>返回AppidSecretToken对象</returns>
-        public Configuration GetConfiguration()
+        public WeiXinConfiguration GetConfiguration()
         {
-            return _configuration = _xmlReadWrite.Read("/XML/", _configuration, "set.config") as Configuration;
+            return _weiXinConfiguration = _xmlReadWrite.Read("/XML/", _weiXinConfiguration, "set.config") as WeiXinConfiguration;
         }
 
     }

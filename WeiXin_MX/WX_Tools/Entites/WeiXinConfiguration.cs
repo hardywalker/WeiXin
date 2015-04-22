@@ -3,7 +3,7 @@
     /// <summary>
     /// appid以及appsecret,token,encodingaeskey实体类
     /// </summary>
-   public  class Configuration
+   public  class WeiXinConfiguration
     {
 
 

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WX_Tools</RootNamespace>
     <AssemblyName>WX_Tools</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -55,7 +55,7 @@
     <Compile Include="CustomerMenuEventPush.cs" />
     <Compile Include="DebugLog.cs" />
     <Compile Include="Entites\AccessToken.cs" />
-    <Compile Include="Entites\Configuration.cs" />
+    <Compile Include="Entites\WeiXinConfiguration.cs" />
     <Compile Include="Entites\Log.cs" />
     <Compile Include="Entites\News.cs" />
     <Compile Include="Entites\Sender.cs" />

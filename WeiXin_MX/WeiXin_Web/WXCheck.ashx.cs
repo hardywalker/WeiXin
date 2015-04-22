@@ -17,7 +17,7 @@ namespace WeiXin_Web
        {
            LogTxtPhyPath =  "/ErrorTXT/"
        };
-        private  Configuration _configuration=new Configuration();
+     private WeiXinConfiguration _weiXinConfiguration = new WeiXinConfiguration();
         readonly CommonClass _commonClass=new CommonClass();
         public void ProcessRequest(HttpContext context)
         {
@@ -53,13 +53,13 @@ namespace WeiXin_Web
                 try
                 {
                     //获取配置信息
-                    _configuration = _commonClass.GetConfiguration();
+                    _weiXinConfiguration = _commonClass.GetConfiguration();
                   
                     
                     
                     //接收并响应
                    // new Handler().ExecHandler(_appidSecret);
-                    ExecHandler(_configuration);
+                    ExecHandler(_weiXinConfiguration);
                 }
                 catch (Exception ex)
                 {
@@ -93,7 +93,7 @@ namespace WeiXin_Web
         /// 开始处理微信请求
         /// </summary>
         /// <param name="appidSecret"></param>
-        private void ExecHandler(Configuration appidSecret)
+        private void ExecHandler(WeiXinConfiguration weiXinConfiguration)
         {
             #region 接收普通消息
 
@@ -492,7 +492,7 @@ namespace WeiXin_Web
                     _content = rootXmlElement.SelectSingleNode("Content").InnerText;
                    
                     //回复内容
-                    Reply(appidSecret, _content);
+                    Reply(weiXinConfiguration, _content);
 
                 }
                 else if (_msgType.Equals(AllEnum.MsgTypeEnum.link.ToString()))
@@ -561,7 +561,7 @@ namespace WeiXin_Web
         /// </summary>
         /// <param name="appidSecret"></param>
         /// <param name="contentStr"></param>
-        private void Reply(Configuration appidSecret, string contentStr)
+        private void Reply(WeiXinConfiguration weiXinConfiguration, string contentStr)
         {
 
             //switch (contentStr)
@@ -639,7 +639,7 @@ namespace WeiXin_Web
         /// <summary>
         /// 回复获取到的服务器IP地址
         /// </summary>
-        private void GetServerIpString(Configuration appidSecret)
+        private void GetServerIpString(WeiXinConfiguration weiXinConfiguration)
         {
             try
             {
