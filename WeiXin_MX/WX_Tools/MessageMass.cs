@@ -83,7 +83,7 @@ namespace WX_Tools
             string result = "";
             byte[] postBytes = Encoding.UTF8.GetBytes(strJson);
      
-            string postUrl = string.Format(new ApiAddress().media_uploadnews, accesstoken);
+            string postUrl = string.Format(new ApiAddress().MediaUploadNews, accesstoken);
             HttpWebRequest httpWebRequest = WebRequest.Create(postUrl) as HttpWebRequest;
             httpWebRequest.Method = "POST";
             httpWebRequest.ContentType = "application/x-www-form-urlencoded;";

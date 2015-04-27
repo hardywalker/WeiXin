@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using WeiXin_Web.Common;
 using WX_Tools;
@@ -52,6 +53,28 @@ namespace WeiXin_Web
         protected void btn_sendmsg_openlist_OnServerClick(object sender, EventArgs e)
         {
             lab_sendmsg_openlist_msg.InnerText = _messageMass.MessageMassSend(_commonClass.Get_access_token(_weiXinConfiguration, "catch"), txt_send_openlist.Value.Trim());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_sendMaterialNews_OnServerClick(object sender, EventArgs e)
+        {
+          List<News> allList=new List<News>();
+            for (int i = 0; i < 5; i++)
+            {
+                News news = new News();
+                news.Title = "标题"+i;
+                news.Description = "描述" + i;
+                news.PicUrl = "http://tuchong.com/381497/6898938/7481525/";
+                allList.Add(news);
+            }
+
+
+            
+
         }
     }
 }

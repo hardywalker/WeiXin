@@ -26,10 +26,16 @@
             <span runat="server" id="lab_sendmsg_openlist_msg"></span>
        
         <br/>
-        <h1>发送预览消息</h1><br/>
+        <h1>发送预览文本消息</h1>
         文本格式：{"touser":"o8__KjrxQiTety8PbZb7noPse77s","text":{"content":"CONTENT"},"msgtype":"text"}<br/>
            <asp:TextBox ID="txt_send_preview" runat="server" TextMode="MultiLine" Width="100%" Height="65px">{"touser":"o8__KjrxQiTety8PbZb7noPse77s","text":{"content":"CONTENT"},"msgtype":"text"}</asp:TextBox><br/>
         <asp:Button ID="btn_send_preview" runat="server" Text="预览文本消息"  OnClick="btn_send_preview_OnClick"/><asp:Label runat="server" ID="lab_send_preview_msg"></asp:Label>
+            <br />
+            <h1>发送多条图文消息：</h1>
+            <input type="text" runat="server" id="txt_materialAddNews" value="" style="width: 100%;height: 70px"/>
+            <input type="button" runat="server" id="btn_sendMaterialNews" value="发送多条图片消息" OnServerClick="btn_sendMaterialNews_OnServerClick"/>
+            <label runat="server" id="lab_materialAddNews_msg"></label>
+
             </div>
     </form>
 </body>

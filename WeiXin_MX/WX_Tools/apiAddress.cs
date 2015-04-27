@@ -111,76 +111,20 @@
 
 
 
+        #region 新增永久图文素材
+
+        /// <summary>
+        /// 新增永久图文素材  Post   需要传入access_token   占位符已写
+        /// https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN
+        /// </summary>
+        public string MaterialAddNews = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token={0}";
+        #endregion
+
+
 
         #region 高级群发接口
 
 
-        #region 上传图文消息素材【订阅号与服务号认证后均可用】  POST
-        #region 接口调用请求说明
-        /**
-                 * http请求方式: POST
-                            https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token=ACCESS_TOKEN
-                    
-                            POST数据说明
-                    
-                            POST数据示例如下：
-                    
-                            {
-                               "articles": [
-                    		         {
-                                                    "thumb_media_id":"qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
-                                                    "author":"xxx",
-                    			         "title":"Happy Day",
-                    			         "content_source_url":"www.qq.com",
-                    			         "content":"content",
-                    			         "digest":"digest",
-                                                    "show_cover_pic":"1"
-                    		         },
-                    		         {
-                                                    "thumb_media_id":"qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
-                                                    "author":"xxx",
-                    			         "title":"Happy Day",
-                    			         "content_source_url":"www.qq.com",
-                    			         "content":"content",
-                    			         "digest":"digest",
-                                                    "show_cover_pic":"0"
-                    		         }
-                               ]
-                            }
-                    
-                            参数 	是否必须 	说明
-                            Articles 	是 	图文消息，一个图文消息支持1到10条图文
-                            thumb_media_id 	是 	图文消息缩略图的media_id，可以在基础支持-上传多媒体文件接口中获得
-                            author 	否 	图文消息的作者
-                            title 	是 	图文消息的标题
-                            content_source_url 	否 	在图文消息页面点击“阅读原文”后的页面
-                            content 	是 	图文消息页面的内容，支持HTML标签
-                            digest 	否 	图文消息的描述
-                            show_cover_pic 	否 	是否显示封面，1为显示，0为不显示
-                    
-                            返回说明
-                    
-                            返回数据示例（正确时的JSON返回结果）：
-                    
-                            {
-                               "type":"news",
-                               "media_id":"CsEf3ldqkAYJAU6EJeIkStVDSvffUJ54vqbThMgplD-VJXXof6ctX5fI6-aYyUiQ",
-                               "created_at":1391857799
-                            }
-                    
-                            参数 	说明
-                            type 	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb），次数为news，即图文消息
-                            media_id 	媒体文件/图文消息上传后获取的唯一标识
-                            created_at 	媒体文件上传时间 
-                 */
-        #endregion
-        ///<summary>
-        /// 上传图文消息素材【订阅号与服务号认证后均可用】 POST   ，需要传入access_token  ,占位符已写
-        /// https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token=ACCESS_TOKEN
-        /// </summary>
-        public string media_uploadnews = "https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token={0}";
-
-        #endregion
 
 
         #region 根据分组进行群发【订阅号与服务号认证后均可用】  POST
