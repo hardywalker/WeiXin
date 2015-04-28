@@ -40,7 +40,7 @@ namespace WeiXin_Web.Common
 
                 string resultJson = new GetAccessToken().get_access_token(weiXinConfiguration);
 
-                JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+               JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 AccessToken accessToken = javaScriptSerializer.Deserialize(resultJson, typeof(AccessToken)) as AccessToken;
 
 
