@@ -16,24 +16,27 @@ function TemporaryMedia() {
         return;
     }
     var actionUrl = "ImageUpload.ashx";
-    //$("#form1").attr({"action":actionUrl}).submit();
+    $("#form1").ajaxSubmit({
+      
+            type: "POST",
+            dataType: "json",
+            url: actionUrl,
+            data: { "action": "TemporaryImage" },
+            success: function (data) {
+                //解析json
+                var result = eval(data);
+                if (result.status == "warning") {
+                    alert(result.msg);
+                } else if (result.status == "success") {
+                    $("#div_temporaryImage").append("<img src='" + result.msg + "' />");
+                }
+
+            },
+            error: function (data) { alert(data.msg); },
+            async: true
+     
+    });
     
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: actionUrl,
-        data: { "action": "TemporaryImage" },
-        success: function (data) {
-            var result = $.parseJSON(data);
-            if (result.status == "warning") {
-                alert(result.msg);
-            } else if (result.status == "success") {
-                $("#div_temporaryImage").append("<img src='" + result.msg + "' />");
-            }
-         
-        },
-        error: function(data) { alert(data.msg); },
-        async: true
-});
+
 }
 /********************上传临时素材  End*****************************/
