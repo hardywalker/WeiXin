@@ -23,12 +23,11 @@ function TemporaryMedia() {
             url: actionUrl,
             data: { "action": "TemporaryImage" },
             success: function (data) {
-                //解析json
-                var result = eval(data);
-                if (result.status == "warning") {
-                    alert(result.msg);
-                } else if (result.status == "success") {
-                    $("#div_temporaryImage").append("<img src='" + result.msg + "' />");
+             
+                if (data.status == "warning") {
+                    alert(data.msg);
+                } else if (data.status == "success") {
+                    $("#div_temporaryImage").append("<img style='width:300px;height:300px;' src='" + data.msg + "' /><span>临时素材mediaId:" + data.uploadmsg.media_id + "</span>");
                 }
 
             },
@@ -40,3 +39,12 @@ function TemporaryMedia() {
 
 }
 /********************上传临时素材  End*****************************/
+
+
+
+
+/********************上传永久素材  Start*****************************/
+function ForeverMedia() {
+    
+}
+/********************上传永久素材  End*****************************/

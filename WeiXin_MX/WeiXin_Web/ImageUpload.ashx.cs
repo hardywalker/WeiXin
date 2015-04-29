@@ -16,6 +16,14 @@ namespace WeiXin_Web
         WeiXinConfiguration _weiXinConfiguration = new WeiXinConfiguration();
         CommonClass _commonClass=new CommonClass();
         private HttpContext _httpContext;
+
+        DebugLog _debugLog=new DebugLog();
+        Log _log=new Log()
+        {
+            LogTxtPhyPath = "/ErrorTXT/"
+        };
+        
+
         public void ProcessRequest(HttpContext context)
         {
 
@@ -82,15 +90,14 @@ namespace WeiXin_Web
                 {
                   
                     ResponseWriteEnd(status.warning.ToString(), "请上传jpg格式的文件！");
+                    return;
                 }
 
                 //判断文件大小是否符合要求
                 if (upfile.ContentLength >= (1024*1024*1))
                 {
-                
-
-
-                    ResponseWriteEnd(status.warning.ToString(), "请上传1M以内的文件！");
+                ResponseWriteEnd(status.warning.ToString(), "请上传1M以内的文件！");
+                return;
                 }
 
                 string imgName = DateTime.Now.ToString("yyyy-MM-dd-HH-ss") + DateTime.Now.Ticks;
@@ -105,31 +112,25 @@ namespace WeiXin_Web
                 {
 
                     
-                    ResponseWriteEnd(status.warning.ToString(), "保存图片出错");
+                  //写入日志
                   
                 }
 
                 if (flag)
                 {
-                    // string mediaId =
-                    //  new MediaUpload().GetTemporaryMediaId(_appidSecret,context.Server.MapPath("/Upload/" + imgName + ".jpg"));
-                    //  context.Response.Write(mediaId);
-                    //  new DebugLog().BugWriteTxt(new Log().LogTxtPhyPath, mediaId);
+                    //返回json
+                    string mediaIdJson =
+                     new MediaUpload().GetTemporaryMediaId(_commonClass.Get_access_token(_weiXinConfiguration,"catch"), _httpContext.Server.MapPath("/Upload/" + imgName + ".jpg"));
 
+                    _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "临时素材：" + mediaIdJson);
 
-            
-
-
-                    ResponseWriteEnd(status.success.ToString(), "/Upload/" + imgName + ".jpg");
+                    ResponseWriteEnd(status.success.ToString(), "/Upload/" + imgName + ".jpg", mediaIdJson);
                  
                 }
                 else
                 {
                     File.Delete(_httpContext.Server.MapPath("/Upload/" + imgName + ".jpg"));
-
-
-                   
-
+                    
                     ResponseWriteEnd(status.warning.ToString(), "图片保存出错，已经被删除。");
                 }
             }
@@ -146,14 +147,16 @@ namespace WeiXin_Web
         /// </summary>
         /// <param name="status"></param>
         /// <param name="msg"></param>
-        private void ResponseWriteEnd(string status,string msg)
+        private void ResponseWriteEnd(string status,string msg,string uploadMsg="")
         {
             StringBuilder stringBuilder=new StringBuilder();
             stringBuilder.Append("{");
             stringBuilder.Append("\"status\":");
             stringBuilder.AppendFormat("\"{0}\",", status);
             stringBuilder.Append("\"msg\":");
-            stringBuilder.AppendFormat("\"{0}\"", msg);
+            stringBuilder.AppendFormat("\"{0}\",", msg);
+            stringBuilder.Append("\"uploadmsg\":");
+            stringBuilder.AppendFormat("{0}", uploadMsg);
             stringBuilder.Append("}");
 
             _httpContext.Response.Write(stringBuilder.ToString());
