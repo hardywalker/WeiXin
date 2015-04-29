@@ -14,13 +14,13 @@ namespace WeiXin_Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-        
-    
 
+
+            if (IsPostBack) { 
                 //获得AppidSecretToken对象
                 _weiXinConfiguration = _commonClass.GetConfiguration();
 
-      
+            }
     
         }
 

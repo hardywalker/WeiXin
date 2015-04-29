@@ -66,10 +66,7 @@
         
     </form>
     <hr/>
-      <form action="ImageUpload.ashx" method="post" enctype="multipart/form-data">
-        <input id="File1" type="file" name="image0" /><br />
-        <input id="Submit1" type="submit" value="上传临时素材" />
-    </form> 
+    
  
 </body>
 </html>
