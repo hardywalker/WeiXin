@@ -76,5 +76,28 @@ namespace WeiXin_Web
             
 
         }
+
+        /// <summary>
+        /// 上传图文消息素材
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_uploadMaterialMpnNews_OnServerClick(object sender, EventArgs e)
+        {
+            lab_materialMpnNewsMsg.InnerText= _messageMass.MediaUploadNews(_commonClass.Get_access_token(_weiXinConfiguration, "catch"),
+                txt_uploadMaterialMpnNews.Value.Trim());
+        }
+
+        /// <summary>
+        /// 发送预览图文消息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_sendPreviewMpnNews_OnServerClick(object sender, EventArgs e)
+        {
+            lab_sendPriviewMpnNewsMsg.InnerText =
+                _messageMass.MessageMassPreview(_commonClass.Get_access_token(_weiXinConfiguration, "catch"),
+                    txt_sendPrivewMpnNews.Value.Trim());
+        }
     }
 }

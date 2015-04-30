@@ -55,7 +55,7 @@ namespace WeiXin_Web {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_send_openlist;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txt_send_openlist;
         
         /// <summary>
         /// btn_sendmsg_openlist 控件。
@@ -74,6 +74,33 @@ namespace WeiXin_Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lab_sendmsg_openlist_msg;
+        
+        /// <summary>
+        /// txt_uploadMaterialMpnNews 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txt_uploadMaterialMpnNews;
+        
+        /// <summary>
+        /// btn_uploadMaterialMpnNews 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_uploadMaterialMpnNews;
+        
+        /// <summary>
+        /// lab_materialMpnNewsMsg 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lab_materialMpnNewsMsg;
         
         /// <summary>
         /// txt_send_preview 控件。
@@ -103,13 +130,40 @@ namespace WeiXin_Web {
         protected global::System.Web.UI.WebControls.Label lab_send_preview_msg;
         
         /// <summary>
+        /// txt_sendPrivewMpnNews 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txt_sendPrivewMpnNews;
+        
+        /// <summary>
+        /// btn_sendPreviewMpnNews 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_sendPreviewMpnNews;
+        
+        /// <summary>
+        /// lab_sendPriviewMpnNewsMsg 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lab_sendPriviewMpnNewsMsg;
+        
+        /// <summary>
         /// txt_materialAddNews 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_materialAddNews;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txt_materialAddNews;
         
         /// <summary>
         /// btn_sendMaterialNews 控件。
