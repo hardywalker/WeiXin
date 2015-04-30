@@ -13,12 +13,13 @@
     <form id="form1" runat="server">
         <div>
     <div id="header"></div>
-             <h1>群发文本消息</h1>
-            <h2>根据分组进行群发</h2>
+             <h1>群发消息</h1>
+            <h2>根据分组进行群发文本消息</h2>
        根据分组进行群发文本消息，发送给全部关注者is_to_all为true: {"filter":{"is_to_all":true,"group_id": "2"},"text": {"content": "这里是内容"},"msgtype": "text"}<br/>
-       
-        <asp:TextBox ID="txt_sendall" runat="server" TextMode="MultiLine" Width="100%" Height="100px">{"filter":{"is_to_all":true,"group_id": "2"},"text": {"content": "这里是内容"},"msgtype": "text"}</asp:TextBox><br/>
+       <asp:TextBox ID="txt_sendall" runat="server" TextMode="MultiLine" Width="100%" Height="100px">{"filter":{"is_to_all":true,"group_id": "2"},"text": {"content": "这里是内容"},"msgtype": "text"}</asp:TextBox><br/>
         <asp:Button ID="btn_sendall" runat="server" Text="群发文本消息" OnClick="btn_sendall_OnClick" /><asp:Label runat="server" ID="lab_send_all_msg"></asp:Label><br/>
+            <hr/>
+
             <h2>根据OpenID列表群发</h2>
         根据OpenID列表群发【订阅号不可用，服务号认证后可用】 :{"touser":["OPENID1","OPENID2"],"msgtype": "text","text": { "content": "hello from boxer."}}<br/>
             <textarea runat="server" id="txt_send_openlist" value='{"touser":["OPENID1","OPENID2"],"msgtype": "text","text": { "content": "hello from boxer."}}' style="width: 100%; height: 50px"></textarea>
