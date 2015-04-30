@@ -20,6 +20,7 @@ namespace WeiXin_Web
                     txt_appid.Text = _configuration.Appid;
                     txt_secret.Text = _configuration.AppSecret;
                     txt_token.Text = _configuration.Token;
+                    txt_encodingaeskey.Value = _configuration.EncodingAESKey;
                 }
             }
           
@@ -35,6 +36,7 @@ namespace WeiXin_Web
             _configuration.Appid = txt_appid.Text;
             _configuration.AppSecret = txt_secret.Text;
             _configuration.Token = txt_token.Text;
+            _configuration.EncodingAESKey = txt_encodingaeskey.Value.Trim();
             SaveConfig(_configuration);
         }
 
