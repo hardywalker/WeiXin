@@ -54,6 +54,9 @@
     <Compile Include="CustomerMenu.cs" />
     <Compile Include="CustomerMenuEventPush.cs" />
     <Compile Include="DebugLog.cs" />
+    <Compile Include="EncryptDecrypt\Cryptography.cs" />
+    <Compile Include="EncryptDecrypt\Sample.cs" />
+    <Compile Include="EncryptDecrypt\WXBizMsgCrypt.cs" />
     <Compile Include="Entites\AccessToken.cs" />
     <Compile Include="Entites\WeiXinConfiguration.cs" />
     <Compile Include="Entites\Log.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="User.cs" />
     <Compile Include="XmlReadWrite.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -39,15 +39,6 @@ namespace WeiXin_Web
 
        
 
-        /// <summary>
-        /// 提交图文消息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btn_send_tuwen_OnClick(object sender, EventArgs e)
-        {
-          // lab_send_tuwen_msg.Text= new MediaUpload().MediaUploadNews(_appidSecret, txt_send_tuwen.Text.Trim());
-        }
 
 
         /// <summary>

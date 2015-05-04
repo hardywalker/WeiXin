@@ -26,46 +26,11 @@
         <asp:Label runat="server" ID="lab_server_ip"></asp:Label>
         <hr/>
 
-     
-
-    <h1>上传图文消息素材【订阅号与服务号认证后均可用】 </h1>
-    示例：{
-   "articles": [{"thumb_media_id":"qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
-                        "author":"xxx",
-			 "title":"Happy Day",
-			 "content_source_url":"www.qq.com",
-			 "content":"content",
-			 "digest":"digest",
-                        "show_cover_pic":"1"
-		 },
-		 {"thumb_media_id":"qI6_Ze_6PtV7svjolgs-rN6stStuHIjs9_DidOHaj0Q-mwvBelOXCFZiq2OsIU-p",
-                        "author":"xxx",
-			 "title":"Happy Day",
-			 "content_source_url":"www.qq.com",
-			 "content":"content",
-			 "digest":"digest",
-                        "show_cover_pic":"0"
-		 }
-   ]
-}
-    <br/>
-    <asp:TextBox TextMode="MultiLine" runat="server" ID="txt_send_tuwen" Width="100%" Height="300px">{
-   "articles": [{"thumb_media_id":"yZUe2ECV77M1brCJHGJDT_HugdQjr5FZye4QR9abxEwwnFDAj38Gm8CD6f-VvVM_",
-                        "author":"anyangmaxin",
-			 "title":"这是一条测试消息",
-			 "content_source_url":"www.qq.com",
-			 "content":"这里是详细内容这里是详细内容这里是详细内容这里是详细内容这里是详细内容这里是详细内容这里是详细内容这里是详细内容这里是详细内容这里是详细内容",
-			 "digest":"这里是消息简介",
-                        "show_cover_pic":"1"
-		 }
-   ]
-}</asp:TextBox>
-       <asp:Button ID="btn_send_tuwen" runat="server" Text="提交图文消息素材"  OnClick="btn_send_tuwen_OnClick"/><asp:Label runat="server" ID="lab_send_tuwen_msg"></asp:Label>
 
     </div>
         
     </form>
-    <hr/>
+
     
  
 </body>

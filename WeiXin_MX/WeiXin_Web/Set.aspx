@@ -24,7 +24,7 @@
             Appid:<asp:TextBox runat="server" ID="txt_appid" Width="200px"></asp:TextBox><br/>
             Secret:<asp:TextBox runat="server" ID="txt_secret" Width="300px"></asp:TextBox><br/>
             Token:<asp:TextBox runat="server" ID="txt_token" Width="200px"></asp:TextBox><br/>
-            EncodingAESKey:<input type="text" runat="server" id="txt_encodingaeskey" style="width: 400px;"/><br/>
+            EncodingAESKey:<input type="text" runat="server" maxlength="43" id="txt_encodingaeskey" style="width: 400px;"/><br/>
             <asp:Button runat="server" ID="btn_save_set" Text="保存配置信息" OnClick="btn_save_set_OnClick"/>
     </div>
     </form>
