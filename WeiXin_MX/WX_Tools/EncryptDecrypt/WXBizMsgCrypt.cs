@@ -1,10 +1,7 @@
 ﻿using System;
-
-
 using System.Text;
 using System.Xml;
 using System.Collections;
-
 using System.Security.Cryptography;
 
 
@@ -20,30 +17,72 @@ using System.Security.Cryptography;
 //-40010 :  base64解密异常
 namespace WX_Tools.EncryptDecrypt
 {
-    class WXBizMsgCrypt
+    /// <summary>
+    /// 
+    /// </summary>
+    public class WXBizMsgCrypt
     {
         string m_sToken;
         string m_sEncodingAESKey;
         string m_sAppID;
         enum WXBizMsgCryptErrorCode
         {
+            /// <summary>
+            /// 成功
+            /// </summary>
             WXBizMsgCrypt_OK = 0,
+
+            /// <summary>
+            /// -40001 ： 签名验证错误
+            /// </summary>
             WXBizMsgCrypt_ValidateSignature_Error = -40001,
+            /// <summary>
+            /// -40002 :  xml解析失败
+            /// </summary>
             WXBizMsgCrypt_ParseXml_Error = -40002,
+            /// <summary>
+            /// sha加密生成签名失败
+            /// </summary>
             WXBizMsgCrypt_ComputeSignature_Error = -40003,
+            /// <summary>
+            /// AESKey 非法
+            /// </summary>
             WXBizMsgCrypt_IllegalAesKey = -40004,
+            /// <summary>
+            /// appid 校验错误
+            /// </summary>
             WXBizMsgCrypt_ValidateAppid_Error = -40005,
+            /// <summary>
+            /// AES 加密失败
+            /// </summary>
             WXBizMsgCrypt_EncryptAES_Error = -40006,
+            /// <summary>
+            /// AES 解密失败
+            /// </summary>
             WXBizMsgCrypt_DecryptAES_Error = -40007,
+            /// <summary>
+            /// 解密后得到的buffer非法
+            /// </summary>
             WXBizMsgCrypt_IllegalBuffer = -40008,
+            /// <summary>
+            /// base64加密异常
+            /// </summary>
             WXBizMsgCrypt_EncodeBase64_Error = -40009,
+            /// <summary>
+            /// base64解密异常
+            /// </summary>
             WXBizMsgCrypt_DecodeBase64_Error = -40010
         };
 
-        //构造函数
-        // @param sToken: 公众平台上，开发者设置的Token
-        // @param sEncodingAESKey: 公众平台上，开发者设置的EncodingAESKey
-        // @param sAppID: 公众帐号的appid
+    
+
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="sToken">公众平台上，开发者设置的Token</param>
+        /// <param name="sEncodingAESKey">公众平台上，开发者设置的EncodingAESKey</param>
+        /// <param name="sAppID">公众帐号的appid</param>
         public WXBizMsgCrypt(string sToken, string sEncodingAESKey, string sAppID)
         {
             m_sToken = sToken;
@@ -52,37 +91,51 @@ namespace WX_Tools.EncryptDecrypt
         }
 
 
-        // 检验消息的真实性，并且获取解密后的明文
-        // @param sMsgSignature: 签名串，对应URL参数的msg_signature
-        // @param sTimeStamp: 时间戳，对应URL参数的timestamp
-        // @param sNonce: 随机串，对应URL参数的nonce
-        // @param sPostData: 密文，对应POST请求的数据
-        // @param sMsg: 解密后的原文，当return返回0时有效
-        // @return: 成功0，失败返回对应的错误码
+        
+        /// <summary>
+        /// 检验消息的真实性，并且获取解密后的明文 
+        /// </summary>
+        /// <param name="sMsgSignature">签名串，对应URL参数的msg_signature</param>
+        /// <param name="sTimeStamp">时间戳，对应URL参数的timestamp</param>
+        /// <param name="sNonce">随机串，对应URL参数的nonce</param>
+        /// <param name="sPostData">密文，对应POST请求的数据</param>
+        /// <param name="sMsg">解密后的原文，当return返回0时有效</param>
+        /// <returns>成功0，失败返回对应的错误码</returns>
         public int DecryptMsg(string sMsgSignature, string sTimeStamp, string sNonce, string sPostData, ref string sMsg)
         {
+            //如果加密解密key不是43位长度的，直接返回错误 
             if (m_sEncodingAESKey.Length != 43)
             {
+                //返回错误码
                 return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_IllegalAesKey;
             }
+            //xml文档对象
             XmlDocument doc = new XmlDocument();
+            //根节点
             XmlNode root;
+
+            //声明字符串，用来接收加密的内容
             string sEncryptMsg;
             try
             {
+                //加载消息体
                 doc.LoadXml(sPostData);
+                //获取根节点
                 root = doc.FirstChild;
-                sEncryptMsg = root["Encrypt"].InnerText;
+                sEncryptMsg = root["Encrypt"].InnerText;//加密的消息内容
             }
             catch (Exception)
             {
+                //返回错误码
                 return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ParseXml_Error;
             }
             //verify signature
             int ret = 0;
             ret = VerifySignature(m_sToken, sTimeStamp, sNonce, sEncryptMsg, sMsgSignature);
             if (ret != 0)
+            {
                 return ret;
+            }
             //decrypt
             string cpid = "";
             try
@@ -98,17 +151,22 @@ namespace WX_Tools.EncryptDecrypt
                 return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_DecryptAES_Error;
             }
             if (cpid != m_sAppID)
+            {
                 return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ValidateAppid_Error;
+            }
             return 0;
         }
 
-        //将企业号回复用户的消息加密打包
-        // @param sReplyMsg: 企业号待回复用户的消息，xml格式的字符串
-        // @param sTimeStamp: 时间戳，可以自己生成，也可以用URL参数的timestamp
-        // @param sNonce: 随机串，可以自己生成，也可以用URL参数的nonce
-        // @param sEncryptMsg: 加密后的可以直接回复用户的密文，包括msg_signature, timestamp, nonce, encrypt的xml格式的字符串,
-        //						当return返回0时有效
-        // return：成功0，失败返回对应的错误码
+     
+
+        /// <summary>
+        /// 将企业号回复用户的消息加密打包 
+        /// </summary>
+        /// <param name="sReplyMsg">企业号待回复用户的消息，xml格式的字符串</param>
+        /// <param name="sTimeStamp">时间戳，可以自己生成，也可以用URL参数的timestamp</param>
+        /// <param name="sNonce">随机串，可以自己生成，也可以用URL参数的nonce</param>
+        /// <param name="sEncryptMsg">加密后的可以直接回复用户的密文，包括msg_signature, timestamp, nonce, encrypt的xml格式的字符串,return返回0时有效</param>
+        /// <returns>成功0，失败返回对应的错误码</returns>
         public int EncryptMsg(string sReplyMsg, string sTimeStamp, string sNonce, ref string sEncryptMsg)
         {
             if (m_sEncodingAESKey.Length != 43)
@@ -126,7 +184,7 @@ namespace WX_Tools.EncryptDecrypt
             }
             string MsgSigature = "";
             int ret = 0;
-            ret = GenarateSinature(m_sToken, sTimeStamp, sNonce, raw, ref MsgSigature);
+            ret = GenerateSignature(m_sToken, sTimeStamp, sNonce, raw, ref MsgSigature);
             if (0 != ret)
                 return ret;
             sEncryptMsg = "";
@@ -147,8 +205,20 @@ namespace WX_Tools.EncryptDecrypt
             return 0;
         }
 
+
+
+        /// <summary>
+        /// 排序
+        /// </summary>
         public class DictionarySort : System.Collections.IComparer
         {
+
+            /// <summary>
+            /// 比较
+            /// </summary>
+            /// <param name="oLeft"></param>
+            /// <param name="oRight"></param>
+            /// <returns></returns>
             public int Compare(object oLeft, object oRight)
             {
                 string sLeft = oLeft as string;
@@ -156,37 +226,65 @@ namespace WX_Tools.EncryptDecrypt
                 int iLeftLength = sLeft.Length;
                 int iRightLength = sRight.Length;
                 int index = 0;
+
                 while (index < iLeftLength && index < iRightLength)
                 {
                     if (sLeft[index] < sRight[index])
+                    {
                         return -1;
-                    else if (sLeft[index] > sRight[index])
+                    }
+                    if (sLeft[index] > sRight[index])
+                    {
                         return 1;
-                    else
-                        index++;
+                    }
+                    
+                    
+                    index++;
                 }
                 return iLeftLength - iRightLength;
 
             }
         }
         //Verify Signature
+        
+        /// <summary>
+        ///   验证签名
+        /// </summary>
+        /// <param name="sToken">公众平台上，开发者设置的Token</param>
+        /// <param name="sTimeStamp">时间戳，对应URL参数的timestamp</param>
+        /// <param name="sNonce">随机串，对应URL参数的nonce</param>
+        /// <param name="sMsgEncrypt">加密后的可以直接回复用户的密文，包括msg_signature, timestamp, nonce, encrypt的xml格式的字符串,return返回0时有效</param>
+        /// <param name="sSigture"></param>
+        /// <returns></returns>
         private static int VerifySignature(string sToken, string sTimeStamp, string sNonce, string sMsgEncrypt, string sSigture)
         {
             string hash = "";
             int ret = 0;
-            ret = GenarateSinature(sToken, sTimeStamp, sNonce, sMsgEncrypt, ref hash);
+            ret = GenerateSignature(sToken, sTimeStamp, sNonce, sMsgEncrypt, ref hash);
             if (ret != 0)
+            {
                 return ret;
+            }
             //System.Console.WriteLine(hash);
             if (hash == sSigture)
-                return 0;
-            else
             {
-                return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ValidateSignature_Error;
+                return 0;
             }
+            
+            return (int)WXBizMsgCryptErrorCode.WXBizMsgCrypt_ValidateSignature_Error;
         }
 
-        public static int GenarateSinature(string sToken, string sTimeStamp, string sNonce, string sMsgEncrypt, ref string sMsgSignature)
+
+        /// <summary>
+        /// 生成签名
+        /// </summary>
+        /// <param name="sToken">公众平台上，开发者设置的Token</param>
+        /// <param name="sTimeStamp">时间戳，对应URL参数的timestamp</param>
+        /// <param name="sNonce">随机串，对应URL参数的nonce</param>
+        /// <param name="sMsgEncrypt">加密后的可以直接回复用户的密文，包括msg_signature, timestamp, nonce, encrypt的xml格式的字符串,return返回0时有效</param>
+        /// <param name="sMsgSignature"></param>
+        /// <returns></returns>
+        public static int GenerateSignature(string sToken, string sTimeStamp, string sNonce, string sMsgEncrypt, ref string sMsgSignature)
         {
             ArrayList AL = new ArrayList();
             AL.Add(sToken);

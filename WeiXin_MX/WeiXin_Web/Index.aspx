@@ -18,7 +18,7 @@
         <hr/>
        
 
-  <asp:Button runat="server" ID="btn_get_access_token" OnClick="btn_get_access_token_OnClick" Text="获取access_token"/><br/>
+        <asp:Button runat="server" ID="btn_get_access_token" OnClick="btn_get_access_token_OnClick" Text="获取access_token"/><br/>
         <asp:Label runat="server" ID="lab_access_token"></asp:Label><br/>
         <input type="button" id="btn_update_access_token" value="更新access_token" runat="server" OnServerClick="btn_update_access_token_OnServerClick"/>
         <hr/>

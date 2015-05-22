@@ -6,6 +6,11 @@ namespace WX_Tools.EncryptDecrypt
 
     internal class Sample
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         private static void Main(string[] args)
         {
             //公众平台上开发者设置的token, appID, EncodingAESKey
@@ -65,6 +70,7 @@ namespace WX_Tools.EncryptDecrypt
             /*测试：
              * 将sEncryptMsg解密看看是否是原文
              * */
+
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(sEncryptMsg);
             XmlNode root = doc.FirstChild;
@@ -76,7 +82,6 @@ namespace WX_Tools.EncryptDecrypt
             ret = wxcpt.DecryptMsg(sig, timestamp, nonce, sEncryptMsg, ref stmp);
             System.Console.WriteLine("stemp");
             System.Console.WriteLine(stmp + ret);
-            return;
         }
     }
 }
