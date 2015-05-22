@@ -231,7 +231,9 @@
     <Content Include="Scripts\Ligerui\plugins\ligerMenu.js" />
     <Content Include="Scripts\Ligerui\plugins\ligerMenuBar.js" />
     <Content Include="Scripts\Ligerui\plugins\ligerMessageBox.js" />
+    <Content Include="Scripts\Ligerui\plugins\ligerPanel.js" />
     <Content Include="Scripts\Ligerui\plugins\ligerPopupEdit.js" />
+    <Content Include="Scripts\Ligerui\plugins\ligerPortal.js" />
     <Content Include="Scripts\Ligerui\plugins\ligerRadio.js" />
     <Content Include="Scripts\Ligerui\plugins\ligerRadioList.js" />
     <Content Include="Scripts\Ligerui\plugins\ligerResizable.js" />
