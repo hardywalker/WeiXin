@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>判断是否是微信浏览器打开</title>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            if(isWeiXin()){
+                
+                //支持
+               alert("这是用微信打开的");
+                //支持
+                //location.href="";
+            }
+        }
+
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            //此方法有bug  因为wp手机根本没有MicroMessenger，所以只能判断iphone  android系统
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

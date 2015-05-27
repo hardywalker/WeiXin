@@ -61,6 +61,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="isWeiXin.html" />
+    <Content Include="b.html" />
+    <Content Include="a.html" />
     <Content Include="Content\Ligerui\Themes\Default\css\ligerui-all.css" />
     <Content Include="Content\Ligerui\Themes\Default\css\ligerui-common.css" />
     <Content Include="Content\Ligerui\Themes\Default\css\ligerui-dialog.css" />
