@@ -25,6 +25,11 @@ namespace WX_Tools.EncryptDecrypt
         string m_sToken;
         string m_sEncodingAESKey;
         string m_sAppID;
+
+
+        /// <summary>
+        /// 枚举错误码
+        /// </summary>
         enum WXBizMsgCryptErrorCode
         {
             /// <summary>
