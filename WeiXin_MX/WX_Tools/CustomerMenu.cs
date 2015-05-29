@@ -28,7 +28,7 @@ namespace WX_Tools
             HttpWebRequest webRequest = WebRequest.Create(createMenuUrl) as HttpWebRequest;
 
             webRequest.Method = "POST";
-            webRequest.ContentType = "application/x-www-form-urlencoded;";
+            webRequest.ContentType = "application/json; encoding=utf-8";
             webRequest.ContentLength = postBytes.Length;
 
             Stream streamWrite = webRequest.GetRequestStream();

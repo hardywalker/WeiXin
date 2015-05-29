@@ -20,7 +20,9 @@
             {
                 $("#layout1").ligerLayout({
                     leftWidth: 200,
-                    centerbottomHeight: 150
+                    centerHeight: 50,
+                    bottomHeight: 50
+                    
                     
                 });
             });
@@ -65,6 +67,9 @@
                 中间下方区域
             </div>  
         </div> 
+        
+        
+       
 
     </form>
 </body>

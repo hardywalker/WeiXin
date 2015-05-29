@@ -529,13 +529,13 @@ namespace WeiXin_Web
                     _menuEvent = rootXmlElement.SelectSingleNode("Event").InnerText.ToLower();
 
                     //获取点击按钮的key
-                    string menuButtonKey = rootXmlElement.SelectSingleNode("EventKey").InnerText;
+                    string menuButtonKey = rootXmlElement.SelectSingleNode("EventKey").InnerText.ToLower();
 
 
                     //订阅关注事件
                     if (_menuEvent.Equals(AllEnum.EventEnum.subscribe.ToString()))
                     {
-                        
+                        DefaultReply();
                     }//取消关注事件
                     else if (_menuEvent.Equals(AllEnum.EventEnum.unsubscribe.ToString()))
                     {
@@ -543,8 +543,11 @@ namespace WeiXin_Web
                     } //点击事件
                     else if (_menuEvent.Equals(AllEnum.CustomerMenuButtonEvent.click.ToString()))
                     {
-
-
+                        _debugLog.BugWriteTxt(_log.LogTxtPhyPath, "这是一条点击事件：" + menuButtonKey);
+                        if (menuButtonKey.Equals("tsrx"))
+                        {
+                            MenuName("您 好：\n\r这里是投诉热线：1234567");
+                        }
 
                     }
                 }
@@ -623,7 +626,11 @@ namespace WeiXin_Web
             try
             {
 
-                _replyTemplate.ReplyText(menuName);
+              string  returnValue= _replyTemplate.ReplyText(menuName);
+                _httpContext.Response.Write(returnValue);
+
+                //完成响应
+                _httpContext.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {

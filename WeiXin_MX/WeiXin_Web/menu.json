@@ -1,0 +1,81 @@
+﻿{
+   
+        "button": [
+            {
+                "name": "环保信息",
+                "sub_button": [
+                    {
+                        "type": "view",
+                        "name": "环保新闻",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=hbxw"
+                    },
+                    {
+                        "type": "view",
+                        "name": "空气质量报告",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=kqzlbg"
+                    },
+                    {
+                        "type": "view",
+                        "name": "排放黑名单",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=pfhmd"
+                    },
+                    {
+                        "type": "view",
+                        "name": "查询企业信息",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=cxqyxx"
+                    }
+                ]
+            },
+            {
+                "name": "企业信息",
+                "sub_button": [
+                    {
+                        "type": "view",
+                        "name": "绑定信息",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=bdxx"
+                    },
+                    {
+                        "type": "view",
+                        "name": "企业基本信息",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=qyjbxx"
+                    },
+                    {
+                        "type": "view",
+                        "name": "企业排放标准",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=qypfbz"
+                    },
+                    {
+                        "type": "view",
+                        "name": "企业实际排放量",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=qysjpfl"
+                    },
+                    {
+                        "type": "view",
+                        "name": "实时指数查询",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=sszscx"
+                    }
+                ]
+            },
+            {
+                "name": "环保互动",
+                "sub_button": [
+                    {
+                        "type": "view",
+                        "name": "在线投诉",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=zxts"
+                    },
+                    {
+                        "type": "click",
+                        "name": "投诉热线",
+                        "key": "tsrx"
+                    },
+                    {
+                        "type": "view",
+                        "name": "媒介传送",
+                        "url": "http://www.5likes.net/testUrl.aspx?action=mjcs"
+                    }
+                ]
+            }
+        ]
+    
+}

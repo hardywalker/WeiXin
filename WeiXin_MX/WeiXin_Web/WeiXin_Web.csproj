@@ -209,6 +209,7 @@
     <Content Include="ImageUpload.ashx" />
     <Content Include="MediaManage.aspx" />
     <Content Include="packages.config" />
+    <Content Include="menu.json" />
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.2.js" />
     <Content Include="Scripts\jquery-2.0.2.min.js" />
@@ -250,6 +251,7 @@
     <Content Include="SendMsg.aspx" />
     <Content Include="Set.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="testUrl.aspx" />
     <Content Include="UserControl\Header.html" />
     <Content Include="UserJS\LoadHeader.js" />
     <Content Include="UserJS\mediaUpload.js" />
@@ -304,6 +306,13 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testUrl.aspx.cs">
+      <DependentUpon>testUrl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testUrl.aspx.designer.cs">
+      <DependentUpon>testUrl.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserManage.aspx.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>
@@ -362,6 +371,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties menu_1json__JSONSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
