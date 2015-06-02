@@ -11,6 +11,7 @@
     <script src="Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="UserJS/LoadHeader.js"></script>
     <!--Ligerui配置Start-->
+  
     <link href="Content/Ligerui/Themes/Default/css/ligerui-all.css" rel="stylesheet" />
     <script src="Scripts/Ligerui/core/base.js"></script>
     <script src="Scripts/Ligerui/plugins/ligerLayout.js"></script>
@@ -20,8 +21,8 @@
 
         $(function () {
             $("#layout1").ligerLayout({
-                leftWidth: 200,
-                height: '100%'
+                leftWidth: 200
+            
               
                 
 
@@ -79,13 +80,7 @@
 
         <div id="layout1">
             <div position="left" title="左侧">
-
-         
-            </div>
-        </div>
-
-        
-        
+                
                <div id="accordion1" class="l-accordion-panel" style="height: 300px;" ligeruiid="accordion1">
                     <div class="l-accordion-header">
                         <div class="l-accordion-toggle l-accordion-toggle-open"></div>
@@ -122,6 +117,12 @@
                     </div>
                 </div>
                 <div style="display: none;"></div>
+         
+            </div>
+        </div>
+
+        
+        
 
 
     </form>
