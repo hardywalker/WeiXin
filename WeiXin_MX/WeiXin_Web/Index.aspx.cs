@@ -19,7 +19,8 @@ namespace WeiXin_Web
             {
                 _weiXinConfiguration = _commonClass.GetConfiguration();
             }
-      
+
+     
         }
         
 

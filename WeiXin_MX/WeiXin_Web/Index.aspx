@@ -8,30 +8,39 @@
     <title>微信公众账号测试平台</title>
 
 
-    <script src="Scripts/jquery-1.10.2.min.js"></script>
+   
+    <script src="Scripts/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="UserJS/LoadHeader.js"></script>
     <!--Ligerui配置Start-->
-  
+
     <link href="Content/Ligerui/Themes/Default/css/ligerui-all.css" rel="stylesheet" />
     <script src="Scripts/Ligerui/core/base.js"></script>
     <script src="Scripts/Ligerui/plugins/ligerLayout.js"></script>
     <script src="Scripts/Ligerui/plugins/ligerTree.js"></script>
     <script src="Scripts/Ligerui/plugins/ligerAccordion.js"></script>
+ 
+    <script src="Scripts/Ligerui/plugins/ligerTab.js"></script>
+ 
     <script type="text/javascript">
 
         $(function () {
             $("#layout1").ligerLayout({
                 leftWidth: 200
-            
-              
-                
-
             });
             $("#accordion1").ligerAccordion({
-            
+
                 height: 100
-              
+
             });
+
+
+            //tab
+            $("#navtab3").ligerTab({
+                showSwitch: true,
+                ShowSwitchInTab: true
+            });
+
+
         });
 
     </script>
@@ -80,8 +89,8 @@
 
         <div id="layout1">
             <div position="left" title="左侧">
-                
-               <div id="accordion1" class="l-accordion-panel" style="height: 300px;" ligeruiid="accordion1">
+
+                <div id="accordion1" class="l-accordion-panel" style="height: 300px;" ligeruiid="accordion1">
                     <div class="l-accordion-header">
                         <div class="l-accordion-toggle l-accordion-toggle-open"></div>
                         <div class="l-accordion-header-inner">功能列表</div>
@@ -117,12 +126,60 @@
                     </div>
                 </div>
                 <div style="display: none;"></div>
-         
+
             </div>
         </div>
 
-        
-        
+
+        <div id="navtab3" class="l-tab" ligeruiid="navtab3" style="width: 600px; overflow: hidden; border: 1px solid #A3C0E8; margin-top: 6px;" >
+            <div class="l-tab-links">
+                <ul style="left: 0px;">
+                    <li class="" tabid="home">
+                        <a>我的主页</a>
+                        <div class="l-tab-links-item-left"></div>
+                        <div class="l-tab-links-item-right"></div>
+                    </li>
+                    <li class="" tabid="tabitem1"><a>我的主页2</a><div class="l-tab-links-item-left"></div>
+                        <div class="l-tab-links-item-right"></div>
+                        <div class="l-tab-links-item-close"></div>
+                    </li>
+                    <li class="" tabid="tabitem2"><a>我的主页3</a><div class="l-tab-links-item-left"></div>
+                        <div class="l-tab-links-item-right"></div>
+                        <div class="l-tab-links-item-close"></div>
+                    </li>
+                    <li class="l-selected" tabid="tabitem3"><a>我的主页4</a><div class="l-tab-links-item-left"></div>
+                        <div class="l-tab-links-item-right"></div>
+                        <div class="l-tab-links-item-close"></div>
+                    </li>
+                    <li class="l-tab-itemswitch"><a></a>
+                        <div class="l-tab-links-item-left"></div>
+                        <div class="l-tab-links-item-right"></div>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+            <div class="l-tab-content">
+                <div style="height: 300px; display: none;" lselected="true" title="" tabid="home" class="l-tab-content-item">
+                    <div style="display: none;" class="l-tab-loading"></div>
+                  
+                </div>
+                <div showclose="true" title="" tabid="tabitem1" class="l-tab-content-item" style="display: none;">
+                    <div style="margin: 10px; height: 300px;" id="Div7">我的主页2</div>
+                </div>
+                <div showclose="true" title="" tabid="tabitem2" class="l-tab-content-item" style="display: none;">
+                    <div style="margin: 10px; height: 300px;" id="Div8">我的主页3</div>
+                </div>
+                <div showclose="true" title="" tabid="tabitem3" class="l-tab-content-item" style="display: block;">
+                    <div style="margin: 10px; height: 300px;" id="Div9">我的主页4</div>
+                </div>
+            </div>
+        </div>
+
+
+
 
 
     </form>
