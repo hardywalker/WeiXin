@@ -49,10 +49,9 @@
             <hr />
         </div>
           <div id="layout1">
-            <div position="left"></div>
+            <div position="left" title="我是左侧收缩导航"></div>
             <div position="center" title="标题">
-            <h4>$("#layout1").ligerLayout({ leftWidth: 200});</h4>
-                去掉头部和底部和右侧部位
+         这里是右侧内容
             </div>  
         </div> 
     </form>
