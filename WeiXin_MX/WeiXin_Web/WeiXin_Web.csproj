@@ -61,6 +61,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\main.css" />
     <Content Include="isWeiXin.html" />
     <Content Include="b.html" />
     <Content Include="a.html" />

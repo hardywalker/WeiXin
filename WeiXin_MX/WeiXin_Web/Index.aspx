@@ -30,38 +30,7 @@
         });
 
     </script>
-    <style type="text/css">
-        body {
-            padding: 5px;
-            margin: 0;
-            padding-bottom: 15px;
-        }
-
-        #layout1 {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #accordion1 {
-            width: 100%;
-            overflow: hidden;
-        }
-        #accordion1 ul {
-            width: 100%
-        }
-        #accordion1 ul li {
-            list-style: none;
-            float: left;
-            width: 95%;
-            line-height: 25px;
-            padding-left: 5%;
-            cursor: pointer;
-        }
-        #accordion1 ul li:hover {
-            background: #87ceeb;
-        }
-    </style>
+    <link href="css/main.css" rel="stylesheet" />
     <!--Ligerui配置End-->
 </head>
 <body>
