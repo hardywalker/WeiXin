@@ -8,28 +8,60 @@
     <title>微信公众账号测试平台</title>
 
 
-   
+
     <script src="Scripts/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="UserJS/LoadHeader.js"></script>
     <!--Ligerui配置Start-->
     <link href="Scripts/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" />
     <script src="Scripts/ligerUI/js/core/base.js"></script>
     <script src="Scripts/ligerUI/js/plugins/ligerLayout.js"></script>
-     <script type="text/javascript">
+    <script src="Scripts/ligerUI/js/plugins/ligerTree.js"></script>
+    <script src="Scripts/ligerUI/js/plugins/ligerAccordion.js"></script>
+    <script type="text/javascript">
 
-         $(function () {
+        $(function () {
+            //布局
+            $("#layout1").ligerLayout({ leftWidth: 200 });
+            //手风琴
+            $("#accordion1").ligerAccordion(
+            {
+                changeHeightOnResize:true  //自适应高度
+            });
+        });
 
-             $("#layout1").ligerLayout({ leftWidth: 200 });
-         });
+    </script>
+    <style type="text/css">
+        body {
+            padding: 5px;
+            margin: 0;
+            padding-bottom: 15px;
+        }
 
-         </script> 
-        <style type="text/css"> 
-
-            body{ padding:5px; margin:0; padding-bottom:15px;}
-            #layout1{  width:100%;margin:0; padding:0;  }  
-            .l-page-top{ height:80px; background:#f8f8f8; margin-bottom:3px;}
-            h4{ margin:20px;}
-                </style>
+        #layout1 {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #accordion1 {
+            width: 100%;
+            overflow: hidden;
+        }
+        #accordion1 ul {
+            width: 100%
+        }
+        #accordion1 ul li {
+            list-style: none;
+            float: left;
+            width: 95%;
+            line-height: 25px;
+            padding-left: 5%;
+            cursor: pointer;
+        }
+        #accordion1 ul li:hover {
+            background: #87ceeb;
+        }
+    </style>
     <!--Ligerui配置End-->
 </head>
 <body>
@@ -48,12 +80,39 @@
             <asp:Label runat="server" ID="lab_server_ip"></asp:Label>
             <hr />
         </div>
-          <div id="layout1">
-            <div position="left" title="我是左侧收缩导航"></div>
+        <div id="layout1">
+            <div position="left" title="我是左侧收缩导航">
+                <div id="accordion1">
+                    <div title="功能列表">
+                        <ul>
+                            <li>列表一</li>
+                            <li>列表二</li>
+                            <li>列表三</li>
+                            <li>列表四</li>
+                            <li>列表五</li>
+                        </ul>
+                    </div>
+                    <div title="列表">
+                        <ul>
+                            <li>列表一</li>
+                            <li>列表二</li>
+                            <li>列表三</li>
+                            <li>列表四</li>
+                            <li>列表五</li>
+                        </ul>
+                    </div>
+                    <div title="其他" style="padding: 10px">
+                        其他内容
+                    </div>
+                </div>
+
+                <div style="display: none;"></div>
+
+            </div>
             <div position="center" title="标题">
-         这里是右侧内容
-            </div>  
-        </div> 
+                这里是右侧内容
+            </div>
+        </div>
     </form>
 </body>
 </html>
