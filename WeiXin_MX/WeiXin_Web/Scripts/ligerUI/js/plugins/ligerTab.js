@@ -646,11 +646,16 @@
         //增加一个tab
         addTabItem: function (options)
         {
-            var g = this, p = this.options; 
-            if (g.trigger('beforeAddTabItem', [options]) == false)
+            var g = this, p = this.options;
+            //alert(g.attr("tagName"));
+            if (g.trigger('beforeAddTabItem', [options]) == false) {
                 return false;
+            }
             var tabid = options.tabid;
-            if (tabid == undefined) tabid = g.getNewTabid();
+         
+            if (tabid == undefined) {
+                 tabid = g.getNewTabid();
+            }
             var url = options.url, content = options.content, text = options.text, showClose = options.showClose, height = options.height;
             //如果已经存在
             if (g.isTabItemExist(tabid))

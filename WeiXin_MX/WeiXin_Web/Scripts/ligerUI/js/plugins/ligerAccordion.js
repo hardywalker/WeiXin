@@ -4,7 +4,7 @@
 * http://ligerui.com
 *  
 * Author daomi 2014 [ gd_star@163.com ] 
-* 
+* 手风琴效果
 */
 (function ($)
 {

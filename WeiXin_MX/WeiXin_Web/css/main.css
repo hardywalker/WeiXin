@@ -25,5 +25,13 @@
             padding-left: 5%;
             cursor: pointer;
         }
-        #accordion1 ul li:hover {       background: #87ceeb;
+        #accordion1 ul li:hover {      
+             background: #87ceeb;
+        }
+
+
+
+
+        .l-tab-content-item iframe {
+            height: 100%;
         }

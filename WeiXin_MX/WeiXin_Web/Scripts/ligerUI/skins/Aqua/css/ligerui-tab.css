@@ -64,7 +64,9 @@ background:url('../images/layout/tabs-bg.gif') repeat-x; border-bottom:1px solid
 .l-tab-links-item-close{ width:11px; height:11px; overflow:hidden; position:absolute; top:4px; right:2px; z-index:12;background:url(../images/icon/icon-close.gif); cursor:pointer;}
 .l-tab-links-item-close-over{background:url(../images/icon/icon-close-over.gif);}
 
-.l-tab-content{ margin:0 auto; padding:0; border:none; width:100%;}
+.l-tab-content{ margin:0 auto; padding:0; border:none; width:100%;
+                /*2015年6月3日10:39:47  马鑫  添加 高度样式*/height: 100%;
+}
 .l-tab-content-item{ width:100%; height:100%; overflow:hidden; position:relative;}
 .l-tab-content-item iframe{width:100%; height:100%; border:none;}
 
