@@ -61,12 +61,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="access_token.aspx" />
+    <Content Include="CustomerMenu\createMenu.aspx" />
+    <Content Include="CustomerMenu\deleteMenu.aspx" />
+    <Content Include="CustomerMenu\getMenu.aspx" />
     <Content Include="main.html" />
     <Content Include="css\main.css" />
     <Content Include="isWeiXin.html" />
     <Content Include="b.html" />
     <Content Include="a.html" />
-    <Content Include="CustomerMenu.aspx" />
     <Content Include="ErrorTXT\错误日志.html" />
     <Content Include="Index.aspx" />
     <Content Include="ImageUpload.ashx" />
@@ -515,13 +518,34 @@
     <Content Include="XML\set.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CommonClass.cs" />
-    <Compile Include="CustomerMenu.aspx.cs">
-      <DependentUpon>CustomerMenu.aspx</DependentUpon>
+    <Compile Include="access_token.aspx.cs">
+      <DependentUpon>access_token.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CustomerMenu.aspx.designer.cs">
-      <DependentUpon>CustomerMenu.aspx</DependentUpon>
+    <Compile Include="access_token.aspx.designer.cs">
+      <DependentUpon>access_token.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\CommonClass.cs" />
+    <Compile Include="CustomerMenu\createMenu.aspx.cs">
+      <DependentUpon>createMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerMenu\createMenu.aspx.designer.cs">
+      <DependentUpon>createMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerMenu\deleteMenu.aspx.cs">
+      <DependentUpon>deleteMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerMenu\deleteMenu.aspx.designer.cs">
+      <DependentUpon>deleteMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerMenu\getMenu.aspx.cs">
+      <DependentUpon>getMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerMenu\getMenu.aspx.designer.cs">
+      <DependentUpon>getMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImageUpload.ashx.cs">
       <DependentUpon>ImageUpload.ashx</DependentUpon>

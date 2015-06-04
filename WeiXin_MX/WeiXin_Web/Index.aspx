@@ -64,35 +64,32 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <div id="header"></div>
-       
-        <hr />
-            <asp:Button runat="server" ID="btn_get_access_token" OnClick="btn_get_access_token_OnClick" Text="获取access_token" /><br />
-            <asp:Label runat="server" ID="lab_access_token"></asp:Label><br />
-            <input type="button" id="btn_update_access_token" value="更新access_token" runat="server" onserverclick="btn_update_access_token_OnServerClick" />
-            <hr />
-            <asp:Button runat="server" ID="btn_get_server_ip" OnClick="btn_get_server_ip_OnClick" Text="获取服务器ip" /><br />
-            <asp:Label runat="server" ID="lab_server_ip"></asp:Label>
-            <hr />
-        </div>
+    
         <div id="layout1">
             <div position="left" title="我是左侧收缩导航">
                 <div id="accordion1">
                     <div title="功能列表">
                         <ul>
                             <li onclick="addNewTab('li1','配置信息','set.aspx');" >配置信息</li>
-                            <li>列表二</li>
-                       
-                        </ul>
+                            <li onclick="addNewTab('li2','access_token','access_token.aspx');">access_token</li>
+                       </ul>
                     </div>
-                    <div title="列表">
+                    <div title="菜单管理">
                         <ul>
-                            <li>列表一</li>
+                            <li>现有菜单</li>
+                             <li>编辑菜单</li>
+                             <li>删除菜单</li>
                         
                         </ul>
                     </div>
-                 
+                    <div title="用户管理">
+                        <ul>
+                             <li>所有用户</li>
+                             <li>编辑菜单</li>
+                             <li>删除菜单</li>
+                        
+                        </ul>
+                    </div>
                 </div>
 
                 <div style="display: none;"></div>

@@ -8,13 +8,14 @@ namespace WeiXin_Web
     public partial class Set : Page
     {
         WeiXinConfiguration _configuration = new WeiXinConfiguration();
-        XmlReadWrite xmlReadWrite=new XmlReadWrite();
-
+   
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                _configuration = xmlReadWrite.Read("/XML/", _configuration, "set.config") as WeiXinConfiguration;
+                
+                _configuration = XmlReadWrite.Read("/XML/", _configuration, "set.config") as WeiXinConfiguration;
                 if (_configuration != null)
                 {
                     txt_appid.Text = _configuration.Appid;
@@ -43,7 +44,7 @@ namespace WeiXin_Web
 
         private void SaveConfig(object obj)
         {
-            xmlReadWrite.Write("/XML/", obj, "set.config");
+            XmlReadWrite.Write("/XML/", obj, "set.config");
         }
     }
 }

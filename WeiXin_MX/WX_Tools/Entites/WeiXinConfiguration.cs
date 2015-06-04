@@ -1,8 +1,11 @@
-﻿namespace WX_Tools.Entites
+﻿using System;
+
+namespace WX_Tools.Entites
 {
     /// <summary>
     /// appid以及appsecret,token,encodingaeskey实体类
     /// </summary>
+    [Serializable]
    public  class WeiXinConfiguration
     {
 

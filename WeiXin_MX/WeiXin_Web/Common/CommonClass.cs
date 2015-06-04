@@ -10,7 +10,7 @@ namespace WeiXin_Web.Common
     public class CommonClass
     {
         WeiXinConfiguration _weiXinConfiguration = new WeiXinConfiguration();
-        readonly XmlReadWrite _xmlReadWrite = new XmlReadWrite();
+  
 
 
         /// <summary>
@@ -65,9 +65,7 @@ namespace WeiXin_Web.Common
         public string GET_IP_List(WeiXinConfiguration weiXinConfiguration)
         {
             string accesstoken = Get_access_token(weiXinConfiguration, "catch");
-
             
-
           string jsonResult=  new Getcallbackip().GetServerIpString(accesstoken);
             JObject jObject = JObject.Parse(jsonResult);//获取服务器Ip,这样获得是的json格式
             JArray jArray = JArray.Parse(jObject["ip_list"].ToString());//转换指定的ip_list
@@ -82,7 +80,7 @@ namespace WeiXin_Web.Common
         /// <returns>返回AppidSecretToken对象</returns>
         public WeiXinConfiguration GetConfiguration()
         {
-            return _weiXinConfiguration = _xmlReadWrite.Read("/XML/", _weiXinConfiguration, "set.config") as WeiXinConfiguration;
+            return _weiXinConfiguration = XmlReadWrite.Read("/XML/", _weiXinConfiguration, "set.config") as WeiXinConfiguration;
         }
 
     }

@@ -9,8 +9,11 @@ namespace WX_Tools
     /// <summary>
     /// Xml文件读写类
     /// </summary>
-    public class XmlReadWrite
+    public static class XmlReadWrite
     {
+
+
+
         /// <summary>
         /// 根据相对路径以及文件全名读取xml文件，需要传入实体对象类型   反序列化方式
         /// </summary>
@@ -18,7 +21,7 @@ namespace WX_Tools
         /// <param name="obj">实体对象类型</param>
         /// <param name="fileName">文件名（a.txt）</param>
         /// <returns>返回对象</returns>
-        public Object Read(string filePath, object obj, string fileName)
+        public static Object Read(string filePath, object obj, string fileName)
         {
             //获取物理路径 
             filePath = HttpContext.Current.Server.MapPath(filePath);
@@ -57,7 +60,7 @@ namespace WX_Tools
         /// <param name="filePath">相对路径(/aa/aaa/)</param>
         /// <param name="obj">实体对象</param>
         /// <param name="fileName">文件全名(a.config)</param>
-        public void Write(string filePath, object obj, string fileName)
+        public static void Write(string filePath, object obj, string fileName)
         {
             //获取物理路径 
             filePath = HttpContext.Current.Server.MapPath(filePath);
@@ -90,7 +93,7 @@ namespace WX_Tools
         /// 判断xml所在文件夹是否存在，不存在的话，就创建此路径，注意传入的路径是物理路径
         /// </summary>
         /// <param name="filePath">物理路径</param>
-        private void DirectoryIsExists(string filePath)
+        private static void DirectoryIsExists(string filePath)
         {
             if (!Directory.Exists(filePath))
             {
