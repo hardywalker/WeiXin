@@ -20,6 +20,7 @@ namespace WeiXin_Web
         DebugLog _debugLog=new DebugLog();
         Log _log=new Log()
         {
+            //日志存放目录
             LogTxtPhyPath = "/ErrorTXT/"
         };
         
@@ -33,6 +34,7 @@ namespace WeiXin_Web
                     
           //  context.Response.ContentType = "text/plain";
             //context.Response.Write("Hello World");
+            //获取请求
             string requestAction=context.Request.Form["action"];
 
             switch (requestAction)

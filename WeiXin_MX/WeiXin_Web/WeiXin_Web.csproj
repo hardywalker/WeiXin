@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="access_token.aspx" />
-    <Content Include="CustomerMenu\createMenu.aspx" />
+    <Content Include="CustomerMenu\editMenu.aspx" />
     <Content Include="CustomerMenu\deleteMenu.aspx" />
     <Content Include="CustomerMenu\getMenu.aspx" />
     <Content Include="main.html" />
@@ -74,14 +74,14 @@
     <Content Include="Index.aspx" />
     <Content Include="ImageUpload.ashx" />
     <Content Include="MediaManage.aspx" />
-    <Content Include="packages.config" />
     <Content Include="menu.json" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery-1.5.2.min.js" />
+    <Content Include="packages.config" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\ligerUI\js\core\base.js" />
     <Content Include="Scripts\ligerUI\js\core\inject.js" />
@@ -526,12 +526,12 @@
       <DependentUpon>access_token.aspx</DependentUpon>
     </Compile>
     <Compile Include="Common\CommonClass.cs" />
-    <Compile Include="CustomerMenu\createMenu.aspx.cs">
-      <DependentUpon>createMenu.aspx</DependentUpon>
+    <Compile Include="CustomerMenu\editMenu.aspx.cs">
+      <DependentUpon>editMenu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CustomerMenu\createMenu.aspx.designer.cs">
-      <DependentUpon>createMenu.aspx</DependentUpon>
+    <Compile Include="CustomerMenu\editMenu.aspx.designer.cs">
+      <DependentUpon>editMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerMenu\deleteMenu.aspx.cs">
       <DependentUpon>deleteMenu.aspx</DependentUpon>
@@ -606,7 +606,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\WeiXin_FTP.pubxml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

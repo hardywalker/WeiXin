@@ -6,7 +6,8 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>素材管理</title>
-    <script src="Scripts/jquery-2.1.3.min.js" type="text/javascript"></script>
+  
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
      <script type="text/javascript" src="UserJS/LoadHeader.js"></script>
     <script src="Scripts/jquery.form.js" type="text/javascript"></script>
     <script src="UserJS/mediaUpload.js" type="text/javascript"></script>

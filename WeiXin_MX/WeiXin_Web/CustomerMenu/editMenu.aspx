@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="createMenu.aspx.cs" Inherits="WeiXin_Web.CustomerMenu.createMenu" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="editMenu.aspx.cs" Inherits="WeiXin_Web.CustomerMenu.createMenu" %>
 
 <!DOCTYPE html>
 

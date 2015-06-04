@@ -70,15 +70,15 @@
                 <div id="accordion1">
                     <div title="功能列表">
                         <ul>
-                            <li onclick="addNewTab('li1','配置信息','set.aspx');" >配置信息</li>
-                            <li onclick="addNewTab('li2','access_token','access_token.aspx');">access_token</li>
+                            <li onclick="addNewTab('ul1li1','配置信息','set.aspx');" >配置信息</li>
+                            <li onclick="addNewTab('ul1li2','access_token','access_token.aspx');">access_token</li>
                        </ul>
                     </div>
                     <div title="菜单管理">
                         <ul>
-                            <li>现有菜单</li>
-                             <li>编辑菜单</li>
-                             <li>删除菜单</li>
+                             <li onclick="addNewTab('ul2li1','现有菜单','CustomerMenu/getMenu.aspx');">现有菜单</li>
+                             <li onclick="addNewTab('ul2li2','编辑菜单','CustomerMenu/editMenu.aspx');">编辑菜单</li>
+                             <li onclick="addNewTab('ul2li3','删除菜单','CustomerMenu/deleteMenu.aspx');">删除菜单</li>
                         
                         </ul>
                     </div>
