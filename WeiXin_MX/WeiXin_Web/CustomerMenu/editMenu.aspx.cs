@@ -30,7 +30,7 @@ namespace WeiXin_Web.CustomerMenu
 
             new DebugLog().BugWriteTxt("/ErrorTXT/", txt_menu.Text.Trim());
 
-            lab_menu_msg.InnerText = "创建菜单结果：" + new WX_Tools.CustomerMenu().CreateCustomerMenu(_commonClass.Get_access_token(_weiXinConfiguration, "catch"), txt_menu.Text.Trim());
+            lab_menu_msg.InnerText = "创建菜单结果：" + WX_Tools.CustomerMenu.CreateCustomerMenu(_commonClass.Get_access_token(_weiXinConfiguration, "catch"), txt_menu.Text.Trim());
 
         }
 

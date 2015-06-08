@@ -35,3 +35,34 @@
         .l-tab-content-item iframe {
             height: 100%;
         }
+
+
+
+
+        /*********************footer样式**************************/
+        .footer {
+         
+            height: 35px;
+            margin:10px auto;
+            text-align: center;
+        }
+
+        .footer ul {
+            text-align: center;
+            margin: 0  auto;
+        }
+
+        .footer ul li {
+            display: inline;
+        
+           padding:0 10px 0 10px;
+           list-style-type:none;
+
+        }
+
+        .footer ul li a {
+            font-size: 14px;
+            color: #0094ff;
+            text-decoration: none;
+        }
+

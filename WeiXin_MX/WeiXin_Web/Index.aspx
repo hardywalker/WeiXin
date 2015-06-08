@@ -6,10 +6,11 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>微信公众账号测试平台</title>
-
     
+
+
     <script src="Scripts/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="UserJS/LoadHeader.js"></script>
+
     <!--Ligerui配置Start-->
     <link href="Scripts/ligerUI/skins/ligerui-icons.css" rel="stylesheet" />
     <link href="Scripts/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" />
@@ -18,7 +19,7 @@
 
     <script src="Scripts/ligerUI/js/plugins/ligerAccordion.js"></script>
     <script src="Scripts/ligerUI/js/plugins/ligerTab.js"></script>
- 
+
     <script src="Scripts/ligerUI/js/plugins/ligerMenu.js"></script>
     <script type="text/javascript">
         var newTab = null;
@@ -35,10 +36,10 @@
             });
 
             //Tab
-         newTab= $("#navtab1").ligerTab({
-           
-             dragToMove: true,  //是否允许拖动时改变tab项的位置 
-             changeHeightOnResize:true  //自适应高度
+            newTab = $("#navtab1").ligerTab({
+
+                dragToMove: true,  //是否允许拖动时改变tab项的位置 
+                changeHeightOnResize: true  //自适应高度
             });
 
 
@@ -50,9 +51,9 @@
      tabText:新创建的tab的title
      tabUrl:新创建的tab需要加载的页面
         */
-        function addNewTab(newTabId,tabText,tabUrl) {
-           
-            // newTab.addTabItem(tabid).setHeader(tabid,text);
+        function addNewTab(newTabId, tabText, tabUrl) {
+
+
             newTab.addTabItem({ tabid: newTabId, text: tabText, url: tabUrl });;
         }
 
@@ -64,30 +65,30 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    
+
         <div id="layout1">
             <div position="left" title="我是左侧收缩导航">
                 <div id="accordion1">
                     <div title="功能列表">
                         <ul>
-                            <li onclick="addNewTab('ul1li1','配置信息','set.aspx');" >配置信息</li>
+                            <li onclick="addNewTab('ul1li1','配置信息','set.aspx');">配置信息</li>
                             <li onclick="addNewTab('ul1li2','access_token','access_token.aspx');">access_token</li>
-                       </ul>
+                        </ul>
                     </div>
                     <div title="菜单管理">
                         <ul>
-                             <li onclick="addNewTab('ul2li1','现有菜单','CustomerMenu/getMenu.aspx');">现有菜单</li>
-                             <li onclick="addNewTab('ul2li2','编辑菜单','CustomerMenu/editMenu.aspx');">编辑菜单</li>
-                             <li onclick="addNewTab('ul2li3','删除菜单','CustomerMenu/deleteMenu.aspx');">删除菜单</li>
-                        
+                            <li onclick="addNewTab('ul2li1','现有菜单','CustomerMenu/getMenu.aspx');">现有菜单</li>
+                            <li onclick="addNewTab('ul2li2','编辑菜单','CustomerMenu/editMenu.aspx');">编辑菜单</li>
+                            <li onclick="addNewTab('ul2li3','删除菜单','CustomerMenu/deleteMenu.aspx');">删除菜单</li>
+
                         </ul>
                     </div>
                     <div title="用户管理">
                         <ul>
-                             <li>所有用户</li>
-                             <li>编辑菜单</li>
-                             <li>删除菜单</li>
-                        
+                            <li>所有用户</li>
+                            <li>编辑菜单</li>
+                            <li>删除菜单</li>
+
                         </ul>
                     </div>
                 </div>
@@ -100,8 +101,20 @@
                     <div tabid="home" title="主页" lselected="true" style="height: 100%">
                         <!--用来显示首页信息-->
                     </div>
-                  
+
                 </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_link">
+                <ul>
+                    <li><a href="http://yibaobei999.taobao.com" target="_blank">韩尙王国</a></li>
+                    <li><a href="http://yibaobei888.taobao.com" target="_blank">小维家高端定制</a></li>
+
+                </ul>
+            </div>
+            <div class="footer_copyright">
+                <span>@2015 anyangmaxin.com 豫ICP备15015309号</span>
             </div>
         </div>
     </form>

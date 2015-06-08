@@ -10,16 +10,23 @@ namespace WX_Tools
     /// </summary>
     public class CustomerMenu
     {
+
+
+        public CustomerMenu()
+        {
+            //构造函数
+
+        }
+
+
         /// <summary>
         /// 创建菜单 POST
         /// </summary>
         /// <param name="accesstoken"></param>
         /// <param name="jsonMenu">菜单json字符串</param>
         /// <returns>返回创建结果json格式</returns>
-        public string CreateCustomerMenu(string accesstoken, string jsonMenu)
+        public static string CreateCustomerMenu(string accesstoken, string jsonMenu)
         {
-
-
             byte[] postBytes = Encoding.UTF8.GetBytes(jsonMenu);
 
      
@@ -42,11 +49,7 @@ namespace WX_Tools
             if (streamRead != null)
             {
                 StreamReader streamReader = new StreamReader(streamRead, Encoding.UTF8);
-                //string result = streamReader.ReadToEnd();
-                //streamReader.Close();
-                //streamRead.Close();
-                //JObject jObject = JObject.Parse(result);
-                //createResult = jObject["errmsg"].ToString();
+             
                 createResult = streamReader.ReadToEnd();
 
             }
@@ -60,7 +63,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecret">AppidSecretToken对象</param>
         /// <returns>返回json格式的处理结果</returns>
-        public string GetCustomerMenu(string accesstoken)
+        public static string GetCustomerMenu(string accesstoken)
         {
             /*
              * 使用接口创建自定义菜单后，开发者还可使用接口查询自定义菜单的结构。
@@ -107,7 +110,7 @@ namespace WX_Tools
         /// </summary>
         /// <param name="appidSecret">AppidSecretToken对象</param>
         /// <returns>返回json格式的处理结果</returns>
-        public string DeleteCustomerMenu(string accesstoken)
+        public static string DeleteCustomerMenu(string accesstoken)
         {
 
             /*

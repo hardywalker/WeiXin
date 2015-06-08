@@ -22,7 +22,7 @@ namespace WeiXin_Web.CustomerMenu
         protected void btn_get_now_menu_OnClick(object sender, EventArgs e)
         {
 
-            txt_now_menu.Text = new WX_Tools.CustomerMenu().GetCustomerMenu(_commonClass.Get_access_token(_weiXinConfiguration, "catch"));
+            txt_now_menu.Text = WX_Tools.CustomerMenu.GetCustomerMenu(_commonClass.Get_access_token(_weiXinConfiguration, "catch"));
 
         }
     }
