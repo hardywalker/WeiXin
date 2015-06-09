@@ -1,0 +1,1 @@
+{"filter":{"is_to_all":false,"group_id": "0"},"text": {"content": "这是一条测试内容"},"msgtype": "text"}
