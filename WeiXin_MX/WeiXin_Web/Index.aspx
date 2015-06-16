@@ -16,7 +16,6 @@
     <link href="Scripts/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" />
     <script src="Scripts/ligerUI/js/core/base.js"></script>
     <script src="Scripts/ligerUI/js/plugins/ligerLayout.js"></script>
-
     <script src="Scripts/ligerUI/js/plugins/ligerAccordion.js"></script>
     <script src="Scripts/ligerUI/js/plugins/ligerTab.js"></script>
 
