@@ -213,15 +213,14 @@
 
             </select>
 
-
-        
             <span id="nodesCountMessage"></span>
             <span>展开</span><select id="expandLevel">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
-            </select><span>级</span>
+            </select>
+            <span>级</span>
 
   
 

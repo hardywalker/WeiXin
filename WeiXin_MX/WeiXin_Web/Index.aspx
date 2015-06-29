@@ -42,7 +42,7 @@
             });
 
 
-            ;
+            
         });
         /*
         创建新的Tab
@@ -55,6 +55,10 @@
 
             newTab.addTabItem({ tabid: newTabId, text: tabText, url: tabUrl });;
         }
+
+
+
+        
 
 
 
@@ -113,7 +117,7 @@
                 </ul>
             </div>
             <div class="footer_copyright">
-                <span>@2015 anyangmaxin.com 豫ICP备15015309号</span>
+                <span>@2015 anyangmaxin.com 豫ICP备15015309号 </span><script src="http://s11.cnzz.com/z_stat.php?id=1255322213&web_id=1255322213" language="JavaScript"></script>
             </div>
         </div>
     </form>
